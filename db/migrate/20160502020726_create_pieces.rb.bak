@@ -1,0 +1,14 @@
+class CreatePieces < ActiveRecord::Migration
+  def change
+    create_table :pieces do |t|
+      t.references :creation, index: true, foreign_key: true
+      t.string :name
+      t.text :description
+      t.text :file_name
+      t.string :format
+      t.string :image
+
+      t.timestamps null: false
+    end
+  end
+end

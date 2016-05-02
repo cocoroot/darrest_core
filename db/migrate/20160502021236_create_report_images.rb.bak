@@ -1,0 +1,10 @@
+class CreateReportImages < ActiveRecord::Migration
+  def change
+    create_table :report_images do |t|
+      t.references :report, index: true, foreign_key: true
+      t.string :image
+
+      t.timestamps null: false
+    end
+  end
+end

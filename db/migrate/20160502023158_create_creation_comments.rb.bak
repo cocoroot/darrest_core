@@ -1,0 +1,13 @@
+class CreateCreationComments < ActiveRecord::Migration
+  def change
+    create_table :creation_comments do |t|
+      t.string :sid
+      t.references :creation, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
+      t.references :parent, index: true, foreign_key: true
+      t.string :notice_code
+
+      t.timestamps null: false
+    end
+  end
+end

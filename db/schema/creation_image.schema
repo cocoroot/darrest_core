@@ -1,0 +1,6 @@
+create_table :creation_images, id: :bigserial do |t|
+  t.references :creation, index: true, foreign_key: true
+  t.string :image, limit: 256
+
+  t.timestamps null: false
+end

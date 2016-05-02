@@ -1,0 +1,11 @@
+class CreateCreatorImages < ActiveRecord::Migration
+  def change
+    create_table :creator_images do |t|
+      t.references :creator, index: true, foreign_key: true
+      t.string :image
+      t.boolean :in_use
+
+      t.timestamps null: false
+    end
+  end
+end

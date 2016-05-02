@@ -1,0 +1,29 @@
+<%= form_for(@creator_image) do |f| %>
+  <% if @creator_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@creator_image.errors.count, "error") %> prohibited this creator_image from being saved:</h2>
+
+      <ul>
+      <% @creator_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :creator_id %><br>
+    <%= f.text_field :creator_id %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :in_use %><br>
+    <%= f.check_box :in_use %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
