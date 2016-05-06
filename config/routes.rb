@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :manage do
+  get 'manage/index'
+  end
+
+  namespace :manage do
     resources :creation_comments
     resources :collection_creations
     resources :collections
