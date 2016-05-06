@@ -5,7 +5,7 @@ RSpec.describe "manage/creator_images/show", type: :view do
     @manage_creator_image = assign(:manage_creator_image, Manage::CreatorImage.create!(
       :creator => nil,
       :image => "Image",
-      :boolean => ""
+      :in_use => false
     ))
   end
 
@@ -13,6 +13,6 @@ RSpec.describe "manage/creator_images/show", type: :view do
     render
     expect(rendered).to match(//)
     expect(rendered).to match(/Image/)
-    expect(rendered).to match(//)
+    expect(rendered).to match(/false/)
   end
 end

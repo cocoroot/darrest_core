@@ -4,7 +4,7 @@ class Manage::ReportImagesController < ApplicationController
   # GET /manage/report_images
   # GET /manage/report_images.json
   def index
-    @manage_report_images = ReportImage.all
+    @manage_report_images = Manage::ReportImage.all
   end
 
   # GET /manage/report_images/1
@@ -14,7 +14,7 @@ class Manage::ReportImagesController < ApplicationController
 
   # GET /manage/report_images/new
   def new
-    @manage_report_image = ReportImage.new
+    @manage_report_image = Manage::ReportImage.new
   end
 
   # GET /manage/report_images/1/edit
@@ -24,7 +24,7 @@ class Manage::ReportImagesController < ApplicationController
   # POST /manage/report_images
   # POST /manage/report_images.json
   def create
-    @manage_report_image = ReportImage.new(manage_report_image_params)
+    @manage_report_image = Manage::ReportImage.new(manage_report_image_params)
 
     respond_to do |format|
       if @manage_report_image.save
@@ -64,7 +64,7 @@ class Manage::ReportImagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_report_image
-      @manage_report_image = ReportImage.find(params[:id])
+      @manage_report_image = Manage::ReportImage.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

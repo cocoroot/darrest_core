@@ -4,7 +4,7 @@ RSpec.describe "manage/creation_tags/edit", type: :view do
   before(:each) do
     @manage_creation_tag = assign(:manage_creation_tag, Manage::CreationTag.create!(
       :creation => nil,
-      :references => ""
+      :tag => nil
     ))
   end
 
@@ -15,7 +15,7 @@ RSpec.describe "manage/creation_tags/edit", type: :view do
 
       assert_select "input#manage_creation_tag_creation_id[name=?]", "manage_creation_tag[creation_id]"
 
-      assert_select "input#manage_creation_tag_references[name=?]", "manage_creation_tag[references]"
+      assert_select "input#manage_creation_tag_tag_id[name=?]", "manage_creation_tag[tag_id]"
     end
   end
 end

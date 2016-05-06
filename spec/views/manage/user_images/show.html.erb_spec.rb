@@ -5,7 +5,7 @@ RSpec.describe "manage/user_images/show", type: :view do
     @manage_user_image = assign(:manage_user_image, Manage::UserImage.create!(
       :user => nil,
       :image => "Image",
-      :in_use => false
+      :in_user => false
     ))
   end
 

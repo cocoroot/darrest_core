@@ -5,7 +5,7 @@ RSpec.describe "manage/user_images/edit", type: :view do
     @manage_user_image = assign(:manage_user_image, Manage::UserImage.create!(
       :user => nil,
       :image => "MyString",
-      :in_use => false
+      :in_user => false
     ))
   end
 
@@ -18,7 +18,7 @@ RSpec.describe "manage/user_images/edit", type: :view do
 
       assert_select "input#manage_user_image_image[name=?]", "manage_user_image[image]"
 
-      assert_select "input#manage_user_image_in_use[name=?]", "manage_user_image[in_use]"
+      assert_select "input#manage_user_image_in_user[name=?]", "manage_user_image[in_user]"
     end
   end
 end

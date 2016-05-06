@@ -4,7 +4,7 @@ class Manage::UserImagesController < ApplicationController
   # GET /manage/user_images
   # GET /manage/user_images.json
   def index
-    @manage_user_images = UserImage.all
+    @manage_user_images = Manage::UserImage.all
   end
 
   # GET /manage/user_images/1
@@ -14,7 +14,7 @@ class Manage::UserImagesController < ApplicationController
 
   # GET /manage/user_images/new
   def new
-    @manage_user_image = UserImage.new
+    @manage_user_image = Manage::UserImage.new
   end
 
   # GET /manage/user_images/1/edit
@@ -24,7 +24,7 @@ class Manage::UserImagesController < ApplicationController
   # POST /manage/user_images
   # POST /manage/user_images.json
   def create
-    @manage_user_image = UserImage.new(manage_user_image_params)
+    @manage_user_image = Manage::UserImage.new(manage_user_image_params)
 
     respond_to do |format|
       if @manage_user_image.save
@@ -64,11 +64,11 @@ class Manage::UserImagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_user_image
-      @manage_user_image = UserImage.find(params[:id])
+      @manage_user_image = Manage::UserImage.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manage_user_image_params
-      params.require(:manage_user_image).permit(:user_id, :image, :in_use)
+      params.require(:manage_user_image).permit(:user_id, :image, :in_user)
     end
 end

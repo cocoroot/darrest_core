@@ -6,7 +6,7 @@ RSpec.describe "manage/creation_comments/new", type: :view do
       :sid => "MyString",
       :creation => nil,
       :user => nil,
-      :parent_id => 1,
+      :parent => nil,
       :notice_code => "MyString"
     ))
   end

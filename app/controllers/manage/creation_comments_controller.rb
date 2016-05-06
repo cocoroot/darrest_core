@@ -4,7 +4,7 @@ class Manage::CreationCommentsController < ApplicationController
   # GET /manage/creation_comments
   # GET /manage/creation_comments.json
   def index
-    @manage_creation_comments = CreationComment.all
+    @manage_creation_comments = Manage::CreationComment.all
   end
 
   # GET /manage/creation_comments/1
@@ -14,7 +14,7 @@ class Manage::CreationCommentsController < ApplicationController
 
   # GET /manage/creation_comments/new
   def new
-    @manage_creation_comment = CreationComment.new
+    @manage_creation_comment = Manage::CreationComment.new
   end
 
   # GET /manage/creation_comments/1/edit
@@ -24,7 +24,7 @@ class Manage::CreationCommentsController < ApplicationController
   # POST /manage/creation_comments
   # POST /manage/creation_comments.json
   def create
-    @manage_creation_comment = CreationComment.new(manage_creation_comment_params)
+    @manage_creation_comment = Manage::CreationComment.new(manage_creation_comment_params)
 
     respond_to do |format|
       if @manage_creation_comment.save
@@ -64,7 +64,7 @@ class Manage::CreationCommentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_creation_comment
-      @manage_creation_comment = CreationComment.find(params[:id])
+      @manage_creation_comment = Manage::CreationComment.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

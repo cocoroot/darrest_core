@@ -1,4 +1,4 @@
-create_table :pieces, id: :bigserial do |t|
+create_table :manage_pieces, id: :bigserial do |t|
   t.references :creation, index: true, foreign_key: true
   t.string :name, limit: 200
   t.text :description, limit: 1000

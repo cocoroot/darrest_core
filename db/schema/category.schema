@@ -1,8 +1,8 @@
-create_table :categories do |t|
+create_table :manage_categories do |t|
   t.string :name, limit: 100
   t.integer :parent_id, index: true, limit: 8
 
   t.timestamps null: false
 end
 
-add_foreign_key :categories, :categories, column: :parent_id, name: 'fk_categories_parent'
+add_foreign_key :manage_categories, :manage_categories, column: :parent_id, name: 'fk_categories_parent'

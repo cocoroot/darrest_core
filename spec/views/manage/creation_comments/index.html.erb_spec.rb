@@ -7,14 +7,14 @@ RSpec.describe "manage/creation_comments/index", type: :view do
         :sid => "Sid",
         :creation => nil,
         :user => nil,
-        :parent_id => 1,
+        :parent => nil,
         :notice_code => "Notice Code"
       ),
       Manage::CreationComment.create!(
         :sid => "Sid",
         :creation => nil,
         :user => nil,
-        :parent_id => 1,
+        :parent => nil,
         :notice_code => "Notice Code"
       )
     ])
@@ -25,7 +25,7 @@ RSpec.describe "manage/creation_comments/index", type: :view do
     assert_select "tr>td", :text => "Sid".to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2
-    assert_select "tr>td", :text => 1.to_s, :count => 2
+    assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => "Notice Code".to_s, :count => 2
   end
 end

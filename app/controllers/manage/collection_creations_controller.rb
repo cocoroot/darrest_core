@@ -4,7 +4,7 @@ class Manage::CollectionCreationsController < ApplicationController
   # GET /manage/collection_creations
   # GET /manage/collection_creations.json
   def index
-    @manage_collection_creations = CollectionCreation.all
+    @manage_collection_creations = Manage::CollectionCreation.all
   end
 
   # GET /manage/collection_creations/1
@@ -14,7 +14,7 @@ class Manage::CollectionCreationsController < ApplicationController
 
   # GET /manage/collection_creations/new
   def new
-    @manage_collection_creation = CollectionCreation.new
+    @manage_collection_creation = Manage::CollectionCreation.new
   end
 
   # GET /manage/collection_creations/1/edit
@@ -24,7 +24,7 @@ class Manage::CollectionCreationsController < ApplicationController
   # POST /manage/collection_creations
   # POST /manage/collection_creations.json
   def create
-    @manage_collection_creation = CollectionCreation.new(manage_collection_creation_params)
+    @manage_collection_creation = Manage::CollectionCreation.new(manage_collection_creation_params)
 
     respond_to do |format|
       if @manage_collection_creation.save
@@ -64,7 +64,7 @@ class Manage::CollectionCreationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_collection_creation
-      @manage_collection_creation = CollectionCreation.find(params[:id])
+      @manage_collection_creation = Manage::CollectionCreation.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

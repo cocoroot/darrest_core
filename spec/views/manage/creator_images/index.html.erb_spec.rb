@@ -6,12 +6,12 @@ RSpec.describe "manage/creator_images/index", type: :view do
       Manage::CreatorImage.create!(
         :creator => nil,
         :image => "Image",
-        :boolean => ""
+        :in_use => false
       ),
       Manage::CreatorImage.create!(
         :creator => nil,
         :image => "Image",
-        :boolean => ""
+        :in_use => false
       )
     ])
   end
@@ -20,6 +20,6 @@ RSpec.describe "manage/creator_images/index", type: :view do
     render
     assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => "Image".to_s, :count => 2
-    assert_select "tr>td", :text => "".to_s, :count => 2
+    assert_select "tr>td", :text => false.to_s, :count => 2
   end
 end

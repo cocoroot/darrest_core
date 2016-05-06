@@ -5,7 +5,7 @@ RSpec.describe "manage/creator_images/new", type: :view do
     assign(:manage_creator_image, Manage::CreatorImage.new(
       :creator => nil,
       :image => "MyString",
-      :boolean => ""
+      :in_use => false
     ))
   end
 
@@ -18,7 +18,7 @@ RSpec.describe "manage/creator_images/new", type: :view do
 
       assert_select "input#manage_creator_image_image[name=?]", "manage_creator_image[image]"
 
-      assert_select "input#manage_creator_image_boolean[name=?]", "manage_creator_image[boolean]"
+      assert_select "input#manage_creator_image_in_use[name=?]", "manage_creator_image[in_use]"
     end
   end
 end

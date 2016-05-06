@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Creators</h1>
+<h1>Listing Manage Creators</h1>
 
 <table>
   <thead>
@@ -14,15 +14,15 @@
   </thead>
 
   <tbody>
-    <% @creators.each do |creator| %>
+    <% @manage_creators.each do |manage_creator| %>
       <tr>
-        <td><%= creator.sid %></td>
-        <td><%= creator.user %></td>
-        <td><%= creator.name %></td>
-        <td><%= creator.description %></td>
-        <td><%= link_to 'Show', creator %></td>
-        <td><%= link_to 'Edit', edit_creator_path(creator) %></td>
-        <td><%= link_to 'Destroy', creator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= manage_creator.sid %></td>
+        <td><%= manage_creator.user %></td>
+        <td><%= manage_creator.name %></td>
+        <td><%= manage_creator.description %></td>
+        <td><%= link_to 'Show', manage_creator %></td>
+        <td><%= link_to 'Edit', edit_manage_creator_path(manage_creator) %></td>
+        <td><%= link_to 'Destroy', manage_creator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Creator', new_creator_path %>
+<%= link_to 'New Creator', new_manage_creator_path %>

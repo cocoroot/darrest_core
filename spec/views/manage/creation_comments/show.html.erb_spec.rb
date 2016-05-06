@@ -6,7 +6,7 @@ RSpec.describe "manage/creation_comments/show", type: :view do
       :sid => "Sid",
       :creation => nil,
       :user => nil,
-      :parent_id => 1,
+      :parent => nil,
       :notice_code => "Notice Code"
     ))
   end
@@ -16,7 +16,7 @@ RSpec.describe "manage/creation_comments/show", type: :view do
     expect(rendered).to match(/Sid/)
     expect(rendered).to match(//)
     expect(rendered).to match(//)
-    expect(rendered).to match(/1/)
+    expect(rendered).to match(//)
     expect(rendered).to match(/Notice Code/)
   end
 end

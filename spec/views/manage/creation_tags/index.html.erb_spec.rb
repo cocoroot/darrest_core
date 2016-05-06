@@ -5,11 +5,11 @@ RSpec.describe "manage/creation_tags/index", type: :view do
     assign(:manage_creation_tags, [
       Manage::CreationTag.create!(
         :creation => nil,
-        :references => ""
+        :tag => nil
       ),
       Manage::CreationTag.create!(
         :creation => nil,
-        :references => ""
+        :tag => nil
       )
     ])
   end
@@ -17,6 +17,6 @@ RSpec.describe "manage/creation_tags/index", type: :view do
   it "renders a list of manage/creation_tags" do
     render
     assert_select "tr>td", :text => nil.to_s, :count => 2
-    assert_select "tr>td", :text => "".to_s, :count => 2
+    assert_select "tr>td", :text => nil.to_s, :count => 2
   end
 end

@@ -4,7 +4,7 @@ class Manage::ReportsController < ApplicationController
   # GET /manage/reports
   # GET /manage/reports.json
   def index
-    @manage_reports = Report.all
+    @manage_reports = Manage::Report.all
   end
 
   # GET /manage/reports/1
@@ -14,7 +14,7 @@ class Manage::ReportsController < ApplicationController
 
   # GET /manage/reports/new
   def new
-    @manage_report = Report.new
+    @manage_report = Manage::Report.new
   end
 
   # GET /manage/reports/1/edit
@@ -24,7 +24,7 @@ class Manage::ReportsController < ApplicationController
   # POST /manage/reports
   # POST /manage/reports.json
   def create
-    @manage_report = Report.new(manage_report_params)
+    @manage_report = Manage::Report.new(manage_report_params)
 
     respond_to do |format|
       if @manage_report.save
@@ -64,7 +64,7 @@ class Manage::ReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_report
-      @manage_report = Report.find(params[:id])
+      @manage_report = Manage::Report.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

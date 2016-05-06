@@ -4,7 +4,7 @@ class Manage::TagsController < ApplicationController
   # GET /manage/tags
   # GET /manage/tags.json
   def index
-    @manage_tags = Tag.all
+    @manage_tags = Manage::Tag.all
   end
 
   # GET /manage/tags/1
@@ -14,7 +14,7 @@ class Manage::TagsController < ApplicationController
 
   # GET /manage/tags/new
   def new
-    @manage_tag = Tag.new
+    @manage_tag = Manage::Tag.new
   end
 
   # GET /manage/tags/1/edit
@@ -24,7 +24,7 @@ class Manage::TagsController < ApplicationController
   # POST /manage/tags
   # POST /manage/tags.json
   def create
-    @manage_tag = Tag.new(manage_tag_params)
+    @manage_tag = Manage::Tag.new(manage_tag_params)
 
     respond_to do |format|
       if @manage_tag.save
@@ -64,7 +64,7 @@ class Manage::TagsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_tag
-      @manage_tag = Tag.find(params[:id])
+      @manage_tag = Manage::Tag.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

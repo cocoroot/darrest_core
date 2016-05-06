@@ -1,74 +1,74 @@
 class Manage::CreatorsController < ApplicationController
-  before_action :set_creator, only: [:show, :edit, :update, :destroy]
+  before_action :set_manage_creator, only: [:show, :edit, :update, :destroy]
 
-  # GET /creators
-  # GET /creators.json
+  # GET /manage/creators
+  # GET /manage/creators.json
   def index
-    @creators = Creator.all
+    @manage_creators = Manage::Creator.all
   end
 
-  # GET /creators/1
-  # GET /creators/1.json
+  # GET /manage/creators/1
+  # GET /manage/creators/1.json
   def show
   end
 
-  # GET /creators/new
+  # GET /manage/creators/new
   def new
-    @creator = Creator.new
+    @manage_creator = Manage::Creator.new
   end
 
-  # GET /creators/1/edit
+  # GET /manage/creators/1/edit
   def edit
   end
 
-  # POST /creators
-  # POST /creators.json
+  # POST /manage/creators
+  # POST /manage/creators.json
   def create
-    @creator = Creator.new(creator_params)
+    @manage_creator = Manage::Creator.new(manage_creator_params)
 
     respond_to do |format|
-      if @creator.save
-        format.html { redirect_to @creator, notice: 'Creator was successfully created.' }
-        format.json { render :show, status: :created, location: @creator }
+      if @manage_creator.save
+        format.html { redirect_to @manage_creator, notice: 'Creator was successfully created.' }
+        format.json { render :show, status: :created, location: @manage_creator }
       else
         format.html { render :new }
-        format.json { render json: @creator.errors, status: :unprocessable_entity }
+        format.json { render json: @manage_creator.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /creators/1
-  # PATCH/PUT /creators/1.json
+  # PATCH/PUT /manage/creators/1
+  # PATCH/PUT /manage/creators/1.json
   def update
     respond_to do |format|
-      if @creator.update(creator_params)
-        format.html { redirect_to @creator, notice: 'Creator was successfully updated.' }
-        format.json { render :show, status: :ok, location: @creator }
+      if @manage_creator.update(manage_creator_params)
+        format.html { redirect_to @manage_creator, notice: 'Creator was successfully updated.' }
+        format.json { render :show, status: :ok, location: @manage_creator }
       else
         format.html { render :edit }
-        format.json { render json: @creator.errors, status: :unprocessable_entity }
+        format.json { render json: @manage_creator.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /creators/1
-  # DELETE /creators/1.json
+  # DELETE /manage/creators/1
+  # DELETE /manage/creators/1.json
   def destroy
-    @creator.destroy
+    @manage_creator.destroy
     respond_to do |format|
-      format.html { redirect_to creators_url, notice: 'Creator was successfully destroyed.' }
+      format.html { redirect_to manage_creators_url, notice: 'Creator was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_creator
-      @creator = Creator.find(params[:id])
+    def set_manage_creator
+      @manage_creator = Manage::Creator.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def creator_params
-      params.require(:creator).permit(:sid, :user_id, :name, :description)
+    def manage_creator_params
+      params.require(:manage_creator).permit(:sid, :user_id, :name, :description)
     end
 end

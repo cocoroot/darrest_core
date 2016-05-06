@@ -4,7 +4,7 @@ RSpec.describe "manage/categories/new", type: :view do
   before(:each) do
     assign(:manage_category, Manage::Category.new(
       :name => "MyString",
-      :parent_id => 1
+      :parent => nil
     ))
   end
 

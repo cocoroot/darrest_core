@@ -6,12 +6,12 @@ RSpec.describe "manage/user_images/index", type: :view do
       Manage::UserImage.create!(
         :user => nil,
         :image => "Image",
-        :in_use => false
+        :in_user => false
       ),
       Manage::UserImage.create!(
         :user => nil,
         :image => "Image",
-        :in_use => false
+        :in_user => false
       )
     ])
   end

@@ -15,7 +15,7 @@
     <% @manage_categories.each do |manage_category| %>
       <tr>
         <td><%= manage_category.name %></td>
-        <td><%= manage_category.parent_id %></td>
+        <td><%= manage_category.parent %></td>
         <td><%= link_to 'Show', manage_category %></td>
         <td><%= link_to 'Edit', edit_manage_category_path(manage_category) %></td>
         <td><%= link_to 'Destroy', manage_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>

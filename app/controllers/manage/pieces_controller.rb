@@ -4,7 +4,7 @@ class Manage::PiecesController < ApplicationController
   # GET /manage/pieces
   # GET /manage/pieces.json
   def index
-    @manage_pieces = Piece.all
+    @manage_pieces = Manage::Piece.all
   end
 
   # GET /manage/pieces/1
@@ -14,7 +14,7 @@ class Manage::PiecesController < ApplicationController
 
   # GET /manage/pieces/new
   def new
-    @manage_piece = Piece.new
+    @manage_piece = Manage::Piece.new
   end
 
   # GET /manage/pieces/1/edit
@@ -24,7 +24,7 @@ class Manage::PiecesController < ApplicationController
   # POST /manage/pieces
   # POST /manage/pieces.json
   def create
-    @manage_piece = Piece.new(manage_piece_params)
+    @manage_piece = Manage::Piece.new(manage_piece_params)
 
     respond_to do |format|
       if @manage_piece.save
@@ -64,7 +64,7 @@ class Manage::PiecesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_piece
-      @manage_piece = Piece.find(params[:id])
+      @manage_piece = Manage::Piece.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

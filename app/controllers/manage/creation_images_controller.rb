@@ -4,7 +4,7 @@ class Manage::CreationImagesController < ApplicationController
   # GET /manage/creation_images
   # GET /manage/creation_images.json
   def index
-    @manage_creation_images = CreationImage.all
+    @manage_creation_images = Manage::CreationImage.all
   end
 
   # GET /manage/creation_images/1
@@ -14,7 +14,7 @@ class Manage::CreationImagesController < ApplicationController
 
   # GET /manage/creation_images/new
   def new
-    @manage_creation_image = CreationImage.new
+    @manage_creation_image = Manage::CreationImage.new
   end
 
   # GET /manage/creation_images/1/edit
@@ -24,7 +24,7 @@ class Manage::CreationImagesController < ApplicationController
   # POST /manage/creation_images
   # POST /manage/creation_images.json
   def create
-    @manage_creation_image = CreationImage.new(manage_creation_image_params)
+    @manage_creation_image = Manage::CreationImage.new(manage_creation_image_params)
 
     respond_to do |format|
       if @manage_creation_image.save
@@ -64,7 +64,7 @@ class Manage::CreationImagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_creation_image
-      @manage_creation_image = CreationImage.find(params[:id])
+      @manage_creation_image = Manage::CreationImage.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -6,7 +6,7 @@ RSpec.describe "manage/creators/edit", type: :view do
       :sid => "MyString",
       :user => nil,
       :name => "MyString",
-      :text => ""
+      :description => "MyText"
     ))
   end
 
@@ -21,7 +21,7 @@ RSpec.describe "manage/creators/edit", type: :view do
 
       assert_select "input#manage_creator_name[name=?]", "manage_creator[name]"
 
-      assert_select "input#manage_creator_text[name=?]", "manage_creator[text]"
+      assert_select "textarea#manage_creator_description[name=?]", "manage_creator[description]"
     end
   end
 end

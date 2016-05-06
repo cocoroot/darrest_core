@@ -4,7 +4,7 @@ class Manage::CreationsController < ApplicationController
   # GET /manage/creations
   # GET /manage/creations.json
   def index
-    @manage_creations = Creation.all
+    @manage_creations = Manage::Creation.all
   end
 
   # GET /manage/creations/1
@@ -14,7 +14,7 @@ class Manage::CreationsController < ApplicationController
 
   # GET /manage/creations/new
   def new
-    @manage_creation = Creation.new
+    @manage_creation = Manage::Creation.new
   end
 
   # GET /manage/creations/1/edit
@@ -24,7 +24,7 @@ class Manage::CreationsController < ApplicationController
   # POST /manage/creations
   # POST /manage/creations.json
   def create
-    @manage_creation = Creation.new(manage_creation_params)
+    @manage_creation = Manage::Creation.new(manage_creation_params)
 
     respond_to do |format|
       if @manage_creation.save
@@ -64,11 +64,11 @@ class Manage::CreationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_creation
-      @manage_creation = Creation.find(params[:id])
+      @manage_creation = Manage::Creation.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manage_creation_params
-      params.require(:manage_creation).permit(:sid, :user_id, :name, :text)
+      params.require(:manage_creation).permit(:sid, :creator_id, :title, :description, :license_code)
     end
 end

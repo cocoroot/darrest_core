@@ -1,4 +1,4 @@
-create_table :creator_images, id: :bigserial do |t|
+create_table :manage_creator_images, id: :bigserial do |t|
   t.references :creator, index: true, foreign_key: true
   t.string :image, limit: 256
   t.boolean :in_use

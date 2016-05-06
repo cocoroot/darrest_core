@@ -4,7 +4,7 @@ class Manage::CreationTagsController < ApplicationController
   # GET /manage/creation_tags
   # GET /manage/creation_tags.json
   def index
-    @manage_creation_tags = CreationTag.all
+    @manage_creation_tags = Manage::CreationTag.all
   end
 
   # GET /manage/creation_tags/1
@@ -14,7 +14,7 @@ class Manage::CreationTagsController < ApplicationController
 
   # GET /manage/creation_tags/new
   def new
-    @manage_creation_tag = CreationTag.new
+    @manage_creation_tag = Manage::CreationTag.new
   end
 
   # GET /manage/creation_tags/1/edit
@@ -24,7 +24,7 @@ class Manage::CreationTagsController < ApplicationController
   # POST /manage/creation_tags
   # POST /manage/creation_tags.json
   def create
-    @manage_creation_tag = CreationTag.new(manage_creation_tag_params)
+    @manage_creation_tag = Manage::CreationTag.new(manage_creation_tag_params)
 
     respond_to do |format|
       if @manage_creation_tag.save
@@ -64,11 +64,11 @@ class Manage::CreationTagsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_creation_tag
-      @manage_creation_tag = CreationTag.find(params[:id])
+      @manage_creation_tag = Manage::CreationTag.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manage_creation_tag_params
-      params.require(:manage_creation_tag).permit(:creation_id, :references)
+      params.require(:manage_creation_tag).permit(:creation_id, :tag_id)
     end
 end

@@ -4,7 +4,7 @@ class Manage::UsersController < ApplicationController
   # GET /manage/users
   # GET /manage/users.json
   def index
-    @manage_users = User.all
+    @manage_users = Manage::User.all
   end
 
   # GET /manage/users/1
@@ -14,7 +14,7 @@ class Manage::UsersController < ApplicationController
 
   # GET /manage/users/new
   def new
-    @manage_user = User.new
+    @manage_user = Manage::User.new
   end
 
   # GET /manage/users/1/edit
@@ -24,7 +24,7 @@ class Manage::UsersController < ApplicationController
   # POST /manage/users
   # POST /manage/users.json
   def create
-    @manage_user = User.new(manage_user_params)
+    @manage_user = Manage::User.new(manage_user_params)
 
     respond_to do |format|
       if @manage_user.save
@@ -64,7 +64,7 @@ class Manage::UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_user
-      @manage_user = User.find(params[:id])
+      @manage_user = Manage::User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

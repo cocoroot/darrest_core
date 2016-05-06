@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "manage/collections/edit", type: :view do
   before(:each) do
     @manage_collection = assign(:manage_collection, Manage::Collection.create!(
-      :sid => "MyString",
+      :sid => "MyText",
       :user => nil,
       :title => "MyText"
     ))
@@ -14,7 +14,7 @@ RSpec.describe "manage/collections/edit", type: :view do
 
     assert_select "form[action=?][method=?]", manage_collection_path(@manage_collection), "post" do
 
-      assert_select "input#manage_collection_sid[name=?]", "manage_collection[sid]"
+      assert_select "textarea#manage_collection_sid[name=?]", "manage_collection[sid]"
 
       assert_select "input#manage_collection_user_id[name=?]", "manage_collection[user_id]"
 

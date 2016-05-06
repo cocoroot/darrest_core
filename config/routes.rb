@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   namespace :manage do
-    resources :creations
     resources :creation_comments
     resources :collection_creations
     resources :collections
     resources :goods
+    resources :creator_tags
     resources :creator_images
+    resources :creator_categories
+    resources :creators
     resources :user_images
     resources :users
     resources :creation_images
@@ -14,12 +16,9 @@ Rails.application.routes.draw do
     resources :pieces
     resources :creation_tags
     resources :creation_categories
-    resources :categories
-    resources :creator_tags
-    resources :tags
-    resources :creator_categories
-    resources :creators
     resources :creations
+    resources :categories
+    resources :tags
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

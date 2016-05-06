@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Creation</th>
-      <th>References</th>
+      <th>Tag</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @manage_creation_tags.each do |manage_creation_tag| %>
       <tr>
         <td><%= manage_creation_tag.creation %></td>
-        <td><%= manage_creation_tag.references %></td>
+        <td><%= manage_creation_tag.tag %></td>
         <td><%= link_to 'Show', manage_creation_tag %></td>
         <td><%= link_to 'Edit', edit_manage_creation_tag_path(manage_creation_tag) %></td>
         <td><%= link_to 'Destroy', manage_creation_tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>

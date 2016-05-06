@@ -7,7 +7,7 @@
     <tr>
       <th>User</th>
       <th>Image</th>
-      <th>In use</th>
+      <th>In user</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= manage_user_image.user %></td>
         <td><%= manage_user_image.image %></td>
-        <td><%= manage_user_image.in_use %></td>
+        <td><%= manage_user_image.in_user %></td>
         <td><%= link_to 'Show', manage_user_image %></td>
         <td><%= link_to 'Edit', edit_manage_user_image_path(manage_user_image) %></td>
         <td><%= link_to 'Destroy', manage_user_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>

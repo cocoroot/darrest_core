@@ -4,7 +4,7 @@ class Manage::GoodsController < ApplicationController
   # GET /manage/goods
   # GET /manage/goods.json
   def index
-    @manage_goods = Good.all
+    @manage_goods = Manage::Good.all
   end
 
   # GET /manage/goods/1
@@ -14,7 +14,7 @@ class Manage::GoodsController < ApplicationController
 
   # GET /manage/goods/new
   def new
-    @manage_good = Good.new
+    @manage_good = Manage::Good.new
   end
 
   # GET /manage/goods/1/edit
@@ -24,7 +24,7 @@ class Manage::GoodsController < ApplicationController
   # POST /manage/goods
   # POST /manage/goods.json
   def create
-    @manage_good = Good.new(manage_good_params)
+    @manage_good = Manage::Good.new(manage_good_params)
 
     respond_to do |format|
       if @manage_good.save
@@ -64,7 +64,7 @@ class Manage::GoodsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_good
-      @manage_good = Good.find(params[:id])
+      @manage_good = Manage::Good.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

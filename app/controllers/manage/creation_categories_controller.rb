@@ -4,7 +4,7 @@ class Manage::CreationCategoriesController < ApplicationController
   # GET /manage/creation_categories
   # GET /manage/creation_categories.json
   def index
-    @manage_creation_categories = CreationCategory.all
+    @manage_creation_categories = Manage::CreationCategory.all
   end
 
   # GET /manage/creation_categories/1
@@ -14,7 +14,7 @@ class Manage::CreationCategoriesController < ApplicationController
 
   # GET /manage/creation_categories/new
   def new
-    @manage_creation_category = CreationCategory.new
+    @manage_creation_category = Manage::CreationCategory.new
   end
 
   # GET /manage/creation_categories/1/edit
@@ -24,7 +24,7 @@ class Manage::CreationCategoriesController < ApplicationController
   # POST /manage/creation_categories
   # POST /manage/creation_categories.json
   def create
-    @manage_creation_category = CreationCategory.new(manage_creation_category_params)
+    @manage_creation_category = Manage::CreationCategory.new(manage_creation_category_params)
 
     respond_to do |format|
       if @manage_creation_category.save
@@ -64,7 +64,7 @@ class Manage::CreationCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manage_creation_category
-      @manage_creation_category = CreationCategory.find(params[:id])
+      @manage_creation_category = Manage::CreationCategory.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
