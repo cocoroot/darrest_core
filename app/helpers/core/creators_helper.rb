@@ -1,0 +1,2 @@
+module Core::CreatorsHelper
+end

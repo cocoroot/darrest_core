@@ -1,6 +1,0 @@
-create_table :manage_creator_tags, id: :bigserial do |t|
-  t.references :creator, index: true, foreign_key: true
-  t.references :tag, index: true, foreign_key: true
-
-  t.timestamps null: false
-end

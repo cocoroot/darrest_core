@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Core Creation Images</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Creation</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @core_creation_images.each do |core_creation_image| %>
+      <tr>
+        <td><%= core_creation_image.creation %></td>
+        <td><%= core_creation_image.image %></td>
+        <td><%= link_to 'Show', core_creation_image %></td>
+        <td><%= link_to 'Edit', edit_core_creation_image_path(core_creation_image) %></td>
+        <td><%= link_to 'Destroy', core_creation_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Creation image', new_core_creation_image_path %>

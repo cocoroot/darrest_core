@@ -1,5 +1,0 @@
-create_table :manage_users, id: :bigserial do |t|
-  t.string :baas_id
-
-  t.timestamps null: false
-end

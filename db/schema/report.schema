@@ -1,8 +1,0 @@
-create_table :manage_reports, id: :bigserial do |t|
-  t.references :creation, index: true, foreign_key: true
-  t.references :user, index: true, foreign_key: true
-  t.string :title, limit: 200, null: false
-  t.text :detail, limit: 10000
-
-  t.timestamps null: false
-end

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Core Creation Tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Creation</th>
+      <th>Tag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @core_creation_tags.each do |core_creation_tag| %>
+      <tr>
+        <td><%= core_creation_tag.creation %></td>
+        <td><%= core_creation_tag.tag %></td>
+        <td><%= link_to 'Show', core_creation_tag %></td>
+        <td><%= link_to 'Edit', edit_core_creation_tag_path(core_creation_tag) %></td>
+        <td><%= link_to 'Destroy', core_creation_tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Creation tag', new_core_creation_tag_path %>

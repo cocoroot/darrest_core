@@ -1,0 +1,14 @@
+create_table :core_pieces, id: :bigserial do |t|
+  t.integer :creation_id, limit: 8, null: false, default: 0
+  t.string :name, limit: 200
+  t.string :description, limit: 1000
+  t.string :file_name, limit: 512
+  t.string :format, limit: 10
+  # Apache LimitRequestLine(default): 8190
+  # max URL length available to IE: 2083
+  t.string :image, limit: 2083
+
+  t.timestamps null: false
+end
+
+add_foreign_key :core_pieces, :core_creations, column: 'creation_id', name: 'fk_pieces_creations'

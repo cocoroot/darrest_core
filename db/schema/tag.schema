@@ -1,5 +1,0 @@
-create_table :manage_tags do |t|
-  t.string :name, limit: 100
-
-  t.timestamps null: false
-end

@@ -1,2 +1,0 @@
-module Manage::CreatorsHelper
-end

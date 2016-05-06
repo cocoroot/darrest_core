@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Core Pieces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Creation</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>File name</th>
+      <th>Format</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @core_pieces.each do |core_piece| %>
+      <tr>
+        <td><%= core_piece.creation %></td>
+        <td><%= core_piece.name %></td>
+        <td><%= core_piece.description %></td>
+        <td><%= core_piece.file_name %></td>
+        <td><%= core_piece.format %></td>
+        <td><%= core_piece.image %></td>
+        <td><%= link_to 'Show', core_piece %></td>
+        <td><%= link_to 'Edit', edit_core_piece_path(core_piece) %></td>
+        <td><%= link_to 'Destroy', core_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Piece', new_core_piece_path %>

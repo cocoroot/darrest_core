@@ -1,0 +1,2 @@
+module Core::CreatorTagsHelper
+end

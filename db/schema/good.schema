@@ -1,6 +1,0 @@
-create_table :manage_goods, id: :bigserial do |t|
-  t.references :creation, index: true, foreign_key: true
-  t.references :user, index: true, foreign_key: true
-
-  t.timestamps null: false
-end

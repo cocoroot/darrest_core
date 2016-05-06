@@ -1,6 +1,0 @@
-create_table :manage_collection_creations, id: :bigserial do |t|
-  t.references :collection, index: true, foreign_key: true
-  t.references :creation, index: true, foreign_key: true
-
-  t.timestamps null: false
-end

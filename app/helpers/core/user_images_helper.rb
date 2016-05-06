@@ -1,0 +1,2 @@
+module Core::UserImagesHelper
+end
