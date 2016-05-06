@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creation:</strong>
+  <%= @manage_creation_image.creation %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @manage_creation_image.image %>
+</p>
+
+<%= link_to 'Edit', edit_manage_creation_image_path(@manage_creation_image) %> |
+<%= link_to 'Back', manage_creation_images_path %>

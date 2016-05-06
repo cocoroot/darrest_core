@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @manage_user_image.user %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @manage_user_image.image %>
+</p>
+
+<p>
+  <strong>In use:</strong>
+  <%= @manage_user_image.in_use %>
+</p>
+
+<%= link_to 'Edit', edit_manage_user_image_path(@manage_user_image) %> |
+<%= link_to 'Back', manage_user_images_path %>

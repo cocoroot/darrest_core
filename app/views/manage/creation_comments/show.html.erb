@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sid:</strong>
+  <%= @manage_creation_comment.sid %>
+</p>
+
+<p>
+  <strong>Creation:</strong>
+  <%= @manage_creation_comment.creation %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @manage_creation_comment.user %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @manage_creation_comment.parent_id %>
+</p>
+
+<p>
+  <strong>Notice code:</strong>
+  <%= @manage_creation_comment.notice_code %>
+</p>
+
+<%= link_to 'Edit', edit_manage_creation_comment_path(@manage_creation_comment) %> |
+<%= link_to 'Back', manage_creation_comments_path %>

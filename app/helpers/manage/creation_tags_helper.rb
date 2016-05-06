@@ -1,0 +1,2 @@
+module Manage::CreationTagsHelper
+end

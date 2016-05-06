@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @manage_creator_tag.creator %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @manage_creator_tag.tag %>
+</p>
+
+<%= link_to 'Edit', edit_manage_creator_tag_path(@manage_creator_tag) %> |
+<%= link_to 'Back', manage_creator_tags_path %>

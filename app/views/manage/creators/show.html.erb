@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sid:</strong>
+  <%= @manage_creator.sid %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @manage_creator.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @manage_creator.name %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @manage_creator.text %>
+</p>
+
+<%= link_to 'Edit', edit_manage_creator_path(@manage_creator) %> |
+<%= link_to 'Back', manage_creators_path %>

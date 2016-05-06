@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Manage Creation Images</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Creation</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @manage_creation_images.each do |manage_creation_image| %>
+      <tr>
+        <td><%= manage_creation_image.creation %></td>
+        <td><%= manage_creation_image.image %></td>
+        <td><%= link_to 'Show', manage_creation_image %></td>
+        <td><%= link_to 'Edit', edit_manage_creation_image_path(manage_creation_image) %></td>
+        <td><%= link_to 'Destroy', manage_creation_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Creation image', new_manage_creation_image_path %>

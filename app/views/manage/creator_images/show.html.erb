@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @manage_creator_image.creator %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @manage_creator_image.image %>
+</p>
+
+<p>
+  <strong>Boolean:</strong>
+  <%= @manage_creator_image.boolean %>
+</p>
+
+<%= link_to 'Edit', edit_manage_creator_image_path(@manage_creator_image) %> |
+<%= link_to 'Back', manage_creator_images_path %>
