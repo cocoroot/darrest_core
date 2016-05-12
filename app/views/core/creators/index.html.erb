@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Core Creators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sid</th>
+      <th>User</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @core_creators.each do |core_creator| %>
+      <tr>
+        <td><%= core_creator.sid %></td>
+        <td><%= core_creator.user %></td>
+        <td><%= core_creator.name %></td>
+        <td><%= core_creator.description %></td>
+        <td><%= link_to 'Show', core_creator %></td>
+        <td><%= link_to 'Edit', edit_core_creator_path(core_creator) %></td>
+        <td><%= link_to 'Destroy', core_creator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Creator', new_core_creator_path %>

@@ -1,7 +1,0 @@
-create_table :collections, id: :bigserial do |t|
-  t.text :sid, limit: 20, null: false, index: true, default: '0'
-  t.references :user, index: true, foreign_key: true
-  t.text :title, limit: 200
-
-  t.timestamps null: false
-end

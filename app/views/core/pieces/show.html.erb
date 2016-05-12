@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creation:</strong>
+  <%= @core_piece.creation %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @core_piece.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @core_piece.description %>
+</p>
+
+<p>
+  <strong>File name:</strong>
+  <%= @core_piece.file_name %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @core_piece.format %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @core_piece.image %>
+</p>
+
+<%= link_to 'Edit', edit_core_piece_path(@core_piece) %> |
+<%= link_to 'Back', core_pieces_path %>

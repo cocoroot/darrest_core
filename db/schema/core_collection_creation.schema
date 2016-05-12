@@ -1,0 +1,9 @@
+create_table :core_collection_creations, id: :bigserial do |t|
+  t.integer :collection_id, limit: 8, null: false, default: 0
+  t.integer :creation_id,   limit: 8, null: false, default: 0
+
+  t.timestamps null: false
+end
+
+add_foreign_key :core_collection_creations, :core_collections, column: 'collection_id', name: 'fk_collection_creations_collections'
+add_foreign_key :core_collection_creations, :core_creations, column: 'creation_id', name: 'fk_collection_creations_creations'

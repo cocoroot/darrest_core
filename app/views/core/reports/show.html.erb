@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creation:</strong>
+  <%= @core_report.creation %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @core_report.user %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @core_report.title %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @core_report.detail %>
+</p>
+
+<%= link_to 'Edit', edit_core_report_path(@core_report) %> |
+<%= link_to 'Back', core_reports_path %>

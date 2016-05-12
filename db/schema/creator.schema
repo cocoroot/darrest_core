@@ -1,8 +1,0 @@
-create_table :creators, id: :bigserial do |t|
-  t.string :sid, limit: 20, null: false, index: true, default: '0'
-  t.references :user, index: true, foreign_key: true
-  t.string :name, limit: 200, null: false
-  t.text :description, limit: 10000
-
-  t.timestamps null: false
-end

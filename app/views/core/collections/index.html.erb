@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Core Collections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sid</th>
+      <th>User</th>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @core_collections.each do |core_collection| %>
+      <tr>
+        <td><%= core_collection.sid %></td>
+        <td><%= core_collection.user %></td>
+        <td><%= core_collection.title %></td>
+        <td><%= link_to 'Show', core_collection %></td>
+        <td><%= link_to 'Edit', edit_core_collection_path(core_collection) %></td>
+        <td><%= link_to 'Destroy', core_collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Collection', new_core_collection_path %>

@@ -1,9 +1,0 @@
-create_table :creations, id: :bigserial do |t|
-  t.string :sid, limit: 20, null: false, index: true, default: '0'
-  t.references :creator, index: true, foreign_key: true
-  t.string :title, limit: 200
-  t.text :description
-  t.string :license_code
-
-  t.timestamps null: false
-end

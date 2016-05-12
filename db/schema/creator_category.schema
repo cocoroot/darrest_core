@@ -1,6 +1,0 @@
-create_table :creator_categories, id: :bigserial do |t|
-  t.references :creator, index: true, foreign_key: true
-  t.references :category, index: true, foreign_key: true
-
-  t.timestamps null: false
-end

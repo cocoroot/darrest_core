@@ -1,0 +1,9 @@
+create_table :core_creation_tags, id: :bigserial do |t|
+  t.integer :creation_id, limit: 8, null: false, default: 0
+  t.integer :tag_id, limit: 8, null: false, default: 0
+  
+  t.timestamps null: false
+end
+
+add_foreign_key :core_creation_tags, :core_creations, column: 'creation_id', name: 'fk_creation_tags_creations'
+add_foreign_key :core_creation_tags, :core_tags, column: 'tag_id', name: 'fk_creation_tags_tags'

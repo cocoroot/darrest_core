@@ -1,7 +1,0 @@
-create_table :user_images, id: :bigserial do |t|
-  t.references :user, index: true, foreign_key: true
-  t.string :image, limit: 256
-  t.boolean :in_use
-
-  t.timestamps null: false
-end

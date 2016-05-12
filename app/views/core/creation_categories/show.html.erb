@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creation:</strong>
+  <%= @core_creation_category.creation %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @core_creation_category.category %>
+</p>
+
+<%= link_to 'Edit', edit_core_creation_category_path(@core_creation_category) %> |
+<%= link_to 'Back', core_creation_categories_path %>

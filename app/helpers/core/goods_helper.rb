@@ -1,0 +1,2 @@
+module Core::GoodsHelper
+end
