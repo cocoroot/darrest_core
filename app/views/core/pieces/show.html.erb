@@ -28,6 +28,7 @@
 <p>
   <strong>Image:</strong>
   <%= @core_piece.image %>
+  <%= image_tag @core_piece.image.thumb.url %>
 </p>
 
 <%= link_to 'Edit', edit_core_piece_path(@core_piece) %> |
