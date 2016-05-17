@@ -69,6 +69,6 @@ class Core::PiecesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def core_piece_params
-      params.require(:core_piece).permit(:creation_id, :name, :description, :file_name, :format, :image)
+      params.require(:core_piece).permit(:creation_id, :name, :description, :file, :format, :image)
     end
 end
