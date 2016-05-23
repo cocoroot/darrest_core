@@ -1,0 +1,6 @@
+create_table :sites do |t|
+  t.string :name, limit: 100
+  t.string :url, limit: 256
+
+  t.timestamps null: false
+end

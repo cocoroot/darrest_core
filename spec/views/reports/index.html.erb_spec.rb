@@ -5,15 +5,15 @@ RSpec.describe "reports/index", type: :view do
     assign(:reports, [
       Report.create!(
         :creation => nil,
-        :user => nil,
+        :site_user => nil,
         :title => "Title",
-        :detail => "MyText"
+        :detail => "Detail"
       ),
       Report.create!(
         :creation => nil,
-        :user => nil,
+        :site_user => nil,
         :title => "Title",
-        :detail => "MyText"
+        :detail => "Detail"
       )
     ])
   end
@@ -23,6 +23,6 @@ RSpec.describe "reports/index", type: :view do
     assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => "Title".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>td", :text => "Detail".to_s, :count => 2
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe "goods/edit", type: :view do
   before(:each) do
     @good = assign(:good, Good.create!(
       :creation => nil,
-      :user => nil
+      :site_user => nil
     ))
   end
 
@@ -15,7 +15,7 @@ RSpec.describe "goods/edit", type: :view do
 
       assert_select "input#good_creation_id[name=?]", "good[creation_id]"
 
-      assert_select "input#good_user_id[name=?]", "good[user_id]"
+      assert_select "input#good_site_user_id[name=?]", "good[site_user_id]"
     end
   end
 end

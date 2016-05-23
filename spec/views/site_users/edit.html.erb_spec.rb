@@ -1,0 +1,27 @@
+require 'rails_helper'
+
+RSpec.describe "site_users/edit", type: :view do
+  before(:each) do
+    @site_user = assign(:site_user, SiteUser.create!(
+      :sid => "MyString",
+      :biography => "MyString",
+      :tos_accepted => false,
+      :site_user_status => nil
+    ))
+  end
+
+  it "renders the edit site_user form" do
+    render
+
+    assert_select "form[action=?][method=?]", site_user_path(@site_user), "post" do
+
+      assert_select "input#site_user_sid[name=?]", "site_user[sid]"
+
+      assert_select "input#site_user_biography[name=?]", "site_user[biography]"
+
+      assert_select "input#site_user_tos_accepted[name=?]", "site_user[tos_accepted]"
+
+      assert_select "input#site_user_site_user_status_id[name=?]", "site_user[site_user_status_id]"
+    end
+  end
+end

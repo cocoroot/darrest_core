@@ -4,9 +4,9 @@ RSpec.describe "reports/new", type: :view do
   before(:each) do
     assign(:report, Report.new(
       :creation => nil,
-      :user => nil,
+      :site_user => nil,
       :title => "MyString",
-      :detail => "MyText"
+      :detail => "MyString"
     ))
   end
 
@@ -17,11 +17,11 @@ RSpec.describe "reports/new", type: :view do
 
       assert_select "input#report_creation_id[name=?]", "report[creation_id]"
 
-      assert_select "input#report_user_id[name=?]", "report[user_id]"
+      assert_select "input#report_site_user_id[name=?]", "report[site_user_id]"
 
       assert_select "input#report_title[name=?]", "report[title]"
 
-      assert_select "textarea#report_detail[name=?]", "report[detail]"
+      assert_select "input#report_detail[name=?]", "report[detail]"
     end
   end
 end

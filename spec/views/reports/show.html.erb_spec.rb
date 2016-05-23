@@ -4,9 +4,9 @@ RSpec.describe "reports/show", type: :view do
   before(:each) do
     @report = assign(:report, Report.create!(
       :creation => nil,
-      :user => nil,
+      :site_user => nil,
       :title => "Title",
-      :detail => "MyText"
+      :detail => "Detail"
     ))
   end
 
@@ -15,6 +15,6 @@ RSpec.describe "reports/show", type: :view do
     expect(rendered).to match(//)
     expect(rendered).to match(//)
     expect(rendered).to match(/Title/)
-    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/Detail/)
   end
 end

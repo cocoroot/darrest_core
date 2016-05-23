@@ -4,7 +4,8 @@ RSpec.describe "report_images/show", type: :view do
   before(:each) do
     @report_image = assign(:report_image, ReportImage.create!(
       :report => nil,
-      :image => "Image"
+      :image => "Image",
+      :order => 1
     ))
   end
 
@@ -12,5 +13,6 @@ RSpec.describe "report_images/show", type: :view do
     render
     expect(rendered).to match(//)
     expect(rendered).to match(/Image/)
+    expect(rendered).to match(/1/)
   end
 end

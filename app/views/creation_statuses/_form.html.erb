@@ -1,0 +1,21 @@
+<%= form_for(@creation_status) do |f| %>
+  <% if @creation_status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@creation_status.errors.count, "error") %> prohibited this creation_status from being saved:</h2>
+
+      <ul>
+      <% @creation_status.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

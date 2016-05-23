@@ -2,7 +2,6 @@
 require 'factory_girl_rails'
 
 RSpec.configure do |config|
-
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
@@ -17,22 +16,22 @@ RSpec.configure do |config|
   # run examples randomly
   config.order = :random
 
-
   # Factory Girl
   config.include FactoryGirl::Syntax::Methods
 
   # Data Cleaner
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
-  end
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-  config.after(:each) do
-    DatabaseCleaner.clean
+    DatabaseCleaner.clean_with :truncation
+    load Rails.root.join('db', 'seeds', 'master.rb')
+
+    DatabaseCleaner.strategy = :transaction
   end
 
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
 
 require 'simplecov'

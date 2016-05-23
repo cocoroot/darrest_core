@@ -5,11 +5,11 @@ RSpec.describe "goods/index", type: :view do
     assign(:goods, [
       Good.create!(
         :creation => nil,
-        :user => nil
+        :site_user => nil
       ),
       Good.create!(
         :creation => nil,
-        :user => nil
+        :site_user => nil
       )
     ])
   end

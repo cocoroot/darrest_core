@@ -4,10 +4,11 @@ RSpec.describe "creations/new", type: :view do
   before(:each) do
     assign(:creation, Creation.new(
       :sid => "MyString",
-      :creator => nil,
+      :site_user => nil,
       :title => "MyString",
-      :description => "MyText",
-      :license_code => "MyString"
+      :description => "MyString",
+      :license_code => "MyString",
+      :creation_status => nil
     ))
   end
 
@@ -18,13 +19,15 @@ RSpec.describe "creations/new", type: :view do
 
       assert_select "input#creation_sid[name=?]", "creation[sid]"
 
-      assert_select "input#creation_creator_id[name=?]", "creation[creator_id]"
+      assert_select "input#creation_site_user_id[name=?]", "creation[site_user_id]"
 
       assert_select "input#creation_title[name=?]", "creation[title]"
 
-      assert_select "textarea#creation_description[name=?]", "creation[description]"
+      assert_select "input#creation_description[name=?]", "creation[description]"
 
       assert_select "input#creation_license_code[name=?]", "creation[license_code]"
+
+      assert_select "input#creation_creation_status_id[name=?]", "creation[creation_status_id]"
     end
   end
 end

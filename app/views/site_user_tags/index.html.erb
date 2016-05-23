@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Site User Tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Site user</th>
+      <th>Tag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_user_tags.each do |site_user_tag| %>
+      <tr>
+        <td><%= site_user_tag.site_user %></td>
+        <td><%= site_user_tag.tag %></td>
+        <td><%= link_to 'Show', site_user_tag %></td>
+        <td><%= link_to 'Edit', edit_site_user_tag_path(site_user_tag) %></td>
+        <td><%= link_to 'Destroy', site_user_tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site user tag', new_site_user_tag_path %>

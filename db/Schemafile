@@ -1,21 +1,2 @@
 # Schemafile
-
-require 'schema/core_category.schema'
-require 'schema/core_collection.schema'
-require 'schema/core_collection_creation.schema'
-require 'schema/core_creation.schema'
-require 'schema/core_creation_category.schema'
-require 'schema/core_creation_comment.schema'
-require 'schema/core_creation_image.schema'
-require 'schema/core_creation_tag.schema'
-require 'schema/core_creator.schema'
-require 'schema/core_creator_category.schema'
-require 'schema/core_creator_image.schema'
-require 'schema/core_creator_tag.schema'
-require 'schema/core_good.schema'
-require 'schema/core_piece.schema'
-require 'schema/core_report.schema'
-require 'schema/core_report_image.schema'
-require 'schema/core_tag.schema'
-require 'schema/core_user.schema'
-require 'schema/core_user_image.schema'
+Dir[File.dirname(File.expand_path(__FILE__)) + '/schema/*.rb'].each { |file| require file }

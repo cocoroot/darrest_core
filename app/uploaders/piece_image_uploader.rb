@@ -1,10 +1,10 @@
-class PieceImageUploader < CarrierWave::Uploader::Base
+class CreationPieceImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   storage :fog
   process convert: 'jpg'
 
   def store_dir
-    "piece-images/#{mounted_as}/#{model.id}"
+    "creation-piece-images/#{mounted_as}/#{model.id}"
   end
 
   version :thumb do

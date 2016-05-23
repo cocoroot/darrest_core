@@ -5,17 +5,19 @@ RSpec.describe "creations/index", type: :view do
     assign(:creations, [
       Creation.create!(
         :sid => "Sid",
-        :creator => nil,
+        :site_user => nil,
         :title => "Title",
-        :description => "MyText",
-        :license_code => "License Code"
+        :description => "Description",
+        :license_code => "License Code",
+        :creation_status => nil
       ),
       Creation.create!(
         :sid => "Sid",
-        :creator => nil,
+        :site_user => nil,
         :title => "Title",
-        :description => "MyText",
-        :license_code => "License Code"
+        :description => "Description",
+        :license_code => "License Code",
+        :creation_status => nil
       )
     ])
   end
@@ -25,7 +27,8 @@ RSpec.describe "creations/index", type: :view do
     assert_select "tr>td", :text => "Sid".to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => "Title".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>td", :text => "Description".to_s, :count => 2
     assert_select "tr>td", :text => "License Code".to_s, :count => 2
+    assert_select "tr>td", :text => nil.to_s, :count => 2
   end
 end

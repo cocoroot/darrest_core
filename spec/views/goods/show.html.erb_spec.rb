@@ -4,7 +4,7 @@ RSpec.describe "goods/show", type: :view do
   before(:each) do
     @good = assign(:good, Good.create!(
       :creation => nil,
-      :user => nil
+      :site_user => nil
     ))
   end
 

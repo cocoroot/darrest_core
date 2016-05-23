@@ -1,29 +1,30 @@
 Rails.application.routes.draw do
-  namespace :manage do
-    get 'manage/index'
-  end
-
-  namespace :core do
-    resources :creation_comments
+  resources :creation_pieces
+  with_options(defaults: {format: :json}, format: false) do
+    resources :comments
     resources :collection_creations
     resources :collections
     resources :goods
-    resources :creator_tags
-    resources :creator_images
-    resources :creator_categories
-    resources :creators
-    resources :user_images
-    resources :users
-    resources :creation_images
     resources :report_images
     resources :reports
-    resources :pieces
+    resources :creation_images
+    resources :creation_pieces
     resources :creation_tags
-    resources :creation_categories
     resources :creations
-    resources :categories
+    resources :creation_statuses
+    resources :site_user_tags
+    resources :site_user_images
+    resources :site_users, only: [:show, :update]
+    resources :site_user_statuses
     resources :tags
+    resources :tag_classes
+    resources :sites
+    resources :users
+    namespace :manage do
+      get 'manage/index'
+    end
   end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

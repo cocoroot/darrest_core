@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Creation Pieces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Creation</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>File name</th>
+      <th>Format</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @creation_pieces.each do |creation_piece| %>
+      <tr>
+        <td><%= creation_piece.creation %></td>
+        <td><%= creation_piece.name %></td>
+        <td><%= creation_piece.description %></td>
+        <td><%= creation_piece.file_name %></td>
+        <td><%= creation_piece.format %></td>
+        <td><%= creation_piece.image %></td>
+        <td><%= link_to 'Show', creation_piece %></td>
+        <td><%= link_to 'Edit', edit_creation_piece_path(creation_piece) %></td>
+        <td><%= link_to 'Destroy', creation_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Creation piece', new_creation_piece_path %>

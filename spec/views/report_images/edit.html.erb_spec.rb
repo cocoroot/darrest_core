@@ -4,7 +4,8 @@ RSpec.describe "report_images/edit", type: :view do
   before(:each) do
     @report_image = assign(:report_image, ReportImage.create!(
       :report => nil,
-      :image => "MyString"
+      :image => "MyString",
+      :order => 1
     ))
   end
 
@@ -16,6 +17,8 @@ RSpec.describe "report_images/edit", type: :view do
       assert_select "input#report_image_report_id[name=?]", "report_image[report_id]"
 
       assert_select "input#report_image_image[name=?]", "report_image[image]"
+
+      assert_select "input#report_image_order[name=?]", "report_image[order]"
     end
   end
 end
