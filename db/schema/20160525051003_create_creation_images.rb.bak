@@ -1,0 +1,8 @@
+create_table :creation_images do |t|
+  t.references :creation, index: true, foreign_key: true
+  t.string :image, limit: 2083
+  t.string :image_name_for_user, limit: 256
+  t.integer :order
+
+  t.timestamps null: false
+end

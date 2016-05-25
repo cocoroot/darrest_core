@@ -1,0 +1,15 @@
+class CreateCreations < ActiveRecord::Migration
+  def change
+    create_table :creations do |t|
+      t.string :sid, limit: 20
+      t.references :site, index: true, foreign_key: true
+      t.references :site_user, index: true, foreign_key: true
+      t.string :title, limit: 200
+      t.string :description, limit: 10000
+      t.string :license_code
+      t.references :creation_status, index: true, foreign_key: true
+
+      t.timestamps null: false
+    end
+  end
+end
