@@ -69,6 +69,6 @@ class CreationImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def creation_image_params
-      params.require(:creation_image).permit(:creation_id, :image, :order)
+      params.require(:creation_image).permit(:creation_id, :image, :image_name_for_user, :order)
     end
 end

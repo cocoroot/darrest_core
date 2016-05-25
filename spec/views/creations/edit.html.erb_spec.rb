@@ -4,6 +4,7 @@ RSpec.describe "creations/edit", type: :view do
   before(:each) do
     @creation = assign(:creation, Creation.create!(
       :sid => "MyString",
+      :site => nil,
       :site_user => nil,
       :title => "MyString",
       :description => "MyString",
@@ -18,6 +19,8 @@ RSpec.describe "creations/edit", type: :view do
     assert_select "form[action=?][method=?]", creation_path(@creation), "post" do
 
       assert_select "input#creation_sid[name=?]", "creation[sid]"
+
+      assert_select "input#creation_site_id[name=?]", "creation[site_id]"
 
       assert_select "input#creation_site_user_id[name=?]", "creation[site_user_id]"
 

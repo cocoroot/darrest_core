@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
+  resources :site_users
+  resources :comments
+  resources :goods
+  resources :creation_images
+  resources :creation_pieces
+  resources :creation_tags
+  resources :creations
+  resources :site_user_tags
+  resources :site_user_images
+  resources :site_users
+  resources :tags
+  resources :sites
+  resources :users
   resources :creation_pieces
   with_options(defaults: {format: :json}, format: true) do
     resources :comments
-    resources :collection_creations
-    resources :collections
-    resources :goods
-    resources :report_images
-    resources :reports
-    resources :creation_images
+        resources :goods
+        resources :creation_images
     resources :creation_pieces
     resources :creation_tags
     resources :creations

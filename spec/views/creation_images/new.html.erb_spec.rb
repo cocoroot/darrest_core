@@ -5,6 +5,7 @@ RSpec.describe "creation_images/new", type: :view do
     assign(:creation_image, CreationImage.new(
       :creation => nil,
       :image => "MyString",
+      :image_name_for_user => "MyString",
       :order => 1
     ))
   end
@@ -17,6 +18,8 @@ RSpec.describe "creation_images/new", type: :view do
       assert_select "input#creation_image_creation_id[name=?]", "creation_image[creation_id]"
 
       assert_select "input#creation_image_image[name=?]", "creation_image[image]"
+
+      assert_select "input#creation_image_image_name_for_user[name=?]", "creation_image[image_name_for_user]"
 
       assert_select "input#creation_image_order[name=?]", "creation_image[order]"
     end

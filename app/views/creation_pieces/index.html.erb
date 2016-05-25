@@ -8,9 +8,10 @@
       <th>Creation</th>
       <th>Name</th>
       <th>Description</th>
-      <th>File name</th>
-      <th>Format</th>
+      <th>File</th>
+      <th>File name for user</th>
       <th>Image</th>
+      <th>Image name for user{256}</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,9 +22,10 @@
         <td><%= creation_piece.creation %></td>
         <td><%= creation_piece.name %></td>
         <td><%= creation_piece.description %></td>
-        <td><%= creation_piece.file_name %></td>
-        <td><%= creation_piece.format %></td>
+        <td><%= creation_piece.file %></td>
+        <td><%= creation_piece.file_name_for_user %></td>
         <td><%= creation_piece.image %></td>
+        <td><%= creation_piece.image_name_for_user{256} %></td>
         <td><%= link_to 'Show', creation_piece %></td>
         <td><%= link_to 'Edit', edit_creation_piece_path(creation_piece) %></td>
         <td><%= link_to 'Destroy', creation_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>

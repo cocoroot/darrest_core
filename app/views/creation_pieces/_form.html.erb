@@ -24,16 +24,20 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :file_name %><br>
-    <%= f.text_field :file_name %>
+    <%= f.label :file %><br>
+    <%= f.text_field :file %>
   </div>
   <div class="field">
-    <%= f.label :format %><br>
-    <%= f.text_field :format %>
+    <%= f.label :file_name_for_user %><br>
+    <%= f.text_field :file_name_for_user %>
   </div>
   <div class="field">
     <%= f.label :image %><br>
     <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :image_name_for_user{256} %><br>
+    <%= f.text_field :image_name_for_user{256} %>
   </div>
   <div class="actions">
     <%= f.submit %>

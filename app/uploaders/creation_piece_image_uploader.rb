@@ -3,7 +3,7 @@ class CreationPieceImageUploader < UploaderBase
   process convert: 'jpg'
 
   def store_dir
-    "creation-piece-images/CREATION_PIECE:#{model.creation_piece_id}"
+    "creation-piece-images/CREATION_PIECE:#{model.id}"
   end
 
   version :thumb do

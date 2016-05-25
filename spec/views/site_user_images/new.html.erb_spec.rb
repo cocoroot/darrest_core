@@ -5,6 +5,7 @@ RSpec.describe "site_user_images/new", type: :view do
     assign(:site_user_image, SiteUserImage.new(
       :site_user => nil,
       :image => "MyString",
+      :image_name_for_user => "MyString",
       :in_use => false,
       :order => 1
     ))
@@ -18,6 +19,8 @@ RSpec.describe "site_user_images/new", type: :view do
       assert_select "input#site_user_image_site_user_id[name=?]", "site_user_image[site_user_id]"
 
       assert_select "input#site_user_image_image[name=?]", "site_user_image[image]"
+
+      assert_select "input#site_user_image_image_name_for_user[name=?]", "site_user_image[image_name_for_user]"
 
       assert_select "input#site_user_image_in_use[name=?]", "site_user_image[in_use]"
 

@@ -4,6 +4,7 @@ RSpec.describe "site_users/new", type: :view do
   before(:each) do
     assign(:site_user, SiteUser.new(
       :sid => "MyString",
+      :site => nil,
       :biography => "MyString",
       :tos_accepted => false,
       :site_user_status => nil
@@ -16,6 +17,8 @@ RSpec.describe "site_users/new", type: :view do
     assert_select "form[action=?][method=?]", site_users_path, "post" do
 
       assert_select "input#site_user_sid[name=?]", "site_user[sid]"
+
+      assert_select "input#site_user_site_id[name=?]", "site_user[site_id]"
 
       assert_select "input#site_user_biography[name=?]", "site_user[biography]"
 

@@ -69,6 +69,6 @@ class CreationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def creation_params
-      params.require(:creation).permit(:sid, :site_user_id, :title, :description, :license_code, :creation_status_id)
+      params.require(:creation).permit(:sid, :site_id, :site_user_id, :title, :description, :license_code, :creation_status_id)
     end
 end

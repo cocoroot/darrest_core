@@ -6,9 +6,10 @@ RSpec.describe "creation_pieces/new", type: :view do
       :creation => nil,
       :name => "MyString",
       :description => "MyString",
-      :file_name => "MyString",
-      :format => "MyString",
-      :image => "MyString"
+      :file => "MyString",
+      :file_name_for_user => "MyString",
+      :image => "MyString",
+      :image_name_for_user{256} => "MyString"
     ))
   end
 
@@ -23,11 +24,13 @@ RSpec.describe "creation_pieces/new", type: :view do
 
       assert_select "input#creation_piece_description[name=?]", "creation_piece[description]"
 
-      assert_select "input#creation_piece_file_name[name=?]", "creation_piece[file_name]"
+      assert_select "input#creation_piece_file[name=?]", "creation_piece[file]"
 
-      assert_select "input#creation_piece_format[name=?]", "creation_piece[format]"
+      assert_select "input#creation_piece_file_name_for_user[name=?]", "creation_piece[file_name_for_user]"
 
       assert_select "input#creation_piece_image[name=?]", "creation_piece[image]"
+
+      assert_select "input#creation_piece_image_name_for_user{256}[name=?]", "creation_piece[image_name_for_user{256}]"
     end
   end
 end

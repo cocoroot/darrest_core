@@ -6,9 +6,10 @@ RSpec.describe "creation_pieces/show", type: :view do
       :creation => nil,
       :name => "Name",
       :description => "Description",
-      :file_name => "File Name",
-      :format => "Format",
-      :image => "Image"
+      :file => "File",
+      :file_name_for_user => "File Name For User",
+      :image => "Image",
+      :image_name_for_user{256} => "Image Name For User{256}"
     ))
   end
 
@@ -17,8 +18,9 @@ RSpec.describe "creation_pieces/show", type: :view do
     expect(rendered).to match(//)
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Description/)
-    expect(rendered).to match(/File Name/)
-    expect(rendered).to match(/Format/)
+    expect(rendered).to match(/File/)
+    expect(rendered).to match(/File Name For User/)
     expect(rendered).to match(/Image/)
+    expect(rendered).to match(/Image Name For User{256}/)
   end
 end

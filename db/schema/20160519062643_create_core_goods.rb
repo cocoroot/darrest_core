@@ -10,4 +10,3 @@ add_foreign_key :goods, :site_users, column: 'site_user_id', name: 'fk_goods_sit
 
 add_index :goods, 'creation_id', name: 'idx_goods_creation_id'
 add_index :goods, 'site_user_id', name: 'idx_goods_site_user_id'
-

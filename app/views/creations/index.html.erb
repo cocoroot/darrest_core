@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Sid</th>
+      <th>Site</th>
       <th>Site user</th>
       <th>Title</th>
       <th>Description</th>
@@ -19,6 +20,7 @@
     <% @creations.each do |creation| %>
       <tr>
         <td><%= creation.sid %></td>
+        <td><%= creation.site %></td>
         <td><%= creation.site_user %></td>
         <td><%= creation.title %></td>
         <td><%= creation.description %></td>

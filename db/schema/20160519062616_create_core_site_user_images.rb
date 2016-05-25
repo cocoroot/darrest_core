@@ -1,6 +1,7 @@
 create_table :site_user_images, id: :bigserial do |t|
   t.references :site_user, null: false, limit: 8, default: 0
   t.string :image, limit: 2083
+  t.string :image_name_for_user, limit: 256
   t.boolean :in_use
   t.integer :order
 

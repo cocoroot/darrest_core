@@ -53,22 +53,27 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "comments", ["site_user_id"], name: "idx_comments_site_user_id", using: :btree
 
   create_table "creation_images", id: :bigserial, force: :cascade do |t|
-    t.integer  "creation_id", limit: 8,    default: 0, null: false
-    t.string   "image",       limit: 2083
+    t.integer  "creation_id",         limit: 8,    default: 0, null: false
+    t.string   "image",               limit: 2083
+    t.string   "image_name_for_user", limit: 256
     t.integer  "order"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
+  add_index "creation_images", ["creation_id"], name: "idx_creation_images_creation_id", using: :btree
+
   create_table "creation_pieces", id: :bigserial, force: :cascade do |t|
-    t.integer  "creation_id", limit: 8,    default: 0, null: false
-    t.string   "name",        limit: 200
-    t.string   "dscription",  limit: 300
-    t.string   "file_name",   limit: 512
-    t.string   "format",      limit: 10
-    t.string   "image",       limit: 2083
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.integer  "creation_id",         limit: 8,    default: 0, null: false
+    t.string   "name",                limit: 200
+    t.string   "dscription",          limit: 300
+    t.string   "file",                limit: 2083
+    t.string   "file_name_for_user",  limit: 256
+    t.string   "format",              limit: 10
+    t.string   "image",               limit: 2083
+    t.string   "image_name_for_user", limit: 256
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   add_index "creation_pieces", ["creation_id"], name: "idx_creation_pieces_creation_id", using: :btree
@@ -89,6 +94,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "creations", id: :bigserial, force: :cascade do |t|
     t.string   "sid",                limit: 32,    default: "md5((('creations'::text || nextval('creations_id_seq'::regclass)) || 'salt'::text))", null: false
+    t.integer  "site_id",                          default: 0,                                                                                     null: false
     t.integer  "site_user_id",       limit: 8,     default: 0,                                                                                     null: false
     t.string   "title",              limit: 200
     t.string   "description",        limit: 10000
@@ -100,6 +106,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "creations", ["creation_status_id"], name: "idx_creations_creation_status_id", using: :btree
   add_index "creations", ["sid"], name: "idx_creations_sid", unique: true, using: :btree
+  add_index "creations", ["site_id"], name: "idx_creations_site_id", using: :btree
   add_index "creations", ["site_user_id"], name: "idx_creations_site_user_id", using: :btree
 
   create_table "goods", id: :bigserial, force: :cascade do |t|
@@ -135,12 +142,13 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "reports", ["site_user_id"], name: "idx_reports_site_user_id", using: :btree
 
   create_table "site_user_images", id: :bigserial, force: :cascade do |t|
-    t.integer  "site_user_id", limit: 8,    default: 0, null: false
-    t.string   "image",        limit: 2083
+    t.integer  "site_user_id",        limit: 8,    default: 0, null: false
+    t.string   "image",               limit: 2083
+    t.string   "image_name_for_user", limit: 256
     t.boolean  "in_use"
     t.integer  "order"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   add_index "site_user_images", ["site_user_id"], name: "idx_site_user_images_site_user_id", using: :btree
@@ -161,6 +169,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "site_users", id: :bigserial, force: :cascade do |t|
     t.string   "sid",                 limit: 32,    default: "md5((('site_users'::text || nextval('site_users_id_seq'::regclass)) || 'salt'::text))", null: false
+    t.integer  "site_id",                           default: 0,                                                                                       null: false
     t.integer  "user_id",             limit: 8,     default: 0,                                                                                       null: false
     t.string   "biography",           limit: 10000
     t.boolean  "tos_accepted"
@@ -170,6 +179,7 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   add_index "site_users", ["sid"], name: "idx_site_users_sid", unique: true, using: :btree
+  add_index "site_users", ["site_id", "user_id"], name: "idx_site_users_site_id_and_user_id", unique: true, using: :btree
   add_index "site_users", ["site_user_status_id"], name: "idx_site_users_site_user_status_id", using: :btree
   add_index "site_users", ["user_id"], name: "idx_site_users_user_id", using: :btree
 
@@ -215,6 +225,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "creation_tags", "tags", name: "fk_creation_tags_tags"
   add_foreign_key "creations", "creation_statuses", name: "fk_creations_creation_statuses"
   add_foreign_key "creations", "site_users", name: "fk_creations_site_users"
+  add_foreign_key "creations", "sites", name: "fk_creations_sites"
   add_foreign_key "goods", "creations", name: "fk_goods_creations"
   add_foreign_key "goods", "site_users", name: "fk_goods_site_users"
   add_foreign_key "report_images", "reports", name: "fk_report_images_reports"
@@ -224,6 +235,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "site_user_tags", "site_users", name: "fk_site_user_tags_site_users"
   add_foreign_key "site_user_tags", "tags", name: "fk_site_user_tags_tags"
   add_foreign_key "site_users", "site_user_statuses", name: "fk_site_users_site_user_statuses"
+  add_foreign_key "site_users", "sites", name: "fk_site_users_sites"
   add_foreign_key "site_users", "users", name: "fk_site_users_users"
   add_foreign_key "tags", "sites", name: "fk_tags_sites"
   add_foreign_key "tags", "tag_classes", name: "fk_tags_tag_classes"

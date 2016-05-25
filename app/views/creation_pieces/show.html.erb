@@ -16,18 +16,23 @@
 </p>
 
 <p>
-  <strong>File name:</strong>
-  <%= @creation_piece.file_name %>
+  <strong>File:</strong>
+  <%= @creation_piece.file %>
 </p>
 
 <p>
-  <strong>Format:</strong>
-  <%= @creation_piece.format %>
+  <strong>File name for user:</strong>
+  <%= @creation_piece.file_name_for_user %>
 </p>
 
 <p>
   <strong>Image:</strong>
   <%= @creation_piece.image %>
+</p>
+
+<p>
+  <strong>Image name for user{256}:</strong>
+  <%= @creation_piece.image_name_for_user{256} %>
 </p>
 
 <%= link_to 'Edit', edit_creation_piece_path(@creation_piece) %> |

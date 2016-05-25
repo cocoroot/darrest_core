@@ -6,11 +6,13 @@ RSpec.describe "creation_images/index", type: :view do
       CreationImage.create!(
         :creation => nil,
         :image => "Image",
+        :image_name_for_user => "Image Name For User",
         :order => 1
       ),
       CreationImage.create!(
         :creation => nil,
         :image => "Image",
+        :image_name_for_user => "Image Name For User",
         :order => 1
       )
     ])
@@ -20,6 +22,7 @@ RSpec.describe "creation_images/index", type: :view do
     render
     assert_select "tr>td", :text => nil.to_s, :count => 2
     assert_select "tr>td", :text => "Image".to_s, :count => 2
+    assert_select "tr>td", :text => "Image Name For User".to_s, :count => 2
     assert_select "tr>td", :text => 1.to_s, :count => 2
   end
 end

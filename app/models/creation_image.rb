@@ -8,7 +8,7 @@ class CreationImage < ActiveRecord::Base
   protected
 
   def validate_content_type
-    unless %w(image/jpg image/jpeg image/gif image/png).include? file.file.content_type
+    unless %w(image/jpg image/jpeg image/gif image/png).include? image.file.content_type
       errors.add(:file, 'invalid content-type.')
     end
   end

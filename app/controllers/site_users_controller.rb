@@ -69,6 +69,6 @@ class SiteUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_user_params
-      params.require(:site_user).permit(:sid, :biography, :tos_accepted, :site_user_status_id)
+      params.require(:site_user).permit(:sid, :site_id, :biography, :tos_accepted, :site_user_status_id)
     end
 end

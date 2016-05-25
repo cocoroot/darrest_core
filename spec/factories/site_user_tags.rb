@@ -1,4 +1,3 @@
-# coding: utf-8
 FactoryGirl.define do
   factory :site_user_tag do
     site_user
