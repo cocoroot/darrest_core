@@ -1,14 +1,13 @@
-class SiteUserImageUploader < UploaderBase
+class CreationPieceImageUploader < UploaderBase
   include CarrierWave::RMagick
   process convert: 'jpg'
 
-  # "site-user-images/#{mounted_as}/#{model.id}"
   def store_dir
-    "site-user-images/SITE_USER:#{model.site_user_id}"
+    "creation-piece-images/CREATION_PIECE:#{model.creation_piece_id}"
   end
 
   version :thumb do
-    process resize_to_fit: [100, 100]
+    process resize_to_fit: [144, 100]
   end
 
   def extension_white_list

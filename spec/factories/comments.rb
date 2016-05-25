@@ -1,7 +1,6 @@
 # coding: utf-8
 FactoryGirl.define do
   factory :comment do
-    sid nil
     creation
     site_user
     sequence(:body) { |n| "コメント本文#{format('%03d', n)}" * 3 }

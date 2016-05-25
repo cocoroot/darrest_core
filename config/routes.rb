@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :creation_pieces
-  with_options(defaults: {format: :json}, format: false) do
+  with_options(defaults: {format: :json}, format: true) do
     resources :comments
     resources :collection_creations
     resources :collections

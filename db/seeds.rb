@@ -10,6 +10,8 @@
 require 'factory_girl'
 # Dir[Rails.root.join('spec/factories/*.rb')].each {|f| puts f; require f }
 
+DatabaseCleaner.clean_with :truncation
+
 include FactoryGirl::Syntax::Methods
 
 require "#{Rails.root.join('db/seeds/master.rb')}"
@@ -25,16 +27,25 @@ site_user02 = create(:site_user, user: user02)
 site_user03 = create(:site_user, user: user03)
 
 # SiteUserImage
-3.times { create(:site_user_image, site_user: site_user01) }
+create(:site_user_image, site_user: site_user01)
+create(:site_user_image, site_user: site_user01, image: fixture_file_upload('spec/factories/resources/img/frog02.jpg'))
 create(:site_user_image, site_user: site_user02)
 create(:site_user_image, site_user: site_user03)
 
-# SiteUseTag
-3.times { create(:site_user_tag, site_user: site_user01) }
-3.times { create(:site_user_tag) }
+# Site
+#site01 = create(:site)
+#site02 = create(:site)
 
 # Tag
-2.times { create(:tag) }
+tag01 = create(:tag)
+tag02 = create(:tag)
+tag03 = create(:tag)
+
+# SiteUseTag
+build(:site_user_tag, site_user: site_user01, tag: tag01)
+build(:site_user_tag, site_user: site_user01, tag: tag02)
+create(:site_user_tag, site_user: site_user01, tag: tag03)
+create(:site_user_tag, tag: tag01)
 
 # Creation
 creation_01 = create(:creation, site_user: site_user01)
@@ -42,12 +53,12 @@ creation_02 = create(:creation, site_user: site_user01)
 5.times { create(:creation) }
 
 # CreationImage
-2.times { create(:creation_image, creation: creation_01) }
-5.times { create(:creation_image, creation: creation_02) }
+# 2.times { create(:creation_image, creation: creation_01) }
+# 5.times { create(:creation_image, creation: creation_02) }
 
 # CreationPiece
-2.times { create(:creation_piece, creation: creation_01) }
-5.times { create(:creation_piece, creation: creation_02) }
+# 2.times { create(:creation_piece, creation: creation_01) }
+# 5.times { create(:creation_piece, creation: creation_02) }
 
 # CreationTag
 3.times { create(:creation_tag, creation: creation_01) }
