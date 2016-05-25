@@ -1,6 +1,0 @@
-create_table :goods do |t|
-  t.references :creation, index: true, foreign_key: true
-  t.references :site_user, index: true, foreign_key: true
-
-  t.timestamps null: false
-end

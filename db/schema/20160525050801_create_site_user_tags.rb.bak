@@ -1,6 +1,0 @@
-create_table :site_user_tags do |t|
-  t.references :site_user, index: true, foreign_key: true
-  t.references :tag, index: true, foreign_key: true
-
-  t.timestamps null: false
-end
