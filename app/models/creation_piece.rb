@@ -33,7 +33,7 @@ class CreationPiece < ActiveRecord::Base
   end
 
   def validate_file_content_type
-    unless %w(image/jpg image/jpeg image/gif image/png stl text/plain).include? file.file.content_type
+    unless %w(application/vnd.ms-pki.stl image/jpg image/jpeg image/gif image/png stl text/plain).include? file.file.content_type
       errors.add(:file, 'invalid content-type.')
     end
   end

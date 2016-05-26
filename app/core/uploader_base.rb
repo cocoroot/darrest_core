@@ -3,7 +3,7 @@ class UploaderBase < CarrierWave::Uploader::Base
   when 'test' then
     storage :file
   when 'development' then
-    storage :fog
+    storage :file
   when 'staging' then
     storage :fog
   when 'production' then

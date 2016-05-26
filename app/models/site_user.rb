@@ -8,4 +8,9 @@ class SiteUser < ActiveRecord::Base
   has_many :goods
   has_many :reports
   has_many :site_user_tags
+
+  #scope :using_site_user_image, -> { joins(:site_user_images).where(SiteUserImage.in_use) }
+  def using_site_user_image
+    site_user_images.in_use.first
+  end
 end

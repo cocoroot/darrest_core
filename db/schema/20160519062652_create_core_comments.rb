@@ -1,5 +1,5 @@
 create_table :comments, id: :bigserial do |t|
-  t.string :sid, limit: 32, null: false
+  t.string :sid, limit: 32
   t.references :creation, null: false, limit: 8, default: 0
   t.references :site_user, null: false, limit: 8, default: 0
   t.string :body, limit: 1000
@@ -16,5 +16,3 @@ add_foreign_key :comments, :comments, column: 'parent', name: 'fk_comments_paren
 add_index :comments, 'sid', unique: true, name: 'idx_comments_sid'
 add_index :comments, 'creation_id', name: 'idx_comments_creation_id'
 add_index :comments, 'site_user_id', name: 'idx_comments_site_user_id'
-
-execute("ALTER TABLE comments ALTER COLUMN sid SET DEFAULT md5('comments' || nextval('comments_id_seq') || 'salt')")

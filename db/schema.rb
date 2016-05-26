@@ -27,25 +27,25 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "collection_creations", ["creation_id"], name: "idx_collection_creations_creation_id", using: :btree
 
   create_table "collections", id: :bigserial, force: :cascade do |t|
-    t.string   "sid",          limit: 32,  default: "md5((('collections'::text || nextval('collections_id_seq'::regclass)) || 'salt'::text))", null: false
-    t.integer  "site_user_id", limit: 8,   default: 0,                                                                                         null: false
+    t.string   "sid",          limit: 32
+    t.integer  "site_user_id", limit: 8,   default: 0, null: false
     t.string   "title",        limit: 200
-    t.datetime "created_at",                                                                                                                   null: false
-    t.datetime "updated_at",                                                                                                                   null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   add_index "collections", ["sid"], name: "idx_collections_sid", unique: true, using: :btree
   add_index "collections", ["site_user_id"], name: "idx_collections_site_user_id", using: :btree
 
   create_table "comments", id: :bigserial, force: :cascade do |t|
-    t.string   "sid",          limit: 32,   default: "md5((('comments'::text || nextval('comments_id_seq'::regclass)) || 'salt'::text))", null: false
-    t.integer  "creation_id",  limit: 8,    default: 0,                                                                                   null: false
-    t.integer  "site_user_id", limit: 8,    default: 0,                                                                                   null: false
+    t.string   "sid",          limit: 32
+    t.integer  "creation_id",  limit: 8,    default: 0, null: false
+    t.integer  "site_user_id", limit: 8,    default: 0, null: false
     t.string   "body",         limit: 1000
     t.integer  "parent",       limit: 8
     t.string   "notice_code",  limit: 10
-    t.datetime "created_at",                                                                                                              null: false
-    t.datetime "updated_at",                                                                                                              null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "comments", ["creation_id"], name: "idx_comments_creation_id", using: :btree
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "creation_pieces", id: :bigserial, force: :cascade do |t|
     t.integer  "creation_id",         limit: 8,    default: 0, null: false
     t.string   "name",                limit: 200
-    t.string   "dscription",          limit: 300
     t.string   "file",                limit: 2083
     t.string   "file_name_for_user",  limit: 256
     t.string   "format",              limit: 10
@@ -93,15 +92,15 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "creation_tags", ["tag_id"], name: "idx_creation_tags_tag_id", using: :btree
 
   create_table "creations", id: :bigserial, force: :cascade do |t|
-    t.string   "sid",                limit: 32,    default: "md5((('creations'::text || nextval('creations_id_seq'::regclass)) || 'salt'::text))", null: false
-    t.integer  "site_id",                          default: 0,                                                                                     null: false
-    t.integer  "site_user_id",       limit: 8,     default: 0,                                                                                     null: false
+    t.string   "sid",                limit: 32
+    t.integer  "site_id",                          default: 0, null: false
+    t.integer  "site_user_id",       limit: 8,     default: 0, null: false
     t.string   "title",              limit: 200
     t.string   "description",        limit: 10000
     t.string   "license_code"
     t.integer  "creation_status_id"
-    t.datetime "created_at",                                                                                                                       null: false
-    t.datetime "updated_at",                                                                                                                       null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   add_index "creations", ["creation_status_id"], name: "idx_creations_creation_status_id", using: :btree
@@ -168,14 +167,14 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "site_user_tags", ["tag_id"], name: "idx_site_user_tags_tag_id", using: :btree
 
   create_table "site_users", id: :bigserial, force: :cascade do |t|
-    t.string   "sid",                 limit: 32,    default: "md5((('site_users'::text || nextval('site_users_id_seq'::regclass)) || 'salt'::text))", null: false
-    t.integer  "site_id",                           default: 0,                                                                                       null: false
-    t.integer  "user_id",             limit: 8,     default: 0,                                                                                       null: false
+    t.string   "sid",                 limit: 32
+    t.integer  "site_id",                           default: 0, null: false
+    t.integer  "user_id",             limit: 8,     default: 0, null: false
     t.string   "biography",           limit: 10000
     t.boolean  "tos_accepted"
-    t.integer  "site_user_status_id",               default: 0,                                                                                       null: false
-    t.datetime "created_at",                                                                                                                          null: false
-    t.datetime "updated_at",                                                                                                                          null: false
+    t.integer  "site_user_status_id",               default: 0, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   add_index "site_users", ["sid"], name: "idx_site_users_sid", unique: true, using: :btree

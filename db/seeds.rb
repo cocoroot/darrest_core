@@ -10,6 +10,9 @@
 require 'factory_girl'
 # Dir[Rails.root.join('spec/factories/*.rb')].each {|f| puts f; require f }
 
+SiteUserImage.destroy_all
+CreationImage.destroy_all
+CreationPiece.destroy_all
 DatabaseCleaner.clean_with :truncation
 
 include FactoryGirl::Syntax::Methods
@@ -34,7 +37,8 @@ site_user03 = create(:site_user, site: site01, user: user03)
 create(:site_user)
 
 # SiteUserImage
-2.times { create(:site_user_image, site_user: site_user01) }
+create(:site_user_image, site_user: site_user01, in_use: true)
+create(:site_user_image, site_user: site_user01)
 create(:site_user_image, site_user: site_user02)
 create(:site_user_image, site_user: site_user03)
 create(:site_user_image)

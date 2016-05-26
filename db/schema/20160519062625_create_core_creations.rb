@@ -1,5 +1,5 @@
 create_table :creations, id: :bigserial do |t|
-  t.string :sid, limit: 32, null: false
+  t.string :sid, limit: 32
   t.references :site, null: false, default: 0
   t.references :site_user, null: false, limit: 8, default: 0
   t.string :title, limit: 200
@@ -18,5 +18,3 @@ add_index :creations, 'sid', unique: true, name: 'idx_creations_sid'
 add_index :creations, 'site_id', name: 'idx_creations_site_id'
 add_index :creations, 'site_user_id', name: 'idx_creations_site_user_id'
 add_index :creations, 'creation_status_id', name: 'idx_creations_creation_status_id'
-
-execute("ALTER TABLE creations ALTER COLUMN sid SET DEFAULT md5('creations' || nextval('creations_id_seq') || 'salt')")

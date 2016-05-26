@@ -5,6 +5,8 @@ class SiteUserImage < ActiveRecord::Base
 
   validate :validate_content_type
 
+  scope :in_use, -> { where(in_use: true) }
+
   protected
 
   def validate_content_type
