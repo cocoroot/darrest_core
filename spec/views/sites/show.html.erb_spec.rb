@@ -4,7 +4,8 @@ RSpec.describe "sites/show", type: :view do
   before(:each) do
     @site = assign(:site, Site.create!(
       :name => "Name",
-      :url => "Url"
+      :url => "Url",
+      :access_key => "Access Key"
     ))
   end
 
@@ -12,5 +13,6 @@ RSpec.describe "sites/show", type: :view do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Url/)
+    expect(rendered).to match(/Access Key/)
   end
 end

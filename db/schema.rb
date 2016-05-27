@@ -93,14 +93,14 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "creations", id: :bigserial, force: :cascade do |t|
     t.string   "sid",                limit: 32
-    t.integer  "site_id",                          default: 0, null: false
-    t.integer  "site_user_id",       limit: 8,     default: 0, null: false
-    t.string   "title",              limit: 200
-    t.string   "description",        limit: 10000
+    t.integer  "site_id",                          default: 0,  null: false
+    t.integer  "site_user_id",       limit: 8,     default: 0,  null: false
+    t.string   "title",              limit: 200,   default: ""
+    t.string   "description",        limit: 10000, default: ""
     t.string   "license_code"
-    t.integer  "creation_status_id"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.integer  "creation_status_id",               default: 1
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   add_index "creations", ["creation_status_id"], name: "idx_creations_creation_status_id", using: :btree
@@ -185,9 +185,12 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "sites", force: :cascade do |t|
     t.string   "name",       limit: 100
     t.string   "url",        limit: 256
+    t.string   "access_key", limit: 36
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "sites", ["access_key"], name: "idx_sites_access_key", unique: true, using: :btree
 
   create_table "tag_classes", force: :cascade do |t|
     t.string "name", limit: 20

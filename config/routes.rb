@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sites
   resources :site_users
   resources :comments
   resources :goods

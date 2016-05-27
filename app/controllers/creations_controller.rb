@@ -24,22 +24,26 @@ class CreationsController < ApplicationController
   # POST /creations
   # POST /creations.json
   def create
-    @creation = Creation.new(creation_params)
+    @creation = CreateCreationLogic.new.execute(creation_params_for_create)
 
     respond_to do |format|
-      if @creation.save
-        format.html { redirect_to @creation, notice: 'Creation was successfully created.' }
-        format.json { render :show, status: :created, location: @creation }
-      else
-        format.html { render :new }
-        format.json { render json: @creation.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @creation, notice: 'Creation was successfully created.' }
+      format.json { render :show, status: :created, location: @creation }
     end
   end
 
   # PATCH/PUT /creations/1
   # PATCH/PUT /creations/1.json
   def update
+    @creation = UpdateCreationLogic.new.execute(creation_params_for_update)
+
+    respond_to do |format|
+      format.html { redirect_to @creation, notice: 'Creation was successfully updated.' }
+      format.json { render :show, status: :ok, location: @creation }
+    end
+  end
+
+  def _update
     respond_to do |format|
       if @creation.update(creation_params)
         format.html { redirect_to @creation, notice: 'Creation was successfully updated.' }
@@ -62,13 +66,17 @@ class CreationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_creation
-      @creation = Creation.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_creation
+    @creation = Creation.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def creation_params
-      params.require(:creation).permit(:site_id, :site_user_id, :title, :description)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def creation_params_for_create
+    params.require(:creation).permit(:site_id, :site_user_id, :title, :description).merge(site_id: RequestLocals.fetch(:request_site).try(:site_id))
+  end
+  
+  def creation_params_for_update
+    params.require(:creation).permit(:id, :title, :description, :creation_status)
+  end
 end

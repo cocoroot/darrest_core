@@ -5,11 +5,13 @@ RSpec.describe "sites/index", type: :view do
     assign(:sites, [
       Site.create!(
         :name => "Name",
-        :url => "Url"
+        :url => "Url",
+        :access_key => "Access Key"
       ),
       Site.create!(
         :name => "Name",
-        :url => "Url"
+        :url => "Url",
+        :access_key => "Access Key"
       )
     ])
   end
@@ -18,5 +20,6 @@ RSpec.describe "sites/index", type: :view do
     render
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "Url".to_s, :count => 2
+    assert_select "tr>td", :text => "Access Key".to_s, :count => 2
   end
 end

@@ -4,7 +4,8 @@ RSpec.describe "sites/edit", type: :view do
   before(:each) do
     @site = assign(:site, Site.create!(
       :name => "MyString",
-      :url => "MyString"
+      :url => "MyString",
+      :access_key => "MyString"
     ))
   end
 
@@ -16,6 +17,8 @@ RSpec.describe "sites/edit", type: :view do
       assert_select "input#site_name[name=?]", "site[name]"
 
       assert_select "input#site_url[name=?]", "site[url]"
+
+      assert_select "input#site_access_key[name=?]", "site[access_key]"
     end
   end
 end

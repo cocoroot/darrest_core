@@ -6,12 +6,14 @@ class ApplicationController < ActionController::Base
 
   class AuthenticationError < ActionController::ActionControllerError; end
   class PermissionError < ActionController::ActionControllerError; end
-  
+  class InvalidSiteError < ActionController::ActionControllerError; end
+
   include ErrorHandlers
   include CheckPermission
-  
+  include SiteHandler
+
   protected
-  
+
   def json_request?
     request.format.json?
   end

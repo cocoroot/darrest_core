@@ -2,10 +2,10 @@ create_table :creations, id: :bigserial do |t|
   t.string :sid, limit: 32
   t.references :site, null: false, default: 0
   t.references :site_user, null: false, limit: 8, default: 0
-  t.string :title, limit: 200
-  t.string :description, limit: 10000
+  t.string :title, limit: 200, default: ''
+  t.string :description, limit: 10000, default: ''
   t.string :license_code
-  t.references :creation_status
+  t.references :creation_status, default: 1
 
   t.timestamps null: false
 end

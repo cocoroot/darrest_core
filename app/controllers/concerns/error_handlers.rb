@@ -6,7 +6,9 @@ module ErrorHandlers extend ActiveSupport::Concern
       rescue_from Exception,                                  with: :emergency_alert
       rescue_from ActionController::RoutingError,             with: :rescue404
       rescue_from ApplicationController::PermissionError,     with: :rescue403
+      rescue_from Core::PermissionError,                      with: :rescue403
       rescue_from ApplicationController::AuthenticationError, with: :rescue401
+      rescue_from ApplicationController::InvalidSiteError,    with: :rescue401
     end
   end
 
