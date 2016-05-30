@@ -11,10 +11,13 @@ describe CreateCreationLogic, type: :logic do
   let(:params) do
     {
       site_id: 900_000_001,
-      site_user_id: 900_000_001,
-      title: 'テストタイトル',
-      description: 'テスト内容',
-      creation_status: CreationStatus::CREATING
+      creation: {
+        site_id: 900_000_001,
+        site_user_id: 900_000_001,
+        title: 'テストタイトル',
+        description: 'テスト内容',
+        creation_status: CreationStatus::CREATING
+      }
     }
   end
 
@@ -33,13 +36,13 @@ describe CreateCreationLogic, type: :logic do
         #
         # validate
         #
-        expect(result[:errors][:site_id].count).to eq 1
+        expect(result[:errors][:site].count).to eq 1
       end
     end
 
     context 'if SiteUser does not exist,' do
       before do
-        params.merge!(site_user_id: 900_000_002)
+        params[:creation].merge!(site_user_id: 900_000_002)
       end
 
       it 'denies a Creation' do
@@ -51,7 +54,7 @@ describe CreateCreationLogic, type: :logic do
         #
         # validate
         #
-        expect(result[:errors][:site_user_id].count).to eq 1
+        expect(result[:errors][:site_user].count).to eq 1
       end
     end
   end # authorize
@@ -60,16 +63,19 @@ describe CreateCreationLogic, type: :logic do
     let(:params) do
       {
         site_id: 900_000_001,
-        site_user_id: 900_000_001,
-        title: 'テストタイトル',
-        description: 'テスト内容',
-        creation_status: CreationStatus::CREATING
+        creation: {
+          site_id: 900_000_001,
+          site_user_id: 900_000_001,
+          title: 'テストタイトル',
+          description: 'テスト内容',
+          creation_status: CreationStatus::CREATING
+        }
       }
     end
 
     context '型チェックエラー' do
       before do
-        params.merge!(title: '!' * 201)
+        params[:creation].merge!(title: '!' * 201 )
       end
 
       it 'returns error' do
@@ -87,7 +93,7 @@ describe CreateCreationLogic, type: :logic do
 
     context '論理チェックエラー' do
       before do
-        params.merge!(site_id: 900_000_001, site_user_id: 900_000_002)
+        params[:creation].merge!(site_id: 900_000_001, site_user_id: 900_000_002)
       end
 
       it 'returns error' do
@@ -99,7 +105,7 @@ describe CreateCreationLogic, type: :logic do
         #
         # validate
         #
-        expect(result[:errors].key?(:site_user_id)).to be true
+        expect(result[:errors][:site_user].count).to eq 1
       end
     end
   end # validate

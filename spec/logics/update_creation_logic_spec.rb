@@ -3,28 +3,36 @@ require 'rails_helper'
 
 describe UpdateCreationLogic, type: :logic do
   before(:all) do
+    site = create(:site, id: 900_000_001)
+    site_user = create(:site_user, site: site, id: 900_000_001)
     params = {
       id: 900_000_001,
+      site: site,
+      site_user: site_user,
       title: 'テストタイトル',
       description: 'テスト内容',
-      creation_status: CreationStatus::CREATING
+      creation_status_id: CreationStatus::CREATING.id
     }
     create(:creation, params)
   end
 
   let(:params) do
     {
-      id: 900_000_001,
-      title: 'Test Title',
-      description: 'Test Description',
-      creation_status: CreationStatus::PUBLISHED
+      site_id: 900_000_001,
+      creation: {
+        site_id: 900_000_001,
+        id: 900_000_001,
+        title: 'Test Title',
+        description: 'Test Description',
+        creation_status_id: CreationStatus::PUBLISHED.id
+      }
     }
   end
 
   describe 'authorize' do
     context 'if Creation does not exist,' do
       before do
-        params.merge!(id: 900_000_002)
+        params[:creation].merge!(id: 900_000_002)
       end
 
       it 'denies a Creation' do
@@ -44,7 +52,7 @@ describe UpdateCreationLogic, type: :logic do
   describe 'validate' do
     context '型チェックエラー' do
       before do
-        params.merge!(title: '!' * 201)
+        params[:creation].merge!(title: '!' * 201)
       end
 
       it 'returns error' do
@@ -57,6 +65,25 @@ describe UpdateCreationLogic, type: :logic do
         # validate
         #
         expect(result[:errors][:title].count).to eq 1
+      end
+    end
+
+    context '論理チェックエラー' do
+      before do
+        create(:site, id: 900_000_002)
+        params.merge!(site_id: 900_000_002)
+      end
+
+      it 'returns error' do
+        #
+        # exectue
+        #
+        result = UpdateCreationLogic.new.validate(params)
+
+        #
+        # validate
+        #
+        expect(result[:errors][:creation].count).to eq 1
       end
     end
   end # validate
@@ -72,9 +99,9 @@ describe UpdateCreationLogic, type: :logic do
         #
         # validate
         #
-        expect(result[:creation].title).to eq params[:title]
-        expect(result[:creation].description).to eq params[:description]
-        expect(result[:creation].creation_status).to eq params[:creation_status]
+        expect(result[:creation].title).to eq params[:creation][:title]
+        expect(result[:creation].description).to eq params[:creation][:description]
+        expect(result[:creation].creation_status_id).to eq params[:creation][:creation_status_id]
       end
     end
   end # execute

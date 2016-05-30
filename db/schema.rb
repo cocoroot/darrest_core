@@ -55,13 +55,16 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "creation_images", id: :bigserial, force: :cascade do |t|
     t.integer  "creation_id",         limit: 8,    default: 0, null: false
     t.string   "image",               limit: 2083
-    t.string   "image_name_for_user", limit: 256
+    t.string   "image_name_for_user", limit: 256,              null: false
     t.integer  "order"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.datetime "removed_at"
+    t.integer  "removed_id",          limit: 8,    default: 0, null: false
   end
 
   add_index "creation_images", ["creation_id"], name: "idx_creation_images_creation_id", using: :btree
+  add_index "creation_images", ["removed_id"], name: "idx_creation_images_creation_id_removed_id", unique: true, using: :btree
 
   create_table "creation_pieces", id: :bigserial, force: :cascade do |t|
     t.integer  "creation_id",         limit: 8,    default: 0, null: false

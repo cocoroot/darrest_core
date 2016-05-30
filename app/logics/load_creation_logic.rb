@@ -1,35 +1,26 @@
 # coding: utf-8
-class CreateCreationLogic < LogicBase
+class LoadCreationLogic < LogicBase
 
   def authorize(params)
     @errors.add(:site, 'Site does not exist.') unless Site.exists?(id: params[:site_id])
-    @errors.add(:site_user, 'SiteUser does not exist.') unless SiteUser.exists?(id: params[:creation][:site_user_id])
+    @errors.add(:id, 'Creation does not exist.') unless Creation.exists?(id: params[:id])
 
     { errors: @errors, warnings: @warnings }
   end
 
   def validate(params)
     #
-    # 型チェック
-    #
-    @creation = Creation.new(params[:creation].merge(creation_status: CreationStatus::CREATING))
-    @creation.valid?
-    @errors << @creation.errors.messages
-
-    #
     # 論理チェック
     #
-    site_id = params[:creation][:site_id]
-    site_user = SiteUser.find(params[:creation][:site_user_id])
-
+    site_id = params[:site_id]
+    @creation = Creation.find(params[:id])
+    site_user = @creation.site_user
     @errors.add(:site_user, 'SiteUser does not belong to the Site.') if site_id != site_user.site_id
 
     { errors: @errors, warnings: @warnings }
   end
 
   def execute(params)
-    @creation.save!
-
     { creation: @creation, errors: @errors, warnings: @warnings }
   end
 

@@ -17,7 +17,7 @@ class SiteUserImageUploader < UploaderBase
 
   def filename
     file_name_hash = secure_token
-    model.image_name_for_user = original_filename
+    model.image_name_for_user = original_filename if original_filename.present?
     "#{file_name_hash}.jpg" if original_filename.present?
   end
 end

@@ -1,5 +1,5 @@
 module Core
-  class PermissionError
+  class PermissionError < StandardError
     
   end
 end

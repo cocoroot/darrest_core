@@ -13,7 +13,7 @@ class CreationPieceFileUploader < UploaderBase
   def filename
     file_name_hash = secure_token
     extname = File.extname(original_filename)
-    model.file_name_for_user = original_filename
+    model.file_name_for_user = original_filename if original_filename.present?
     "#{file_name_hash}#{extname}" if original_filename.present?
   end
 end

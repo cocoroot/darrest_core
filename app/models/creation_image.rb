@@ -1,9 +1,12 @@
 class CreationImage < ActiveRecord::Base
+  include LogicalDelete
+
   belongs_to :creation
 
   mount_uploader :image, CreationImageUploader
 
   validate :validate_content_type
+  validates :image_name_for_user, length: { maximum: 256 }
 
   protected
 

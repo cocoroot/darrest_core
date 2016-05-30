@@ -1,5 +1,5 @@
 class CreationsController < ApplicationController
-  before_action :set_creation, only: [:show, :edit, :update, :destroy]
+  # before_action :set_creation, only: [:show, :edit, :update, :destroy]
 
   # GET /creations
   # GET /creations.json
@@ -10,6 +10,7 @@ class CreationsController < ApplicationController
   # GET /creations/1
   # GET /creations/1.json
   def show
+    @result = LoadCreationLogic.new.execute(creation_params_for_show)
   end
 
   # GET /creations/new
@@ -24,34 +25,22 @@ class CreationsController < ApplicationController
   # POST /creations
   # POST /creations.json
   def create
-    @creation = CreateCreationLogic.new.execute(creation_params_for_create)
+    @result = CreateCreationLogic.new.execute(creation_params_for_create)
 
     respond_to do |format|
-      format.html { redirect_to @creation, notice: 'Creation was successfully created.' }
-      format.json { render :show, status: :created, location: @creation }
+      format.html { redirect_to @result[:creation], notice: 'Creation was successfully created.' }
+      format.json { render :show, status: :created, location: @result[:creation] }
     end
   end
 
   # PATCH/PUT /creations/1
   # PATCH/PUT /creations/1.json
   def update
-    @creation = UpdateCreationLogic.new.execute(creation_params_for_update)
-
+    @result = UpdateCreationLogic.new.execute(creation_params_for_update)
+    
     respond_to do |format|
-      format.html { redirect_to @creation, notice: 'Creation was successfully updated.' }
-      format.json { render :show, status: :ok, location: @creation }
-    end
-  end
-
-  def _update
-    respond_to do |format|
-      if @creation.update(creation_params)
-        format.html { redirect_to @creation, notice: 'Creation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @creation }
-      else
-        format.html { render :edit }
-        format.json { render json: @creation.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @result[:creation], notice: 'Creation was successfully updated.' }
+      format.json { render :show, status: :ok, location: @result[:creation] }
     end
   end
 
@@ -71,12 +60,29 @@ class CreationsController < ApplicationController
     @creation = Creation.find(params[:id])
   end
 
+  def site_id
+    RequestLocals.fetch(:request_site).try(:site_id)
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def creation_params_for_create
-    params.require(:creation).permit(:site_id, :site_user_id, :title, :description).merge(site_id: RequestLocals.fetch(:request_site).try(:site_id))
+    {
+      site_id: site_id,
+      creation: params.require(:creation).permit(:site_id, :site_user_id, :title, :description).merge(site_id: site_id)  
+    }
   end
-  
+
+  def creation_params_for_show
+    {
+      site_id: site_id,
+      id: params[:id]
+    }
+  end
+
   def creation_params_for_update
-    params.require(:creation).permit(:id, :title, :description, :creation_status)
+    {
+      site_id: site_id,
+      creation: params.require(:creation).permit(:title, :description, :creation_status_id).merge(id: params[:id], site_id: site_id)
+    }
   end
 end
