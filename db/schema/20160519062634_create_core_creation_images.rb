@@ -6,10 +6,10 @@ create_table :creation_images, id: :bigserial do |t|
 
   t.timestamps null: false
   t.datetime :removed_at
-  t.integer :removed_id, limit: 8, null: false, default: 0
+  t.integer :removed_id, limit: 8, default: 0
 end
 
 add_foreign_key :creation_images, :creations, column: 'creation_id', name: 'fk_creation_images_creations'
 
 add_index :creation_images, 'creation_id', name: 'idx_creation_images_creation_id'
-add_index :creation_images, 'removed_id', unique: true, name: 'idx_creation_images_creation_id_removed_id'
+add_index :creation_images, 'removed_id', name: 'idx_creation_images_creation_id_removed_id'

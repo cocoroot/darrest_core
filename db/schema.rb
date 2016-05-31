@@ -60,11 +60,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.datetime "removed_at"
-    t.integer  "removed_id",          limit: 8,    default: 0, null: false
+    t.integer  "removed_id",          limit: 8
   end
 
   add_index "creation_images", ["creation_id"], name: "idx_creation_images_creation_id", using: :btree
-  add_index "creation_images", ["removed_id"], name: "idx_creation_images_creation_id_removed_id", unique: true, using: :btree
+  add_index "creation_images", ["removed_id"], name: "idx_creation_images_creation_id_removed_id", using: :btree
 
   create_table "creation_pieces", id: :bigserial, force: :cascade do |t|
     t.integer  "creation_id",         limit: 8,    default: 0, null: false

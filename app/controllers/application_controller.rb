@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
     request.format.json?
   end
 
+  def site_id
+    RequestLocals.fetch(:request_site).try(:site_id)
+  end
+
 end

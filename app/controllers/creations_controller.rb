@@ -10,7 +10,7 @@ class CreationsController < ApplicationController
   # GET /creations/1
   # GET /creations/1.json
   def show
-    @result = LoadCreationLogic.new.execute(creation_params_for_show)
+    @result = LoadCreationLogic.new.execute(params_for_load)
   end
 
   # GET /creations/new
@@ -25,7 +25,7 @@ class CreationsController < ApplicationController
   # POST /creations
   # POST /creations.json
   def create
-    @result = CreateCreationLogic.new.execute(creation_params_for_create)
+    @result = CreateCreationLogic.new.execute(params_for_create)
 
     respond_to do |format|
       format.html { redirect_to @result[:creation], notice: 'Creation was successfully created.' }
@@ -36,7 +36,7 @@ class CreationsController < ApplicationController
   # PATCH/PUT /creations/1
   # PATCH/PUT /creations/1.json
   def update
-    @result = UpdateCreationLogic.new.execute(creation_params_for_update)
+    @result = UpdateCreationLogic.new.execute(params_for_update)
     
     respond_to do |format|
       format.html { redirect_to @result[:creation], notice: 'Creation was successfully updated.' }
@@ -60,26 +60,22 @@ class CreationsController < ApplicationController
     @creation = Creation.find(params[:id])
   end
 
-  def site_id
-    RequestLocals.fetch(:request_site).try(:site_id)
-  end
-
   # Never trust parameters from the scary internet, only allow the white list through.
-  def creation_params_for_create
+  def params_for_create
     {
       site_id: site_id,
       creation: params.require(:creation).permit(:site_id, :site_user_id, :title, :description).merge(site_id: site_id)  
     }
   end
 
-  def creation_params_for_show
+  def params_for_load
     {
       site_id: site_id,
       id: params[:id]
     }
   end
 
-  def creation_params_for_update
+  def params_for_update
     {
       site_id: site_id,
       creation: params.require(:creation).permit(:title, :description, :creation_status_id).merge(id: params[:id], site_id: site_id)
