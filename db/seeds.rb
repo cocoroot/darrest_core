@@ -80,10 +80,10 @@ create(:creation_tag, creation: creation_01, tag: tag03)
 create(:creation_tag, creation: creation_01, tag: tag04)
 create(:creation_tag)
 
-# Comment
-3.times { create(:comment, creation: creation_01, site_user: site_user02) }
-3.times { create(:comment, creation: creation_01, site_user: site_user03) }
-create(:comment)
+# CreationComment
+3.times { create(:creation_comment, creation: creation_01, site_user: site_user02) }
+3.times { create(:creation_comment, creation: creation_01, site_user: site_user03) }
+create(:creation_comment)
 
 # Good
 create(:good, creation: creation_01, site_user: site_user02)

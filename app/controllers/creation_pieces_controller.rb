@@ -1,5 +1,5 @@
 class CreationPiecesController < ApplicationController
-  before_action :set_creation_piece, only: [:show, :edit, :update, :destroy]
+  # before_action :set_creation_piece, only: [:show, :edit, :update, :destroy]
 
   # GET /creation_pieces
   # GET /creation_pieces.json
@@ -24,37 +24,30 @@ class CreationPiecesController < ApplicationController
   # POST /creation_pieces
   # POST /creation_pieces.json
   def create
-    @creation_piece = CreationPiece.new(creation_piece_params)
+    @result = CreateCreationPieceLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      if @creation_piece.save
-        format.html { redirect_to @creation_piece, notice: 'Creation piece was successfully created.' }
-        format.json { render :show, status: :created, location: @creation_piece }
-      else
-        format.html { render :new }
-        format.json { render json: @creation_piece.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @result[:creatino_piece], notice: 'Creation piece was successfully created.' }
+      format.json { render :show, status: :created, location: @result[:creation_piece] }
     end
   end
 
   # PATCH/PUT /creation_pieces/1
   # PATCH/PUT /creation_pieces/1.json
   def update
+    @result = UpdateCreationPieceLogic.new.execute(params_for_update)
+
     respond_to do |format|
-      if @creation_piece.update(creation_piece_params)
-        format.html { redirect_to @creation_piece, notice: 'Creation piece was successfully updated.' }
-        format.json { render :show, status: :ok, location: @creation_piece }
-      else
-        format.html { render :edit }
-        format.json { render json: @creation_piece.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @result[:creation_piece], notice: 'Creation piece was successfully updated.' }
+      format.json { render :show, status: :ok, location: @result[:creation_piece] }
     end
   end
 
   # DELETE /creation_pieces/1
   # DELETE /creation_pieces/1.json
   def destroy
-    @creation_piece.destroy
+    @result = DeleteCreationPieceLogic.new.execute(params_for_delete)
+
     respond_to do |format|
       format.html { redirect_to creation_pieces_url, notice: 'Creation piece was successfully destroyed.' }
       format.json { head :no_content }
@@ -62,13 +55,31 @@ class CreationPiecesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_creation_piece
-      @creation_piece = CreationPiece.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  # def set_creation_piece
+  #   @creation_piece = CreationPiece.find(params[:id])
+  # end
+  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  
+  def params_for_create
+    {
+      site_id: site_id,
+      creation_piece: params.require(:creation_piece).permit(:name, :file, :image).merge(creation_id: params[:creation_id])
+    }
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def creation_piece_params
-      params.require(:creation_piece).permit(:creation_id, :name, :description, :file, :file_name_for_user, :image, :image_name_for_user{256})
-    end
+  def params_for_update
+    {
+      site_id: site_id,
+      creation_piece: params.require(:creation_piece).permit(:name).merge(id: params[:id])
+    }
+  end
+
+  def params_for_delete
+    {
+      site_id: site_id,
+      id: params[:id]
+    }
+  end
 end

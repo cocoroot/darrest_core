@@ -12,4 +12,4 @@ end
 add_foreign_key :creation_images, :creations, column: 'creation_id', name: 'fk_creation_images_creations'
 
 add_index :creation_images, 'creation_id', name: 'idx_creation_images_creation_id'
-add_index :creation_images, 'removed_id', name: 'idx_creation_images_creation_id_removed_id'
+add_index :creation_images, 'removed_id', name: 'idx_creation_images_removed_id'

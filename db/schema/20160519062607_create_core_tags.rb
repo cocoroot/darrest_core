@@ -6,6 +6,7 @@ create_table :tags, id: :bigserial do |t|
   t.timestamps null: false
 end
 
+add_index :tags, ['name', 'site_id'], unique: true, name: 'idx_tags_name_site_id'
 add_index :tags, ['site_id'], name: 'idx_tags_site_id', using: :btree
 add_index :tags, ['tag_class_id'], name: 'idx_tags_tag_class_id', using: :btree
 

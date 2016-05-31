@@ -34,5 +34,7 @@ module DarrestCore
     config.active_record.raise_in_transactional_callbacks = true
 
     config.generators { |g| g.orm :schemafile }
+
+    config.autoload_paths += %W(#{config.root}/lib/acts-as-taggable-on-custom)
   end
 end

@@ -1,0 +1,27 @@
+# coding: utf-8
+class IndexGoodByUserLogic < LogicBase
+
+  def authorize(params)
+    @errors.add(:site, 'Site does not exist.') unless Site.exists?(id: params[:site_id])
+    @errors.add(:site_user, 'SiteUser does not exist.') unless SiteUser.exists?(id: params[:site_user_id])
+
+    { errors: @errors, warnings: @warnings }
+  end
+
+  def validate(params)
+    #
+    # 論理チェック
+    #
+    site_id = params[:site_id]
+    @site_user = SiteUser.find(params[:site_user_id])
+    @errors.add(:site_user, 'SiteUser does not belong to the Site.') if site_id != @site_user.site_id
+
+    { errors: @errors, warnings: @warnings }
+  end
+
+  def execute(params)
+    goods =  Good.where(site_user_id: @site_user.id)
+
+    { goods: goods, errors: @errors, warnings: @warnings }
+  end
+end

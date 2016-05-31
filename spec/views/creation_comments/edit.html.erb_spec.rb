@@ -5,8 +5,9 @@ RSpec.describe "creation_comments/edit", type: :view do
     @creation_comment = assign(:creation_comment, CreationComment.create!(
       :sid => "MyString",
       :creation => nil,
-      :user => nil,
-      :parent => nil,
+      :site_user => nil,
+      :body => "MyString",
+      :parent => 1,
       :notice_code => "MyString"
     ))
   end
@@ -20,9 +21,11 @@ RSpec.describe "creation_comments/edit", type: :view do
 
       assert_select "input#creation_comment_creation_id[name=?]", "creation_comment[creation_id]"
 
-      assert_select "input#creation_comment_user_id[name=?]", "creation_comment[user_id]"
+      assert_select "input#creation_comment_site_user_id[name=?]", "creation_comment[site_user_id]"
 
-      assert_select "input#creation_comment_parent_id[name=?]", "creation_comment[parent_id]"
+      assert_select "input#creation_comment_body[name=?]", "creation_comment[body]"
+
+      assert_select "input#creation_comment_parent[name=?]", "creation_comment[parent]"
 
       assert_select "input#creation_comment_notice_code[name=?]", "creation_comment[notice_code]"
     end

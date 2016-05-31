@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "collections", ["sid"], name: "idx_collections_sid", unique: true, using: :btree
   add_index "collections", ["site_user_id"], name: "idx_collections_site_user_id", using: :btree
 
-  create_table "comments", id: :bigserial, force: :cascade do |t|
+  create_table "creation_comments", id: :bigserial, force: :cascade do |t|
     t.string   "sid",          limit: 32
     t.integer  "creation_id",  limit: 8,    default: 0, null: false
     t.integer  "site_user_id", limit: 8,    default: 0, null: false
@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at",                            null: false
   end
 
-  add_index "comments", ["creation_id"], name: "idx_comments_creation_id", using: :btree
-  add_index "comments", ["sid"], name: "idx_comments_sid", unique: true, using: :btree
-  add_index "comments", ["site_user_id"], name: "idx_comments_site_user_id", using: :btree
+  add_index "creation_comments", ["creation_id"], name: "idx_creation_comments_creation_id", using: :btree
+  add_index "creation_comments", ["sid"], name: "idx_creation_comments_sid", unique: true, using: :btree
+  add_index "creation_comments", ["site_user_id"], name: "idx_creation_comments_site_user_id", using: :btree
 
   create_table "creation_images", id: :bigserial, force: :cascade do |t|
     t.integer  "creation_id",         limit: 8,    default: 0, null: false
@@ -60,11 +60,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.datetime "removed_at"
-    t.integer  "removed_id",          limit: 8
+    t.integer  "removed_id",          limit: 8,    default: 0
   end
 
   add_index "creation_images", ["creation_id"], name: "idx_creation_images_creation_id", using: :btree
-  add_index "creation_images", ["removed_id"], name: "idx_creation_images_creation_id_removed_id", using: :btree
+  add_index "creation_images", ["removed_id"], name: "idx_creation_images_removed_id", using: :btree
 
   create_table "creation_pieces", id: :bigserial, force: :cascade do |t|
     t.integer  "creation_id",         limit: 8,    default: 0, null: false
@@ -76,9 +76,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "image_name_for_user", limit: 256
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.datetime "removed_at"
+    t.integer  "removed_id",          limit: 8,    default: 0
   end
 
   add_index "creation_pieces", ["creation_id"], name: "idx_creation_pieces_creation_id", using: :btree
+  add_index "creation_pieces", ["removed_id"], name: "idx_creation_pieces_removed_id", using: :btree
 
   create_table "creation_statuses", force: :cascade do |t|
     t.string "name", limit: 20
@@ -116,9 +119,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "site_user_id", limit: 8, default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.datetime "removed_at"
+    t.integer  "removed_id",   limit: 8, default: 0
   end
 
   add_index "goods", ["creation_id"], name: "idx_goods_creation_id", using: :btree
+  add_index "goods", ["removed_id"], name: "idx_goods_removed_id", using: :btree
   add_index "goods", ["site_user_id"], name: "idx_goods_site_user_id", using: :btree
 
   create_table "report_images", id: :bigserial, force: :cascade do |t|
@@ -207,6 +213,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at",                           null: false
   end
 
+  add_index "tags", ["name", "site_id"], name: "idx_tags_name_site_id", unique: true, using: :btree
   add_index "tags", ["site_id"], name: "idx_tags_site_id", using: :btree
   add_index "tags", ["tag_class_id"], name: "idx_tags_tag_class_id", using: :btree
 
@@ -221,9 +228,9 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "collection_creations", "collections", name: "fk_collection_creations_collections"
   add_foreign_key "collection_creations", "creations", name: "fk_collection_creations_creations"
   add_foreign_key "collections", "site_users", name: "fk_collections_site_users"
-  add_foreign_key "comments", "comments", column: "parent", name: "fk_comments_parent"
-  add_foreign_key "comments", "creations", name: "fk_comments_creations"
-  add_foreign_key "comments", "site_users", name: "fk_comments_site_user"
+  add_foreign_key "creation_comments", "creation_comments", column: "parent", name: "fk_creation_comments_parent"
+  add_foreign_key "creation_comments", "creations", name: "fk_creation_comments_creations"
+  add_foreign_key "creation_comments", "site_users", name: "fk_creation_comments_site_user"
   add_foreign_key "creation_images", "creations", name: "fk_creation_images_creations"
   add_foreign_key "creation_pieces", "creations", name: "fk_creation_pieces_creations"
   add_foreign_key "creation_tags", "creations", name: "fk_creation_tags_creations"

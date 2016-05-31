@@ -48,6 +48,7 @@ class CreationImagesController < ApplicationController
   # DELETE /creation_images/1.json
   def destroy
     @result = DeleteCreationImageLogic.new.execute(params_for_delete)
+
     respond_to do |format|
       format.html { redirect_to creation_images_url, notice: 'Creation image was successfully destroyed.' }
       format.json { head :no_content }
