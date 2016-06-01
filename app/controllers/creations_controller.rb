@@ -10,7 +10,7 @@ class CreationsController < ApplicationController
   # GET /creations/1
   # GET /creations/1.json
   def show
-    @result = LoadCreationLogic.new.execute(params_for_load)
+    @result = LoadCreationLogic.new.execute(params_for_show)
   end
 
   # GET /creations/new
@@ -64,11 +64,11 @@ class CreationsController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      creation: params.require(:creation).permit(:site_id, :site_user_id, :title, :description).merge(site_id: site_id)  
+      creation: params.require(:creation).permit(:site_user_id, :title, :description)
     }
   end
 
-  def params_for_load
+  def params_for_show
     {
       site_id: site_id,
       id: params[:id]
@@ -78,7 +78,7 @@ class CreationsController < ApplicationController
   def params_for_update
     {
       site_id: site_id,
-      creation: params.require(:creation).permit(:title, :description, :creation_status_id).merge(id: params[:id], site_id: site_id)
+      creation: params.require(:creation).permit(:title, :description, :creation_status_id).merge(id: params[:id])
     }
   end
 end

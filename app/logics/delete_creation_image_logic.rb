@@ -13,7 +13,7 @@ class DeleteCreationImageLogic < LogicBase
     # 論理チェック
     #
     site_id = params[:site_id]
-    @creation_image = CreationImage.find(params[:id])
+    @creation_image = CreationImage.lock.find(params[:id])
     creation = @creation_image.creation
     @errors.add(:creation, 'Creation does not belong to the Site.') if site_id != creation.site_id
 

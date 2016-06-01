@@ -20,7 +20,7 @@ describe UpdateCreationLogic, type: :logic do
     {
       site_id: 900_000_001,
       creation: {
-        site_id: 900_000_001,
+        # site_id: 900_000_001,
         id: 900_000_001,
         title: 'Test Title',
         description: 'Test Description',
@@ -30,6 +30,24 @@ describe UpdateCreationLogic, type: :logic do
   end
 
   describe 'authorize' do
+    context 'if Site does not exist,' do
+      before do
+        params.merge!(site_id: 900_000_002)
+      end
+
+      it 'denies a Creation' do
+        #
+        # execute
+        #
+        result = UpdateCreationLogic.new.authorize(params)
+
+        #
+        # validate
+        #
+        expect(result[:errors][:site].count).to eq 1
+      end
+    end
+
     context 'if Creation does not exist,' do
       before do
         params[:creation].merge!(id: 900_000_002)
@@ -44,7 +62,7 @@ describe UpdateCreationLogic, type: :logic do
         #
         # validate
         #
-        expect(result[:errors][:id].count).to eq 1
+        expect(result[:errors][:creation].count).to eq 1
       end
     end
   end # authorize

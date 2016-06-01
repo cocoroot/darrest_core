@@ -149,6 +149,19 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "reports", ["creation_id"], name: "idx_reports_creation_id", using: :btree
   add_index "reports", ["site_user_id"], name: "idx_reports_site_user_id", using: :btree
 
+  create_table "site_user_header_images", id: :bigserial, force: :cascade do |t|
+    t.integer  "site_user_id",        limit: 8,    default: 0, null: false
+    t.string   "image",               limit: 2083
+    t.string   "image_name_for_user", limit: 256
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.datetime "removed_at"
+    t.integer  "removed_id",          limit: 8,    default: 0
+  end
+
+  add_index "site_user_header_images", ["removed_id"], name: "idx_site_user_header_images_removed_id", using: :btree
+  add_index "site_user_header_images", ["site_user_id"], name: "idx_site_user_header_images_site_user_id", using: :btree
+
   create_table "site_user_images", id: :bigserial, force: :cascade do |t|
     t.integer  "site_user_id",        limit: 8,    default: 0, null: false
     t.string   "image",               limit: 2083
@@ -157,8 +170,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "order"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.datetime "removed_at"
+    t.integer  "removed_id",          limit: 8,    default: 0
   end
 
+  add_index "site_user_images", ["removed_id"], name: "idx_site_user_images_removed_id", using: :btree
   add_index "site_user_images", ["site_user_id"], name: "idx_site_user_images_site_user_id", using: :btree
 
   create_table "site_user_statuses", force: :cascade do |t|
@@ -243,6 +259,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "report_images", "reports", name: "fk_report_images_reports"
   add_foreign_key "reports", "creations", name: "fk_reports_creations"
   add_foreign_key "reports", "site_users", name: "fk_reports_site_users"
+  add_foreign_key "site_user_header_images", "site_users", name: "fk_site_user_header_images_site_users"
   add_foreign_key "site_user_images", "site_users", name: "fk_site_user_images_site_users"
   add_foreign_key "site_user_tags", "site_users", name: "fk_site_user_tags_site_users"
   add_foreign_key "site_user_tags", "tags", name: "fk_site_user_tags_tags"

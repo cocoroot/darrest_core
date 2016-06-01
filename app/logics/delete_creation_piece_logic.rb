@@ -13,7 +13,7 @@ class DeleteCreationPieceLogic < LogicBase
     # 論理チェック
     #
     site_id = params[:site_id]
-    @creation_piece = CreationPiece.find(params[:id])
+    @creation_piece = CreationPiece.lock.find(params[:id])
     creation = @creation_piece.creation
     @errors.add(:creation, 'Creation does not belong to the Site.') if site_id != creation.site_id
 

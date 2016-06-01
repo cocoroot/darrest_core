@@ -1,10 +1,11 @@
+# coding: utf-8
 class SiteUserImageUploader < UploaderBase
   include CarrierWave::RMagick
   process convert: 'jpg'
 
   # "site-user-images/#{mounted_as}/#{model.id}"
   def store_dir
-    "site-user-images/SITE_USER:#{model.site_user_id}"
+    "site_users/#{model.site_user_id}/site_user_images/"
   end
 
   version :thumb do
@@ -16,7 +17,8 @@ class SiteUserImageUploader < UploaderBase
   end
 
   def filename
-    if original_filename.present?
+    # rake から呼び出される事も考慮して present? は使用しない
+    if !original_filename.nil? && !original_filename.empty?
       file_name_hash = secure_token
       model.image_name_for_user = original_filename
       "#{file_name_hash}.jpg"

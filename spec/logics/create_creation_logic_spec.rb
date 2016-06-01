@@ -12,7 +12,6 @@ describe CreateCreationLogic, type: :logic do
     {
       site_id: 900_000_001,
       creation: {
-        site_id: 900_000_001,
         site_user_id: 900_000_001,
         title: 'テストタイトル',
         description: 'テスト内容',
@@ -64,7 +63,6 @@ describe CreateCreationLogic, type: :logic do
       {
         site_id: 900_000_001,
         creation: {
-          site_id: 900_000_001,
           site_user_id: 900_000_001,
           title: 'テストタイトル',
           description: 'テスト内容',

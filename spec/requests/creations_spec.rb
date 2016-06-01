@@ -11,7 +11,6 @@ describe 'Creations', type: :request do
   let(:params) do
     {
       creation: attributes_for(:creation,
-                               site_id: 900_000_001,
                                site_user_id: 900_000_001,
                                title: 'テストタイトル',
                                description: 'テスト内容',
@@ -85,7 +84,6 @@ describe 'Creations', type: :request do
     before do
       create(:creation,
              id: 900_000_001,
-             site_id: 900_000_001,
              site_user_id: 900_000_001,
             )
     end

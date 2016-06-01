@@ -13,7 +13,7 @@ class DeleteGoodLogic < LogicBase
     # 論理チェック
     #
     site_id = params[:site_id]
-    @good = Good.find(params[:id])
+    @good = Good.lock.find(params[:id])
     creation = @good.creation
     @errors.add(:creation, 'Creation does not belong to the Site.') if site_id != creation.site_id
 

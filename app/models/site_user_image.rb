@@ -1,9 +1,12 @@
 class SiteUserImage < ActiveRecord::Base
+  include LogicalDelete
+
   belongs_to :site_user
 
   mount_uploader :image, SiteUserImageUploader
 
   validate :validate_content_type
+  validates :image_name_for_user, length: { maximum: 256 }
 
   scope :in_use, -> { where(in_use: true) }
 

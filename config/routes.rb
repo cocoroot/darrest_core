@@ -26,18 +26,21 @@ Rails.application.routes.draw do
     resources :creation_images, only: [:show, :update, :destroy]
     resources :creation_pieces, only: [:update, :destroy]
     resources :creation_comments, only: [:show]
-    resources :creation_statuses
     resources :goods, only: [:destroy]
-    resources :site_user_tags
-    resources :site_user_images
-    resources :site_users, only: [:show, :update] do
+    resources :site_users, only: [:create, :show, :update] do
+      resources :site_user_images, only: [:create]
+      resource :site_user_header_image, only: [:create]
       resources :goods, only: [:index]
     end
-    resources :site_user_statuses
+    resources :site_user_images, only: [:update, :destroy]
+    resources :site_user_header_images, only: [:show]
+    resources :site_user_tags
     resources :tags
-    resources :tag_classes
-    resources :sites
-    resources :users
+    #resources :creation_statuses
+    #resources :site_user_statuses
+    #resources :tag_classes
+    #resources :sites
+    resources :users, only: [:create, :show]
     namespace :manage do
       get 'manage/index'
     end

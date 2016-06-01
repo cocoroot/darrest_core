@@ -19,7 +19,8 @@ module ChainMethod
 
       errors = instance_variable_get(:@errors)
       warnings = instance_variable_get(:@warnings)
-      return { errors: errors, warnings: warnings } if !errors.empty?
+      Rails.logger.debug "  logic method call: #{orig} ERROR #{errors.full_messages}" unless errors.empty?
+      return { errors: errors, warnings: warnings } unless errors.empty?
       #Rails.logger.debug "  logic method call: #{orig}"
 
       send(orig, *args, &block)

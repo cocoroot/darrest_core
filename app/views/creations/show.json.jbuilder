@@ -25,8 +25,8 @@ end
 
 json.goods @result[:creation].goods.count
 
-json.comments do
-  json.array! @result[:creation].comments do |comment|
+json.creation_comments do
+  json.array! @result[:creation].creation_comments do |comment|
     json.id comment.id
     json.site_user do
       json.user_id comment.site_user.user_id

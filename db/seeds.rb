@@ -43,6 +43,12 @@ create(:site_user_image, site_user: site_user02)
 create(:site_user_image, site_user: site_user03)
 create(:site_user_image)
 
+# SiteUserHeaderImage
+3.times { create(:site_user_header_image, site_user: site_user01) }
+create(:site_user_header_image, site_user: site_user02)
+create(:site_user_header_image, site_user: site_user03)
+create(:site_user_header_image)
+
 # Tag
 tag01 = create(:tag, site: site01)
 tag02 = create(:tag, site: site01)

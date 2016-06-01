@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Site user:</strong>
+  <%= @site_user_header_image.site_user %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @site_user_header_image.image %>
+</p>
+
+<p>
+  <strong>Image name for user:</strong>
+  <%= @site_user_header_image.image_name_for_user %>
+</p>
+
+<%= link_to 'Edit', edit_site_user_header_image_path(@site_user_header_image) %> |
+<%= link_to 'Back', site_user_header_images_path %>
