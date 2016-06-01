@@ -60,49 +60,49 @@ describe 'SiteUserImages', type: :request do
   #   end
   # end # GET
 
-  describe 'PUT /site_users/{site_user_id}' do
-    before do
-      create(:site_user_image, id: 900_000_001, site_user_id: 900_000_001, order: 1, in_use: true)
-    end
+  # describe 'PUT /site_users/{site_user_id}' do
+  #   before do
+  #     create(:site_user_image, id: 900_000_001, site_user_id: 900_000_001, order: 1, in_use: true)
+  #   end
 
-    let(:params) do
-      {
-        site_user_image: {
-          image_name_for_user: '更新ファイル名.jpg',
-          order: 777,
-          in_use: false
-        }
-      }
-    end
+  #   let(:params) do
+  #     {
+  #       site_user_image: {
+  #         image_name_for_user: '更新ファイル名.jpg',
+  #         order: 777,
+  #         in_use: false
+  #       }
+  #     }
+  #   end
 
-    it 'succeeds updating' do
-      #
-      # execute
-      #
-      put_by_site(site_user_image_path(900_000_001), 900_000_001, params)
+  #   it 'succeeds updating' do
+  #     #
+  #     # execute
+  #     #
+  #     put_by_site(site_user_image_path(900_000_001), 900_000_001, params)
 
-      #
-      # validate
-      #
-      expect(response).to be_success
-      expect(response.status).to eq 200
-      result = JSON.parse(response.body)
-      expect(result['image_name_for_user']).to eq params[:site_user_image][:image_name_for_user]
-      expect(result['order']).to eq params[:site_user_image][:order]
-      expect(result['in_use']).to eq params[:site_user_image][:in_use]
-    end
-  end # PUT
+  #     #
+  #     # validate
+  #     #
+  #     expect(response).to be_success
+  #     expect(response.status).to eq 200
+  #     result = JSON.parse(response.body)
+  #     expect(result['image_name_for_user']).to eq params[:site_user_image][:image_name_for_user]
+  #     expect(result['order']).to eq params[:site_user_image][:order]
+  #     expect(result['in_use']).to eq params[:site_user_image][:in_use]
+  #   end
+  # end # PUT
 
-  describe 'DELETE /site_users/{site_user_id}' do
-    before do
-      create(:site_user_image, id: 900_000_001, site_user_id: 900_000_001)
-    end
+  # describe 'DELETE /site_users/{site_user_id}' do
+  #   before do
+  #     create(:site_user_image, id: 900_000_001, site_user_id: 900_000_001)
+  #   end
 
-    it 'succeeds deleting' do
-      #
-      # execute
-      #
-      expect { delete_by_site(site_user_image_path(900_000_001), 900_000_001) }.to change { SiteUserImage.count }.by(-1)      
-    end
-  end # DELETE
+  #   it 'succeeds deleting' do
+  #     #
+  #     # execute
+  #     #
+  #     expect { delete_by_site(site_user_image_path(900_000_001), 900_000_001) }.to change { SiteUserImage.count }.by(-1)
+  #   end
+  # end # DELETE
 end

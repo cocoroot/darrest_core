@@ -1,21 +1,15 @@
 Rails.application.routes.draw do
-  # resources :sites
-  # resources :site_users
-  # resources :comments
-  # resources :goods
-  # resources :creation_images
-  # resources :creation_pieces
-  # resources :creation_tags
-  # resources :creations
-  # resources :site_user_tags
-  # resources :site_user_images
-  # resources :site_users
-  # resources :tags
-  # resources :sites
-  # resources :users
-  # resources :creation_pieces
-
   with_options(defaults: { format: :json }, format: true) do
+    resources :users, only: [:create, :show]
+    resources :site_users, only: [:create, :show, :update] do
+      resource :site_user_images, only: [:create]
+      resource :site_user_header_image, only: [:create]
+      resources :goods, only: [:index]
+    end
+    resources :site_user_images, only: [:update, :destroy]
+    resources :site_user_header_images, only: [:show]
+    resources :site_user_tags
+
     resources :creation_tags
     resources :creations, only: [:create, :show, :update] do
       resources :creation_images, only: [:create]
@@ -25,22 +19,15 @@ Rails.application.routes.draw do
     end
     resources :creation_images, only: [:show, :update, :destroy]
     resources :creation_pieces, only: [:update, :destroy]
+
     resources :creation_comments, only: [:show]
     resources :goods, only: [:destroy]
-    resources :site_users, only: [:create, :show, :update] do
-      resources :site_user_images, only: [:create]
-      resource :site_user_header_image, only: [:create]
-      resources :goods, only: [:index]
-    end
-    resources :site_user_images, only: [:update, :destroy]
-    resources :site_user_header_images, only: [:show]
-    resources :site_user_tags
     resources :tags
+
     #resources :creation_statuses
     #resources :site_user_statuses
     #resources :tag_classes
     #resources :sites
-    resources :users, only: [:create, :show]
     namespace :manage do
       get 'manage/index'
     end

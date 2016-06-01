@@ -33,26 +33,26 @@ class SiteUserImagesController < ApplicationController
   end
 
   # PATCH/PUT /site_user_images/1
-  # PATCH/PUT /site_user_images/1.json
-  def update
-    @result = UpdateSiteUserImageLogic.new.execute(params_for_update)
+  # PAT# CH/PUT /site_user_images/1.json
+  # def update
+  #   @result = UpdateSiteUserImageLogic.new.execute(params_for_update)
 
-    respond_to do |format|
-      format.html { redirect_to @result[:site_user_image], notice: 'Site user image was successfully updated.' }
-      format.json { render :show, status: :ok, location: @result[:site_user_image] }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to @result[:site_user_image], notice: 'Site user image was successfully updated.' }
+  #     format.json { render :show, status: :ok, location: @result[:site_user_image] }
+  #   end
+  # end
 
   # DELETE /site_user_images/1
-  # DELETE /site_user_images/1.json
-  def destroy
-    @result = DeleteSiteUserImageLogic.new.execute(params_for_destroy)
+  # DELETE /site_user_ima# ges/1.json
+  # def destroy
+  #   @result = DeleteSiteUserImageLogic.new.execute(params_for_destroy)
 
-    respond_to do |format|
-      format.html { redirect_to site_user_images_url, notice: 'Site user image was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to site_user_images_url, notice: 'Site user image was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
   # # Use callbacks to share common setup or constraints between actions.
@@ -71,17 +71,17 @@ class SiteUserImagesController < ApplicationController
     }
   end
 
-  def params_for_update
-    {
-      site_id: site_id,
-      site_user_image: params.require(:site_user_image).permit(:image_name_for_user, :order, :in_use).merge(id: params[:id])
-    }
-  end
+  # def params_for_update
+  #   {
+  #     site_id: site_id,
+  #     site_user_image: params.require(:site_user_image).permit(:image_name_for_user, :order, :in_use).merge(id: params[:id])
+  #   }
+  # end
 
-  def params_for_destroy
-    {
-      site_id: site_id,
-      id: params[:id]
-    }
-  end
+  # def params_for_destroy
+  #   {
+  #     site_id: site_id,
+  #     id: params[:id]
+  #   }
+  # end
 end
