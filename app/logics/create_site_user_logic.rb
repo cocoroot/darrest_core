@@ -2,8 +2,8 @@
 class CreateSiteUserLogic < LogicBase
 
   def authorize(params)
-    @errors.add(:site, 'Site does not exist.') unless Site.exists?(id: params[:site_id])
-    @errors.add(:user, 'User does not exist.') unless User.exists?(id: params[:site_user][:user_id])
+    @errors.add(:site, 'does not exist.') unless Site.exists?(id: params[:site_id])
+    @errors.add(:user, 'does not exist.') unless User.exists?(id: params[:site_user][:user_id])
 
     { errors: @errors, warnings: @warnings }
   end

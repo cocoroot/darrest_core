@@ -2,10 +2,8 @@
 require 'rails_helper'
 require 'json'
 
-include ActionDispatch::TestProcess
-
 describe 'SiteUserImages', type: :request do
-  before(:all) do
+  before do
     site = create(:site, id: 900_000_001)
     create(:site_user, id: 900_000_001, site: site)
   end

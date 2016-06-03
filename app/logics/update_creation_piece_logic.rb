@@ -2,8 +2,8 @@
 class UpdateCreationPieceLogic < LogicBase
 
   def authorize(params)
-    @errors.add(:site, 'Site does not exist.') unless Site.exists?(id: params[:site_id])
-    @errors.add(:creation_piece, 'CreationPiece does not exist.') unless CreationPiece.exists?(id: params[:creation_piece][:id])
+    @errors.add(:site, 'does not exist.') unless Site.exists?(id: params[:site_id])
+    @errors.add(:creation_piece, 'does not exist.') unless CreationPiece.exists?(id: params[:creation_piece][:id])
 
     { errors: @errors, warnings: @warnings }
   end
@@ -23,7 +23,7 @@ class UpdateCreationPieceLogic < LogicBase
     #
     site_id = params[:site_id]
 
-    @errors.add(:creation, 'Creation does not belong to the Site.') if site_id != @creation_piece.creation.site_id
+    @errors.add(:creation, 'does not belong to the Site.') if site_id != @creation_piece.creation.site_id
 
     { errors: @errors, warnings: @warnings }
   end

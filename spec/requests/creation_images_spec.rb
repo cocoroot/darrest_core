@@ -2,10 +2,8 @@
 require 'rails_helper'
 require 'json'
 
-include ActionDispatch::TestProcess
-
 describe 'CreationImages', type: :request do
-  before(:all) do
+  before do
     site = create(:site, id: 900_000_001)
     site_user = create(:site_user, id: 900_000_001, site: site)
     create(:creation, id: 900_000_001, site: site, site_user: site_user)
@@ -61,7 +59,7 @@ describe 'CreationImages', type: :request do
     end
   end # GET
 
-  describe 'PUT /creations/{creation_id}' do
+  describe 'PUT /creation_images/{creation_image_id}' do
     before do
       create(:creation_image, id: 900_000_001, creation_id: 900_000_001)
     end
@@ -92,7 +90,7 @@ describe 'CreationImages', type: :request do
     end
   end # PUT
 
-  describe 'DELETE /creations/{creation_id}' do
+  describe 'DELETE /creation_images/{creation_image_id}' do
     before do
       create(:creation_image, id: 900_000_001, creation_id: 900_000_001)
     end
@@ -101,7 +99,7 @@ describe 'CreationImages', type: :request do
       #
       # execute
       #
-      expect { delete_by_site(creation_image_path(900_000_001), 900_000_001) }.to change { CreationImage.count }.by(-1)      
+      expect { delete_by_site(creation_image_path(900_000_001), 900_000_001) }.to change { CreationImage.count }.by(-1)
     end
   end # DELETE
 end

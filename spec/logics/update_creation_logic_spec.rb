@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 describe UpdateCreationLogic, type: :logic do
-  before(:all) do
+  before do
     site = create(:site, id: 900_000_001)
     site_user = create(:site_user, site: site, id: 900_000_001)
     params = {

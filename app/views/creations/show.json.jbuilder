@@ -4,7 +4,7 @@ json.site_id @result[:creation].site_id
 json.site_user do
   json.user_id @result[:creation].site_user.user_id
   json.site_user_id @result[:creation].site_user_id
-  json.image @result[:creation].site_user.using_site_user_image.try(:image)
+  json.image @result[:creation].site_user.site_user_image.try(:image)
 end
 
 json.title @result[:creation].title
@@ -31,7 +31,7 @@ json.creation_comments do
     json.site_user do
       json.user_id comment.site_user.user_id
       json.site_user_id comment.site_user_id
-      json.image comment.site_user.using_site_user_image.try(:image)
+      json.image comment.site_user.site_user_image.try(:image)
     end
     json.body comment.body
     json.created_at comment.created_at

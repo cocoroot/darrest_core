@@ -2,8 +2,8 @@
 class CreateCreationImageLogic < LogicBase
 
   def authorize(params)
-    @errors.add(:site, 'Site does not exist.') unless Site.exists?(id: params[:site_id])
-    @errors.add(:creation, 'Creation does not exist.') unless Creation.exists?(id: params[:creation_image][:creation_id])
+    @errors.add(:site, 'does not exist.') unless Site.exists?(id: params[:site_id])
+    @errors.add(:creation, 'does not exist.') unless Creation.exists?(id: params[:creation_image][:creation_id])
 
     { errors: @errors, warnings: @warnings }
   end
@@ -23,7 +23,7 @@ class CreateCreationImageLogic < LogicBase
     creation_id = @creation_image.creation_id
     creation = Creation.find(creation_id)
 
-    @errors.add(:creation, 'Creation does not belong to the Site.') if site_id != creation.site_id
+    @errors.add(:creation, 'does not belong to the Site.') if site_id != creation.site_id
 
     { errors: @errors, warnings: @warnings }
   end

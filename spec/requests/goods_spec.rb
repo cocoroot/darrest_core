@@ -3,7 +3,7 @@ require 'rails_helper'
 require 'json'
 
 describe 'Good', type: :request do
-  before(:all) do
+  before do
     site = create(:site, id: 900_000_001)
     site_user = create(:site_user, id: 900_000_001, site: site)
     create(:creation, id: 900_000_001, site: site, site_user: site_user)
@@ -63,35 +63,6 @@ describe 'Good', type: :request do
       expect(result.count).to eq 3
     end
   end # GET
-
-  # describe 'PUT /creations/{creation_id}' do
-  #   before do
-  #     create(:good, id: 900_000_001, creation_id: 900_000_001)
-  #   end
-
-  #   let(:params) do
-  #     {
-  #       good: {
-  #         name: '更新ファイル名'
-  #       }
-  #     }
-  #   end
-
-  #   it 'succeeds updating' do
-  #     #
-  #     # execute
-  #     #
-  #     put_by_site(good_path(900_000_001), 900_000_001, params)
-
-  #     #
-  #     # validate
-  #     #
-  #     expect(response).to be_success
-  #     expect(response.status).to eq 200
-  #     result = JSON.parse(response.body)
-  #     expect(result['name']).to eq params[:good][:name]
-  #   end
-  # end # PUT
 
   describe 'DELETE /creations/{creation_id}' do
     before do

@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 describe UpdateSiteUserLogic, type: :logic do
-  before(:all) do
+  before do
     site = create(:site, id: 900_000_001)
     create(:site_user,
            id: 900_000_001,

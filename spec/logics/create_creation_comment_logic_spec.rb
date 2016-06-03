@@ -1,11 +1,8 @@
 # coding: utf-8
 require 'rails_helper'
 
-include ActionDispatch::TestProcess
-
 describe CreateCreationCommentLogic, type: :logic do
-
-  before(:all) do
+  before do
     site = create(:site, id: 900_000_001)
     site_user = create(:site_user, id: 900_000_001, site: site)
     create(:creation, id: 900_000_001, site: site, site_user: site_user)

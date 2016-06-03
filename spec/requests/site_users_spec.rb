@@ -3,7 +3,7 @@ require 'rails_helper'
 require 'json'
 
 describe 'SiteUsers', type: :request do
-  before(:all) do
+  before do
     create(:user, id: 900_000_001)
     create(:site, id: 900_000_001)
   end
@@ -44,6 +44,7 @@ describe 'SiteUsers', type: :request do
     before do
       create(:site_user,
              id: 900_000_001,
+             site_id: 900_000_001,
              user_id: 900_000_001,
              biography: 'バイオグラフィー',
              tos_accepted: false,
@@ -74,7 +75,7 @@ describe 'SiteUsers', type: :request do
       result = JSON.parse(response.body)
       expect(result['biography']).to eq params_for_update[:site_user][:biography]
       expect(result['tos_accepted']).to eq params_for_update[:site_user][:tos_accepted]
-      expect(result['site_user_status']).to eq params_for_update[:site_user][:site_user_status]
+      expect(result['site_user_status']['id']).to eq params_for_update[:site_user][:site_user_status_id]
     end
   end
 

@@ -1,12 +1,12 @@
 # coding: utf-8
 require 'rails_helper'
 
-describe LoadCreationImageLogic, type: :logic do
+describe DeleteCreationTagLogic, type: :logic do
   before do
     site = create(:site, id: 900_000_001)
     site_user = create(:site_user, id: 900_000_001, site: site)
     creation = create(:creation, id: 900_000_001, site: site, site_user: site_user)
-    create(:creation_image, id: 900_000_001, creation: creation)
+    create(:creation_tag, id: 900_000_001, creation: creation)
   end
 
   let(:params) do
@@ -26,7 +26,7 @@ describe LoadCreationImageLogic, type: :logic do
         #
         # execute
         #
-        result = LoadCreationImageLogic.new.authorize(params)
+        result = DeleteCreationTagLogic.new.authorize(params)
 
         #
         # validate
@@ -35,7 +35,7 @@ describe LoadCreationImageLogic, type: :logic do
       end
     end
 
-    context 'if CreationImage does not exist,' do 
+    context 'if CreationTag does not exist,' do
       before do
         params.merge!(id: 900_000_002)
       end
@@ -44,7 +44,7 @@ describe LoadCreationImageLogic, type: :logic do
         #
         # execute
         #
-        result = LoadCreationImageLogic.new.authorize(params)
+        result = DeleteCreationTagLogic.new.authorize(params)
 
         #
         # validate
@@ -65,7 +65,7 @@ describe LoadCreationImageLogic, type: :logic do
         #
         # exectue
         #
-        result = LoadCreationImageLogic.new.validate(params)
+        result = DeleteCreationTagLogic.new.validate(params)
 
         #
         # validate
@@ -81,12 +81,7 @@ describe LoadCreationImageLogic, type: :logic do
         #
         # execute
         #
-        result = LoadCreationImageLogic.new.execute(params)
-
-        #
-        # validate
-        #
-        expect(result[:creation_image].id).to eq 900_000_001
+        expect{ DeleteCreationTagLogic.new.execute(params) }.to change { CreationTag.count }.by(-1)
       end
     end
   end # execute

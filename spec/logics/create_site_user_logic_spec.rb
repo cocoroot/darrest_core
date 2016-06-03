@@ -1,11 +1,8 @@
 # coding: utf-8
 require 'rails_helper'
 
-include ActionDispatch::TestProcess
-
 describe CreateSiteUserLogic, type: :logic do
-
-  before(:all) do
+  before do
     create(:user, id: 900_000_001)
     create(:site, id: 900_000_001)
   end

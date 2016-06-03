@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 describe UpdateCreationImageLogic, type: :logic do
-  before(:all) do
+  before do
     site = create(:site, id: 900_000_001)
     site_user = create(:site_user, site: site, id: 900_000_001)
     creation = create(:creation, id: 900_000_001, site: site, site_user: site_user)

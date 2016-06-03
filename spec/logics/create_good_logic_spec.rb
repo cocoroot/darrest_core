@@ -1,11 +1,8 @@
 # coding: utf-8
 require 'rails_helper'
 
-include ActionDispatch::TestProcess
-
 describe CreateGoodLogic, type: :logic do
-
-  before(:all) do
+  before do
     site = create(:site, id: 900_000_001)
     site_user = create(:site_user, id: 900_000_001, site: site)
     create(:creation, id: 900_000_001, site: site, site_user: site_user)
@@ -71,7 +68,7 @@ describe CreateGoodLogic, type: :logic do
         #
         # validate
         #
-        expect(result[:errors][:creation].count).to eq 1
+        expect(result[:errors][:site_user].count).to eq 1
       end
     end
   end # authorize
