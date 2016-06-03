@@ -1,4 +1,3 @@
-
 class UserInfo
 
   attr_reader :ex_user_id

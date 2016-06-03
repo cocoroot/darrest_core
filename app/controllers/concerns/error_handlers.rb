@@ -2,12 +2,15 @@
 module ErrorHandlers extend ActiveSupport::Concern
   
   included do
-    unless Rails.env.development?
+    # unless Rails.env.development?
       rescue_from Exception,                                  with: :emergency_alert
       rescue_from ActionController::RoutingError,             with: :rescue404
       rescue_from ApplicationController::PermissionError,     with: :rescue403
+      rescue_from Core::PermissionError,                      with: :rescue403
       rescue_from ApplicationController::AuthenticationError, with: :rescue401
-    end
+      rescue_from ApplicationController::InvalidSiteError,    with: :rescue401
+      rescue_from ActionController::ParameterMissing,         with: :rescue400
+    # end
   end
 
   private
@@ -17,6 +20,11 @@ module ErrorHandlers extend ActiveSupport::Concern
     logger.error e
     logger.error e.backtrace.join("\n")
     render 'errors/error500', status: 500
+  end
+
+  def rescue400(e)
+    @exception = e
+    render 'errors/error400', status: 400
   end
 
   def rescue401(e)

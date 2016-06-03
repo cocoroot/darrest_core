@@ -1,10 +1,10 @@
-class CreationImageUploader < CarrierWave::Uploader::Base
+# coding: utf-8
+class CreationImageUploader < UploaderBase
   include CarrierWave::RMagick
-  storage :fog
   process convert: 'jpg'
 
   def store_dir
-    "creation-images/#{mounted_as}/#{model.id}"
+    "creations/#{model.creation_id}/creation_images"
   end
 
   version :thumb do
@@ -16,18 +16,11 @@ class CreationImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    file_name_hash = secure_token
-    "#{file_name_hash}.jpg" if original_filename.present?
-  end
-
-  def cache_dir
-    'cache'
-  end
-
-  protected
-
-  def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
+    # rake から呼び出される事も考慮して present? は使用しない
+    if !original_filename.nil? && !original_filename.empty?
+      file_name_hash = secure_token
+      model.image_name_for_user = original_filename
+      "#{file_name_hash}.jpg"
+    end
   end
 end

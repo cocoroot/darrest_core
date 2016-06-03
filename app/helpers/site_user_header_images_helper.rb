@@ -1,0 +1,2 @@
+module SiteUserHeaderImagesHelper
+end

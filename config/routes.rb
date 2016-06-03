@@ -1,29 +1,32 @@
 Rails.application.routes.draw do
-  namespace :manage do
-    get 'manage/index'
+  with_options(defaults: { format: :json }, format: false) do
+    resources :users, only: [:create, :show]
+    resources :site_users, only: [:create, :show, :update] do
+      resource :site_user_images, only: [:create]
+      resource :site_user_header_image, only: [:create]
+      resources :goods, only: [:index]
+    end
+    resources :site_user_images, only: [:update, :destroy]
+    resources :site_user_header_images, only: [:show]
+
+    resources :creations, only: [:create, :show, :update] do
+      resources :creation_images, only: [:create]
+      resources :creation_pieces, only: [:create]
+      resources :creation_comments, only: [:create]
+      resources :creation_tags, only: [:create]
+      resources :goods, only: [:create]
+    end
+    resources :creation_images, only: [:show, :update, :destroy]
+    resources :creation_pieces, only: [:update, :destroy]
+    resources :creation_tags, only: [:destroy]
+
+    resources :creation_comments, only: [:show]
+    resources :goods, only: [:destroy]
+    resources :tags
+
+    get '*anything' => 'errors#routing_error'
   end
 
-  namespace :core do
-    resources :creation_comments
-    resources :collection_creations
-    resources :collections
-    resources :goods
-    resources :creator_tags
-    resources :creator_images
-    resources :creator_categories
-    resources :creators
-    resources :user_images
-    resources :users
-    resources :creation_images
-    resources :report_images
-    resources :reports
-    resources :pieces
-    resources :creation_tags
-    resources :creation_categories
-    resources :creations
-    resources :categories
-    resources :tags
-  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

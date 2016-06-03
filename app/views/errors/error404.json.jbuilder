@@ -4,4 +4,3 @@ json.errors do |json|
   json.message_code "not_found"
   json.message "入力したURLと当サイトのリソースが一致しません。"
 end
-

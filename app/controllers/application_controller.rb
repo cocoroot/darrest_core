@@ -1,3 +1,5 @@
+require Rails.root.join('app/core/permission_error.rb')
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -6,14 +8,20 @@ class ApplicationController < ActionController::Base
 
   class AuthenticationError < ActionController::ActionControllerError; end
   class PermissionError < ActionController::ActionControllerError; end
-  
+  class InvalidSiteError < ActionController::ActionControllerError; end
+
   include ErrorHandlers
   include CheckPermission
-  
+  include SiteHandler
+
   protected
-  
+
   def json_request?
     request.format.json?
+  end
+
+  def site_id
+    RequestLocals.fetch(:request_site).try(:site_id)
   end
 
 end

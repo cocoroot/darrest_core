@@ -13,6 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+gem 'active_hash'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -45,7 +46,6 @@ group :development do
   gem 'spring'
 end
 
-
 gem 'atom', git: 'https://sdp.nbws.jp/dreg-gitlab/SPF-DREGroup/atom_rails.git'
 gem 'enumerize'
 gem 'ridgepole'
@@ -72,8 +72,6 @@ group :deployment do
   gem 'capistrano3-unicorn'
 end
 
-gem 'react-rails'
-gem 'browserify-rails'
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'carrierwave-magic'
