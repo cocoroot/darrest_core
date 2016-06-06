@@ -17,5 +17,4 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 /coverage
 
-/uploads
-
+/public/uploads

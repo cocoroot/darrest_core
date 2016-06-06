@@ -3,10 +3,10 @@ CarrierWave.configure do |config|
   case Rails.env
   when 'test' then
     storage = :file
-    root = "#{Rails.root}/uploads/test"
+    root = "#{Rails.root}/public/uploads/test"
   when 'development' then
     storage = :file
-    root = "#{Rails.root}/uploads/dev"
+    root = "#{Rails.root}/public/uploads/dev"
   when 'staging' then
     storage = :fog
     fog_directory = 'darrest-core-stg'
