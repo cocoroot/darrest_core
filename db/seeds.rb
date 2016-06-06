@@ -37,7 +37,7 @@ site_user03 = create(:site_user, site: site01, user: user03)
 create(:site_user)
 
 # SiteUserImage
-create(:site_user_image, site_user: site_user01, in_use: true)
+create(:site_user_image, site_user: site_user01)
 create(:site_user_image, site_user: site_user01)
 create(:site_user_image, site_user: site_user02)
 create(:site_user_image, site_user: site_user03)
@@ -57,11 +57,11 @@ tag04 = create(:tag, site: site01, tag_class: TagClass::MANAGERS)
 create(:tag)
 
 # SiteUseTag
-create(:site_user_tag, site_user: site_user01, tag: tag01)
-create(:site_user_tag, site_user: site_user01, tag: tag02)
-create(:site_user_tag, site_user: site_user01, tag: tag03)
-create(:site_user_tag, site_user: site_user01, tag: tag04)
-create(:site_user_tag)
+# create(:site_user_tag, site_user: site_user01, tag: tag01)
+# create(:site_user_tag, site_user: site_user01, tag: tag02)
+# create(:site_user_tag, site_user: site_user01, tag: tag03)
+# create(:site_user_tag, site_user: site_user01, tag: tag04)
+# create(:site_user_tag)
 
 # Creation
 creation_01 = create(:creation, site: site01, site_user: site_user01)
