@@ -27,7 +27,7 @@ class CreationsController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      creation: params.require(:creation).permit(:site_user_id, :title, :description)
+      creation: params.require(:creation).permit(:title, :description).merge(site_user_id: site_user_id)
     }
   end
 
@@ -41,7 +41,7 @@ class CreationsController < ApplicationController
   def params_for_update
     {
       site_id: site_id,
-      creation: params.require(:creation).permit(:title, :description, :creation_status_id).merge(id: params[:id])
+      creation: params.require(:creation).permit(:title, :description, :creation_status_id).merge(id: params[:id], site_user_id: site_user_id)
     }
   end
 end

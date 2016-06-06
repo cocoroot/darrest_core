@@ -14,7 +14,7 @@ class CreationCommentsController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      creation_comment: params.require(:creation_comment).permit(:site_user_id, :body).merge(creation_id: params[:creation_id])
+      creation_comment: params.require(:creation_comment).permit(:body).merge(creation_id: params[:creation_id], site_user_id: site_user_id)
     }
   end
 end

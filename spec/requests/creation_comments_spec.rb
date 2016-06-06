@@ -12,8 +12,9 @@ describe 'CreationComments', type: :request do
   describe 'POST /creations/{creation_id}/creation_comments' do
     let(:params) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         creation_comment: attributes_for(:creation_comment, id: 900_000_001, site_user_id: 900_000_002)
-          .slice(:site_user_id, :body)
+          .slice(:body)
       }
     end
 

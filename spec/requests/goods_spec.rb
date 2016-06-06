@@ -13,7 +13,7 @@ describe 'Good', type: :request do
   describe 'POST /creations/{creation_id}/goods' do
     let(:params) do
       {
-        good: attributes_for(:good, id: 900_000_001, site_user_id: 900_000_002)
+        user_baas_id: SiteUser.find(900_000_002).user.baas_id,
       }
     end
 

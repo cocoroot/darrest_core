@@ -41,7 +41,10 @@ class GoodsController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      good: params.require(:good).permit(:site_user_id).merge(creation_id: params[:creation_id])
+      good: {
+        creation_id: params[:creation_id],
+        site_user_id: site_user_id
+      }
     }
   end
 
