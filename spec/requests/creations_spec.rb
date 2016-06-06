@@ -10,6 +10,7 @@ describe 'Creations', type: :request do
 
   let(:params) do
     {
+      user_baas_id: SiteUser.find(900_000_001).user.baas_id,
       creation: attributes_for(:creation,
                                site_user_id: 900_000_001,
                                title: 'テストタイトル',
@@ -54,6 +55,7 @@ describe 'Creations', type: :request do
 
     let(:params_for_update) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         creation: attributes_for(:creation,
                                  id: 900_000_001,
                                  title: '更新テストタイトル',

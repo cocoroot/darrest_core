@@ -40,7 +40,7 @@ describe 'SiteUsers', type: :request do
     end
   end
 
-  describe 'PUT /site_users/{site_user_id}' do
+  describe 'PUT /me' do
     before do
       create(:site_user,
              id: 900_000_001,
@@ -53,6 +53,7 @@ describe 'SiteUsers', type: :request do
 
     let(:params_for_update) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         site_user: attributes_for(:site_user,
                                   biography: '更新バイオグラフィー',
                                   tos_accepted: true,
@@ -65,7 +66,7 @@ describe 'SiteUsers', type: :request do
       #
       # execute
       #
-      put_by_site(site_user_path(900_000_001), 900_000_001, params_for_update)
+      put_by_site(me_path, 900_000_001, params_for_update)
 
       #
       # validate

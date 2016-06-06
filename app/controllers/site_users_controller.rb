@@ -34,7 +34,7 @@ class SiteUsersController < ApplicationController
   def params_for_update
     {
       site_id: site_id,
-      site_user: params.require(:site_user).permit(:biography, :tos_accepted, :site_user_status_id).merge(id: params[:id])
+      site_user: params.require(:site_user).permit(:biography, :tos_accepted, :site_user_status_id).merge(id: site_user_id)
     }
   end
 

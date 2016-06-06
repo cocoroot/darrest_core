@@ -10,8 +10,9 @@ describe 'SiteUserHeaderImages', type: :request do
   describe 'POST /site_users/{site_user_id}/site_user_header_images' do
     let(:params) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         site_user_header_image: attributes_for(:site_user_header_image, id: 900_000_001)
-          .slice(:image, :image_name_for_user)
+          .slice(:image)
       }
     end
 

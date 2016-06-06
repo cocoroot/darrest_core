@@ -13,7 +13,7 @@ class SiteUserHeaderImagesController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      site_user_header_image: params.require(:site_user_header_image).permit(:image, :image_name_for_user).merge(site_user_id: params[:site_user_id])
+      site_user_header_image: params.require(:site_user_header_image).permit(:image).merge(site_user_id: site_user_id)
     }
   end
 end

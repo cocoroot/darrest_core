@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   include ErrorHandlers
   include CheckPermission
   include SiteHandler
+  include UserHandler
 
   protected
 
@@ -24,4 +25,8 @@ class ApplicationController < ActionController::Base
     RequestLocals.fetch(:request_site).try(:site_id)
   end
 
+  def site_user_id
+    load_site_user_info
+    RequestLocals.fetch(:request_site_user).try(:id)
+  end
 end
