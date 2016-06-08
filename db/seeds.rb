@@ -21,7 +21,7 @@ include FactoryGirl::Syntax::Methods
 require "#{Rails.root.join('db/seeds/master.rb')}"
 
 # Site
-site01 = create(:site)
+site01 = create(:site, access_key: '8DC8D19E-8A35-43C8-95F4-49A316283591')
 create(:site)
 
 # User
