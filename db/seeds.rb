@@ -95,3 +95,17 @@ create(:creation_comment)
 create(:good, creation: creation_01, site_user: site_user02)
 create(:good, creation: creation_01, site_user: site_user03)
 create(:good)
+
+# Duplication of Creation Data
+21.times do
+  creation = create(:creation, site: site01, site_user: site_user01)
+  5.times { create(:creation_image, creation: creation) }
+  10.times { create(:creation_piece, creation: creation) }
+  [tag01, tag02, tag03, tag04].each do |tag|
+    create(:creation_tag, creation: creation, tag: tag)
+  end
+  [site_user02, site_user03].each do |site_user|
+    3.times { create(:creation_comment, creation: creation, site_user: site_user) }
+    create(:good, creation: creation, site_user: site_user)
+  end
+end

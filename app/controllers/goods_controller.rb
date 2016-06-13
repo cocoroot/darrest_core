@@ -2,6 +2,10 @@ class GoodsController < ApplicationController
   # GET /goods
   def index
     @result = IndexGoodByUserLogic.new.execute(params_for_index_by_user)
+
+    respond_to do |format|
+      format.json { render :index }
+    end
   end
 
   # POST /goods

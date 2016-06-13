@@ -20,8 +20,9 @@ class IndexGoodByUserLogic < LogicBase
   end
 
   def execute(params)
-    goods =  Good.where(site_user_id: @site_user.id)
+    goods = @site_user.good_creations.order(id: :desc).page(params[:page] || 1).per(10)
 
     { goods: goods, errors: @errors, warnings: @warnings }
   end
+
 end

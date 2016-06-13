@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "removed_id",  limit: 8, default: 0
   end
 
+  add_index "creation_tags", ["creation_id", "tag_id"], name: "idx_creatino_tags_creation_id_tag_id", unique: true, using: :btree
   add_index "creation_tags", ["creation_id"], name: "idx_creation_tags_creation_id", using: :btree
   add_index "creation_tags", ["removed_id"], name: "idx_creation_tags_removed_id", using: :btree
   add_index "creation_tags", ["tag_id"], name: "idx_creation_tags_tag_id", using: :btree
@@ -195,6 +196,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "site_user_status_id",               default: 0, null: false
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.string   "nickname",            limit: 100
   end
 
   add_index "site_users", ["sid"], name: "idx_site_users_sid", unique: true, using: :btree

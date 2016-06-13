@@ -27,21 +27,22 @@ class SiteUsersController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      site_user: params.require(:site_user).permit(:user_id, :biography)
+      site_user: params.require(:site_user).permit(:user_id, :nickname, :biography)
     }
   end
 
   def params_for_update
     {
       site_id: site_id,
-      site_user: params.require(:site_user).permit(:biography, :tos_accepted, :site_user_status_id).merge(id: site_user_id)
+      site_user: params.require(:site_user).permit(:nickname, :biography, :tos_accepted, :site_user_status_id).merge(id: site_user_id)
     }
   end
 
   def params_for_show
     {
       site_id: site_id,
-      id: params[:id]
+      id: params[:id],
+      request_site_user_id: site_user_id
     }
   end
 end

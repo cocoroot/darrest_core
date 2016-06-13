@@ -16,6 +16,7 @@ describe UpdateSiteUserLogic, type: :logic  do
       site_id: 900_000_001,
       site_user: {
         id: 900_000_001,
+        nickname: '更新ニックネーム',
         biography: '更新バイオグラフィー',
         tos_accepted: true,
         site_user_status_id: SiteUserStatus::REGISTERED.id
@@ -46,7 +47,8 @@ describe UpdateSiteUserLogic, type: :logic  do
   describe 'validate' do
     context '型チェックエラー' do
       before do
-        params[:site_user].merge!(biography: 'A' * 10001)
+        params[:site_user].merge!(nickname: 'A' * 101)
+        params[:site_user].merge!(biography: 'A' * 10_001)
       end
 
       it 'returns error' do
@@ -58,6 +60,7 @@ describe UpdateSiteUserLogic, type: :logic  do
         #
         # validate
         #
+        expect(result[:errors][:nickname].count).to eq 1
         expect(result[:errors][:biography].count).to eq 1
       end
     end
@@ -93,6 +96,7 @@ describe UpdateSiteUserLogic, type: :logic  do
         #
         # validate
         #
+        expect(result[:site_user].nickname).to eq params[:site_user][:nickname]
         expect(result[:site_user].biography).to eq params[:site_user][:biography]
         expect(result[:site_user].tos_accepted).to eq params[:site_user][:tos_accepted]
         expect(result[:site_user].site_user_status_id).to eq params[:site_user][:site_user_status_id]

@@ -2,6 +2,7 @@ create_table :site_users, id: :bigserial do |t|
   t.string :sid, limit: 32
   t.references :site, null: false, default: 0
   t.integer :user_id, null: false, limit: 8, default: 0
+  t.string :nickname, limit: 100                                             
   t.string :biography, limit: 10000
   t.boolean :tos_accepted
   t.references :site_user_status, null: false, default: 0
