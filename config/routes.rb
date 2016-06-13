@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   with_options(defaults: { format: :json }, format: false) do
     resources :users, only: [:create, :show]
     resources :site_users, only: [:create, :show] do
+      get 'creations' =>  'creations#index_created_by_user'
       resources :goods, only: [:index]
     end
     put 'me' => 'site_users#update', as: 'me'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
     resources :site_user_images, only: [:update, :destroy]
     resources :site_user_header_images, only: [:show]
 
+    #get resources :creations, only: [:index]
     resources :creations, only: [:create, :show, :update] do
       resources :creation_images, only: [:create]
       resources :creation_pieces, only: [:create]

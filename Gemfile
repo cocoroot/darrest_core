@@ -54,6 +54,8 @@ gem 'unicorn'
 gem 'hirb'
 gem 'hirb-unicode'
 gem 'request_store_rails'
+gem 'kaminari'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'

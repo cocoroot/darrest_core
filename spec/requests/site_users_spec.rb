@@ -103,4 +103,35 @@ describe 'SiteUsers', type: :request do
       expect(result['id']).to eq 900_000_001
     end
   end
+
+  describe 'GET /site_users/{site_user_id}/creations' do
+    before do
+      site_user = create(:site_user, id: 900_000_001, site_id: 900_000_001)
+      (1..21).each do |i|
+        create(:creation, id: 900_000_100 + i, site_id: 900_000_001, site_user: site_user)
+      end
+    end
+
+    let(:params_for_index_creation) do
+      {
+        site_user_id: 900_000_001,
+        page: 2
+      }
+    end
+
+    it 'returns creations created by site_user' do
+      #
+      # execute
+      #
+      get_by_site(site_user_creations_path(900_000_001), 900_000_001, params_for_index_creation)
+
+      #
+      # validate
+      #
+      expect(response).to be_success
+      expect(response.status).to eq 200
+      result = JSON.parse(response.body)
+      expect(result['creations'].size).to eq 10
+    end
+  end
 end

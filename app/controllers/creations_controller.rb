@@ -1,4 +1,10 @@
 class CreationsController < ApplicationController
+  # GET /site_users/:id/creations
+  def index_created_by_user
+    @result = IndexCreationByUserLogic.new.execute(params_for_index_created_by_user)
+    #@result = IndexCreationByUserLogic
+  end
+
   # GET /creations/1
   def show
     @result = LoadCreationLogic.new.execute(params_for_show)
@@ -23,6 +29,14 @@ class CreationsController < ApplicationController
   end
 
   private
+
+  def params_for_index_created_by_user
+    {
+      site_id: site_id,
+      site_user_id: params.require(:site_user_id),
+      page: params[:page]
+    }
+  end
 
   def params_for_create
     {

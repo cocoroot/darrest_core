@@ -24,21 +24,29 @@ module ErrorHandlers extend ActiveSupport::Concern
 
   def rescue400(e)
     @exception = e
+    logger.debug e
+    logger.debug e.backtrace.join("\n")
     render 'errors/error400', status: 400
   end
 
   def rescue401(e)
     @exception = e
+    logger.debug e
+    logger.debug e.backtrace.join("\n")
     render 'errors/error401', status: 401
   end
 
   def rescue403(e)
     @exception = e
+    logger.debug e
+    logger.debug e.backtrace.join("\n")
     render 'errors/error403', status: 403
   end
 
   def rescue404(e)
     @exception = e
+    logger.debug e
+    logger.debug e.backtrace.join("\n")
     render 'errors/error404', status: 404
   end
 

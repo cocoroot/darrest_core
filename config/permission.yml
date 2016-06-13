@@ -64,3 +64,7 @@ default: &controller_default
 #
 # authors:
 #   <<: *controller_default
+
+creations:
+  index_created_by_user:
+    *action_default
