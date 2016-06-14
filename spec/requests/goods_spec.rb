@@ -60,7 +60,7 @@ describe 'Good', type: :request do
       expect(response).to be_success
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result.count).to eq 3
+      expect(result['goods'].count).to eq 3
     end
   end # GET
 

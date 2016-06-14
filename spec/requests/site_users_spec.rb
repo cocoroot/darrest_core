@@ -84,15 +84,19 @@ describe 'SiteUsers', type: :request do
     before do
       create(:site_user,
              id: 900_000_001,
-             site_id: 900_000_001,
+             site_id: 900_000_001
             )
+    end
+
+    let(:site_user) do
+      SiteUser.find(900_000_001)
     end
 
     it 'returns a site_user' do
       #
       # execute
       #
-      get_by_site(site_user_path(900_000_001), 900_000_001)
+      get_by_site(site_user_path(900_000_001), 900_000_001, user_baas_id: site_user.user.baas_id)
 
       #
       # validate

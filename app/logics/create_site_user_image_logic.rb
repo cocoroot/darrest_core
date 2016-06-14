@@ -13,6 +13,8 @@ class CreateSiteUserImageLogic < LogicBase
     # 型チェック
     #
     @site_user_image = SiteUserImage.new(params[:site_user_image])
+    # @site_user_image.site_user_id = [:site_user_id]
+    # @site_user_image.image = params[:site_user_image][:image]
     @site_user_image.valid?
     @errors << @site_user_image.errors.messages
 

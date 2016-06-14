@@ -66,5 +66,7 @@ default: &controller_default
 #   <<: *controller_default
 
 creations:
+  <<: *controller_default
   index_created_by_user:
     *action_default
+  

@@ -9,7 +9,8 @@ class SiteUserImage < ActiveRecord::Base
   protected
 
   def validate_content_type
-    unless %w(image/jpg image/jpeg image/gif image/png).include? image.file.content_type
+    content_type = image.file.content_type
+    unless %w(image/jpg image/jpeg image/gif image/png).include? content_type
       errors.add(:file, 'invalid content-type.')
     end
   end

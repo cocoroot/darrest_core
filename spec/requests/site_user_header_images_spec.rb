@@ -11,8 +11,7 @@ describe 'SiteUserHeaderImages', type: :request do
     let(:params) do
       {
         user_baas_id: SiteUser.find(900_000_001).user.baas_id,
-        site_user_header_image: attributes_for(:site_user_header_image, id: 900_000_001)
-          .slice(:image)
+        image: attributes_for(:site_user_header_image, id: 900_000_001)[:image]
       }
     end
 
@@ -20,7 +19,7 @@ describe 'SiteUserHeaderImages', type: :request do
       #
       # execute
       #
-      post_by_site(site_user_site_user_header_image_path(900_000_001), 900_000_001, params)
+      post_by_site(site_user_header_image_path(900_000_001), 900_000_001, params)
 
       #
       # validate
@@ -33,7 +32,7 @@ describe 'SiteUserHeaderImages', type: :request do
       #
       # execute
       #
-      expect { post_by_site(site_user_site_user_header_image_path(900_000_001), 900_000_001, params) }.to change { SiteUserHeaderImage.unscoped.count }.by(1)
+      expect { post_by_site(site_user_header_image_path(900_000_001), 900_000_001, params) }.to change { SiteUserHeaderImage.unscoped.count }.by(1)
     end
   end # POST
 end

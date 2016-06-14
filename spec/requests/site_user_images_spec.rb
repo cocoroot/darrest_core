@@ -11,8 +11,7 @@ describe 'SiteUserImages', type: :request do
     let(:params) do
       {
         user_baas_id: SiteUser.find(900_000_001).user.baas_id,
-        site_user_image: attributes_for(:site_user_image, id: 900_000_001)
-          .slice(:image)
+        image: attributes_for(:site_user_image, id: 900_000_001)[:image]
       }
     end
 
