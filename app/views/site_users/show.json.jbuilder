@@ -14,3 +14,5 @@ json.site_user_status do
   json.id site_user.site_user_status.id
   json.name site_user.site_user_status.name
 end
+
+json.owner @result[:owner]

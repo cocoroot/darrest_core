@@ -4,6 +4,12 @@ class SiteUsersController < ApplicationController
     @result = LoadSiteUserLogic.new.execute(params_for_show)
   end
 
+  # GET /me
+  def show_my_info
+    @result = LoadSiteUserLogic.new.execute(params_for_show_my_info)
+    render :show, layout: true
+  end
+
   # POST /site_users
   def create
     @result = CreateSiteUserLogic.new.execute(params_for_create)
@@ -42,6 +48,14 @@ class SiteUsersController < ApplicationController
     {
       site_id: site_id,
       id: params[:id],
+      request_site_user_id: site_user_id
+    }
+  end
+
+  def params_for_show_my_info
+    {
+      site_id: site_id,
+      id: site_user_id,
       request_site_user_id: site_user_id
     }
   end

@@ -70,3 +70,7 @@ creations:
   index_created_by_user:
     *action_default
   
+site_users:
+  <<: *controller_default
+  show_my_info:
+    *action_default
