@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   with_options(defaults: { format: :json }, format: false) do
-    resources :users, only: [:create, :show]
+    resources :users, only: [:create]
     get 'me' => 'site_users#show_my_info', as: 'me'
     resources :site_users, only: [:create, :show] do
       get 'creations' =>  'creations#index_created_by_user'
@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     put 'me' => 'site_users#update'
     post 'my/site_user_image' => 'site_user_images#create', as: 'site_user_image'
     post 'my/site_user_header_image' => 'site_user_header_images#create', as: 'site_user_header_image'
-    resources :site_user_images, only: [:update, :destroy]
-    resources :site_user_header_images, only: [:show]
+    # resources :site_user_images, only: [:update, :destroy]
+    # resources :site_user_header_images, only: [:show]
 
     #get resources :creations, only: [:index]
     resources :creations, only: [:create, :show, :update] do
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :creation_pieces, only: [:update, :destroy]
     resources :creation_tags, only: [:destroy]
 
-    resources :creation_comments, only: [:show]
+    #resources :creation_comments, only: [:show]
     resources :goods, only: [:destroy]
     resources :tags
 

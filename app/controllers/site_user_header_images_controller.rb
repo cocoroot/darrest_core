@@ -4,7 +4,7 @@ class SiteUserHeaderImagesController < ApplicationController
     @result = CreateSiteUserHeaderImageLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:site_user_header_image] }
+      format.json { render :show, status: :created }
     end
   end
 

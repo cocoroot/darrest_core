@@ -13,7 +13,7 @@ class GoodsController < ApplicationController
     @result = CreateGoodLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:good] }
+      format.json { render :show, status: :created }
     end
   end
 

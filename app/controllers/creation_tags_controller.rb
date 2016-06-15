@@ -4,7 +4,7 @@ class CreationTagsController < ApplicationController
     @result = CreateCreationTagLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:creation_tag] }
+      format.json { render :show, status: :created }
     end
   end
 

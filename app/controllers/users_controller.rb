@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @result = CreateUserLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:user] }
+      format.json { render :show, status: :created }
     end
   end
 

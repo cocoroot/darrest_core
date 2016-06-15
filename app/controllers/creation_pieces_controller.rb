@@ -4,7 +4,7 @@ class CreationPiecesController < ApplicationController
     @result = CreateCreationPieceLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:creation_piece] }
+      format.json { render :show, status: :created }
     end
   end
 
@@ -13,7 +13,7 @@ class CreationPiecesController < ApplicationController
     @result = UpdateCreationPieceLogic.new.execute(params_for_update)
 
     respond_to do |format|
-      format.json { render :show, status: :ok, location: @result[:creation_piece] }
+      format.json { render :show, status: :ok }
     end
   end
 

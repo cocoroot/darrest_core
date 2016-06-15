@@ -1,6 +1,6 @@
 module UserHandler
   def load_site_user_info
-    return unless params.key?(:user_baas_id)
+    raise 'AssertionError: params does not contain \'user_baas_id\' despite \'site_user_id\' is required.' unless params.key?(:user_baas_id)
 
     user_baas_id = params[:user_baas_id]
 
@@ -8,7 +8,7 @@ module UserHandler
 
     user = User.where(baas_id: user_baas_id).take
 
-    raise ApplicationController::AuthenticationError unless SiteUser.exists?(site_id: site_id, user: user)
+    raise 'AssertionError: SiteUser does not exist despite \'site_user_id\' is required.' unless SiteUser.exists?(site_id: site_id, user: user)
 
     site_user = SiteUser.where(site_id: site_id, user: user).take
 

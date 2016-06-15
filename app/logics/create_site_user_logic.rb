@@ -22,7 +22,7 @@ class CreateSiteUserLogic < LogicBase
   def execute(params)
     @site_user.save!
 
-    { site_user: @site_user, errors: @errors, warnings: @warnings }
+    { site_user: @site_user, owner: true, errors: @errors, warnings: @warnings }
   end
 
 end

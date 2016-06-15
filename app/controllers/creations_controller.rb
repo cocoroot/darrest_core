@@ -15,7 +15,7 @@ class CreationsController < ApplicationController
     @result = CreateCreationLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:creation] }
+      format.json { render :show, status: :created }
     end
   end
 
@@ -24,7 +24,7 @@ class CreationsController < ApplicationController
     @result = UpdateCreationLogic.new.execute(params_for_update)
 
     respond_to do |format|
-      format.json { render :show, status: :ok, location: @result[:creation] }
+      format.json { render :show, status: :ok }
     end
   end
 

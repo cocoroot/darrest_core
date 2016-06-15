@@ -9,7 +9,7 @@ class CreationImagesController < ApplicationController
     @result = CreateCreationImageLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:creation_image] }
+      format.json { render :show, status: :created }
     end
   end
 
@@ -18,7 +18,7 @@ class CreationImagesController < ApplicationController
     @result = UpdateCreationImageLogic.new.execute(params_for_update)
 
     respond_to do |format|
-      format.json { render :show, status: :ok, location: @result[:creation_image] }
+      format.json { render :show, status: :ok }
     end
   end
 

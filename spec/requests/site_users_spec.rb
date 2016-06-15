@@ -14,7 +14,8 @@ describe 'SiteUsers', type: :request do
                                 user_id: 900_000_001,
                                 tos_accepted: false,
                                 site_user_status: SiteUserStatus::INTERIM.id
-                               )
+                               ),
+      user_baas_id: User.find(900_000_001).baas_id
     }
   end
 

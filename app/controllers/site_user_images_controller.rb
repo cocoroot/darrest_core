@@ -4,7 +4,7 @@ class SiteUserImagesController < ApplicationController
     @result = CreateSiteUserImageLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:site_user_image] }
+      format.json { render :show, status: :created }
     end
   end
 

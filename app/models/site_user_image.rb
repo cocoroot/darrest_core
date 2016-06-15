@@ -5,7 +5,7 @@ class SiteUserImage < ActiveRecord::Base
 
   validate :validate_content_type
   validates :image_name_for_user, length: { maximum: 256 }
-
+  
   protected
 
   def validate_content_type

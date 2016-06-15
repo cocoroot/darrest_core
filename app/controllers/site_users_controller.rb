@@ -15,7 +15,7 @@ class SiteUsersController < ApplicationController
     @result = CreateSiteUserLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created, location: @result[:site_user] }
+      format.json { render :show, status: :created }
     end
   end
 
@@ -24,7 +24,7 @@ class SiteUsersController < ApplicationController
     @result = UpdateSiteUserLogic.new.execute(params_for_update)
 
     respond_to do |format|
-      format.json { render :show, status: :ok, location: @result[:site_user] }
+      format.json { render :show, status: :ok }
     end
   end
 
@@ -33,14 +33,15 @@ class SiteUsersController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      site_user: params.require(:site_user).permit(:user_id, :nickname, :biography)
+      site_user: params.require(:site_user).permit(:user_id, :nickname, :biography),
     }
   end
 
   def params_for_update
     {
       site_id: site_id,
-      site_user: params.require(:site_user).permit(:nickname, :biography, :tos_accepted, :site_user_status_id).merge(id: site_user_id)
+      site_user: params.require(:site_user).permit(:nickname, :biography, :tos_accepted, :site_user_status_id).merge(id: site_user_id),
+      request_site_user_id: site_user_id
     }
   end
 
