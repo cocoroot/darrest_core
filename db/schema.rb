@@ -191,12 +191,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "sid",                 limit: 32
     t.integer  "site_id",                           default: 0, null: false
     t.integer  "user_id",             limit: 8,     default: 0, null: false
+    t.string   "nickname",            limit: 100
     t.string   "biography",           limit: 10000
     t.boolean  "tos_accepted"
     t.integer  "site_user_status_id",               default: 0, null: false
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
-    t.string   "nickname",            limit: 100
   end
 
   add_index "site_users", ["sid"], name: "idx_site_users_sid", unique: true, using: :btree
