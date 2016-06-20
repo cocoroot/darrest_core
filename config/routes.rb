@@ -18,14 +18,12 @@ Rails.application.routes.draw do
       resources :creation_pieces, only: [:create]
       resources :creation_comments, only: [:create]
       resources :creation_tags, only: [:create]
-      resources :goods, only: [:create]
+      resource :good, only: [:create, :destroy], controller: 'goods'
     end
     resources :creation_images, only: [:show, :update, :destroy]
     resources :creation_pieces, only: [:update, :destroy]
     resources :creation_tags, only: [:destroy]
 
-    #resources :creation_comments, only: [:show]
-    resources :goods, only: [:destroy]
     resources :tags
 
     get '*anything' => 'errors#routing_error' unless Rails.env == 'development'

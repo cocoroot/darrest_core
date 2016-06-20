@@ -23,9 +23,9 @@ class CreateGoodLogic < LogicBase
     site_id = params[:site_id]
 
     creation_id = @good.creation_id
-    creation = Creation.find(creation_id)
+    @creation = Creation.find(creation_id)
 
-    @errors.add(:creation, 'does not belong to the Site.') if site_id != creation.site_id
+    @errors.add(:creation, 'does not belong to the Site.') if site_id != @creation.site_id
 
     site_user_id = @good.site_user_id
     site_user = SiteUser.find(site_user_id)
@@ -34,13 +34,15 @@ class CreateGoodLogic < LogicBase
 
     @errors.add(:good, 'is already created.') if Good.exists?(creation_id: creation_id, site_user_id: site_user_id)
 
+    @errors.add(:good, 'cannot be created by the owner of the creation.') if @creation.site_user_id == site_user_id
+
     { errors: @errors, warnings: @warnings }
   end
 
   def execute(params)
     @good.save!
 
-    { good: @good, errors: @errors, warnings: @warnings }
+    { creation: @creation, good: @good, errors: @errors, warnings: @warnings }
   end
 
 end

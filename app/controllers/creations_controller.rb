@@ -2,7 +2,6 @@ class CreationsController < ApplicationController
   # GET /site_users/:id/creations
   def index_created_by_user
     @result = IndexCreationByUserLogic.new.execute(params_for_index_created_by_user)
-    #@result = IndexCreationByUserLogic
   end
 
   # GET /creations/1

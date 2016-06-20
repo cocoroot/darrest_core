@@ -1,1 +1,1 @@
-json.extract! @result[:creation_comment], :id, :creation_id, :site_user_id, :body, :created_at, :updated_at
+json.partial! partial: 'creation_comment', locals: { creation_comment: @result[:creation_comment] }

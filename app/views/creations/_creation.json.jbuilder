@@ -23,8 +23,9 @@ json.creation_tags do
   json.array! creation.creation_tags.for_users.map { |item| item.tag.name }
 end
 
-json.goods creation.goods.count
+json.goods_count creation.goods.count
 
+json.creation_comments_count creation.creation_comments.count
 json.creation_comments do
   json.array! creation.creation_comments do |comment|
     json.id comment.id
@@ -37,3 +38,7 @@ json.creation_comments do
     json.created_at comment.created_at
   end
 end
+
+json.owner creation.site_user_id == requester_site_user_id
+
+json.partial! partial: '/goods/good', locals: { creation: creation }

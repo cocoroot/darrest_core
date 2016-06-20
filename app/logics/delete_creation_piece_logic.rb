@@ -23,8 +23,9 @@ class DeleteCreationPieceLogic < LogicBase
   def execute(params)
     @creation_piece.logical_delete
     @creation_piece.save!
+    creation_pieces = CreationPiece.where(creation_id: @creation_piece.creation_id)
 
-    { creation_piece: @creation_piece, errors: @errors, warnings: @warnings }
+    { creation_pieces: creation_pieces, deleted_creation_piece: @creation_piece, errors: @errors, warnings: @warnings }
   end
 
 end

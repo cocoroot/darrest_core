@@ -1,1 +1,1 @@
-json.extract! @result[:creation_tag], :id, :creation_id, :tag_id, :created_at, :updated_at
+json.partial! partial: 'creation_tag', locals: { creation_tag: @result[:creation_tag] }

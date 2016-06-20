@@ -23,9 +23,9 @@ class CreateCreationCommentLogic < LogicBase
     site_id = params[:site_id]
 
     creation_id = @creation_comment.creation_id
-    creation = Creation.find(creation_id)
+    @creation = Creation.find(creation_id)
 
-    @errors.add(:creation, 'does not belong to the Site.') if site_id != creation.site_id
+    @errors.add(:creation, 'does not belong to the Site.') if site_id != @creation.site_id
 
     site_user_id = @creation_comment.site_user_id
     site_user = SiteUser.find(site_user_id)
@@ -38,7 +38,7 @@ class CreateCreationCommentLogic < LogicBase
   def execute(params)
     @creation_comment.save!
 
-    { creation_comment: @creation_comment, errors: @errors, warnings: @warnings }
+    { creation_comments: @creation.creation_comments, created_creation_comment: @creation_comment, errors: @errors, warnings: @warnings }
   end
 
 end

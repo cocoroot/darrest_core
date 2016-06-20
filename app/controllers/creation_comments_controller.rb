@@ -5,7 +5,7 @@ class CreationCommentsController < ApplicationController
     @result = CreateCreationCommentLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created }
+      format.json { render :index, status: :created }
     end
   end
 

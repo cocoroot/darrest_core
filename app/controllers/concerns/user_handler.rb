@@ -1,6 +1,10 @@
-module UserHandler
+module UserHandler extend ActiveSupport::Concern
+  included do
+    before_action :load_site_user_info
+  end
+
   def load_site_user_info
-    raise 'AssertionError: params does not contain \'user_baas_id\' despite \'site_user_id\' is required.' unless params.key?(:user_baas_id)
+    raise 'AssertionError: params does not contain \'user_baas_id\'.' unless params.key?(:user_baas_id)
 
     user_baas_id = params[:user_baas_id]
 
