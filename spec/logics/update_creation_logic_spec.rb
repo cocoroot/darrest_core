@@ -122,5 +122,26 @@ describe UpdateCreationLogic, type: :logic do
         expect(result[:creation].creation_status_id).to eq params[:creation][:creation_status_id]
       end
     end
+
+    context 'publish' do
+      before do
+        params.merge!(creation_status_id: CreationStatus::PUBLISHED.id)
+      end
+
+      it 'update published_at' do
+        #
+        # execute
+        #
+        result = UpdateCreationLogic.new.execute(params)
+
+        #
+        # validate
+        #
+        expect(result[:creation].title).to eq params[:creation][:title]
+        expect(result[:creation].description).to eq params[:creation][:description]
+        expect(result[:creation].creation_status_id).to eq params[:creation][:creation_status_id]
+        expect(result[:creation].published_at).not_to be nil
+      end
+    end
   end # execute
 end

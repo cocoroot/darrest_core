@@ -8,7 +8,18 @@ class IndexCreationCommentLogic < LogicBase
     { errors: @errors, warnings: @warnings }
   end
 
+  def is_number?(str)
+    true if Float(str)
+  rescue
+    false
+  end
+
   def validate(params)
+    #
+    # 型チェック
+    #
+    @errors.add(:offset, 'must be a number.') unless is_number?(params[:offset])
+
     #
     # 論理チェック
     #
@@ -20,7 +31,7 @@ class IndexCreationCommentLogic < LogicBase
   end
 
   def execute(params)
-    comments = @creation.creation_comments.where('id < ?', params[:offset]).order(id: :desc).limit(Settings.creations.comments_per_page)
+    comments = @creation.creation_comments.order(id: :desc).offset(params[:offset]).limit(Settings.creations.comments_per_page)
 
     { creation_comments: comments, errors: @errors, warnings: @warnings }
   end

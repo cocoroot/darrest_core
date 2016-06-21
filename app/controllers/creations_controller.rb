@@ -4,6 +4,11 @@ class CreationsController < ApplicationController
     @result = IndexCreationByUserLogic.new.execute(params_for_index_created_by_user)
   end
 
+  # GET /creations/latest
+  def index_latest
+    @result = IndexLatestCreationLogic.new.execute(params_for_index_latest)
+  end
+
   # GET /creations/1
   def show
     @result = LoadCreationLogic.new.execute(params_for_show)
@@ -34,6 +39,14 @@ class CreationsController < ApplicationController
       site_id: site_id,
       site_user_id: params.require(:site_user_id),
       page: params[:page]
+    }
+  end
+
+  def params_for_index_latest
+    {
+      site_id: site_id,
+      #page: params[:page]
+      offset: params[:offset]
     }
   end
 

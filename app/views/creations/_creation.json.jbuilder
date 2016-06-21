@@ -32,6 +32,8 @@ json.creation_comments do
   json.partial! partial: '/creation_comments/creation_comment', collection: creation.creation_comments.order(id: :desc).take(Settings.creations.comments_per_page), as: :comment
 end
 
+json.published_at creation.published_at
+
 json.owner creation.site_user_id == requester_site_user_id
 
 json.partial! partial: '/goods/good', locals: { creation: creation }

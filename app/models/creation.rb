@@ -10,6 +10,8 @@ class Creation < ActiveRecord::Base
   has_many :goods #, -> { order id: :asc }
   has_many :creation_comments #, -> { order created_at: :desc }
 
+  scope :published, -> { where(creation_status: CreationStatus::PUBLISHED) }
+
   validates :site, presence: true
   validates :site_user, presence: true
   validates :title, length: { maximum: 200 }

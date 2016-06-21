@@ -10,6 +10,7 @@ class UpdateCreationLogic < LogicBase
 
   def validate(params)
     @creation = Creation.lock.find(params[:creation][:id])
+    @status_before = @creation.creation_status
     @creation.assign_attributes(params[:creation])
 
     #
@@ -29,6 +30,9 @@ class UpdateCreationLogic < LogicBase
   end
 
   def execute(params)
+    if @status_before == CreationStatus::CREATING && @creation.creation_status == CreationStatus::PUBLISHED
+      @creation.published_at = DateTime.now
+    end
     @creation.save!
 
     { creation: @creation, errors: @errors, warnings: @warnings }

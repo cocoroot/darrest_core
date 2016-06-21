@@ -6,6 +6,7 @@ create_table :creations, id: :bigserial do |t|
   t.string :description, limit: 10000, default: ''
   t.string :license_code
   t.references :creation_status, default: 1
+  t.datetime :published_at, default: nil
 
   t.timestamps null: false
 end
@@ -18,3 +19,4 @@ add_index :creations, 'sid', unique: true, name: 'idx_creations_sid'
 add_index :creations, 'site_id', name: 'idx_creations_site_id'
 add_index :creations, 'site_user_id', name: 'idx_creations_site_user_id'
 add_index :creations, 'creation_status_id', name: 'idx_creations_creation_status_id'
+add_index :creations, 'published_at', name: 'idx_creations_published_at'

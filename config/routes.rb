@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     # resources :site_user_header_images, only: [:show]
 
     #get resources :creations, only: [:index]
+
+    get 'creations/latest' => 'creations#index_latest'
     resources :creations, only: [:create, :show, :update] do
       resources :creation_images, only: [:create]
       resources :creation_pieces, only: [:create]
