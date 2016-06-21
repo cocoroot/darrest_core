@@ -20,7 +20,7 @@ class IndexGoodByUserLogic < LogicBase
   end
 
   def execute(params)
-    goods = @site_user.good_creations.order(id: :desc).page(params[:page] || 1).per(10)
+    goods = @site_user.good_creations.order(id: :desc).page(params[:page] || 1).per(Settings.creations.goods_per_page)
 
     { goods: goods, errors: @errors, warnings: @warnings }
   end

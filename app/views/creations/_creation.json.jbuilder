@@ -2,9 +2,7 @@ json.id creation.id
 
 json.site_id creation.site_id
 json.site_user do
-  json.user_id creation.site_user.user_id
-  json.site_user_id creation.site_user_id
-  json.image creation.site_user.site_user_image.try(:image)
+  json.partial! partial: '/site_users/site_user', locals: { site_user: creation.site_user }
 end
 
 json.title creation.title
@@ -27,16 +25,7 @@ json.goods_count creation.goods.count
 
 json.creation_comments_count creation.creation_comments.count
 json.creation_comments do
-  json.array! creation.creation_comments do |comment|
-    json.id comment.id
-    json.site_user do
-      json.user_id comment.site_user.user_id
-      json.site_user_id comment.site_user_id
-      json.image comment.site_user.site_user_image.try(:image)
-    end
-    json.body comment.body
-    json.created_at comment.created_at
-  end
+  json.partial! partial: '/creation_comments/creation_comment', collection: creation.creation_comments.order(id: :desc).take(Settings.creations.comments_per_page), as: :comment
 end
 
 json.owner creation.site_user_id == requester_site_user_id

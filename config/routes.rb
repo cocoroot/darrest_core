@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :creations, only: [:create, :show, :update] do
       resources :creation_images, only: [:create]
       resources :creation_pieces, only: [:create]
-      resources :creation_comments, only: [:create]
+      resources :creation_comments, only: [:index, :create]
       resources :creation_tags, only: [:create]
       resource :good, only: [:create, :destroy], controller: 'goods'
     end

@@ -7,8 +7,8 @@ class Creation < ActiveRecord::Base
   has_many :creation_pieces, -> { order id: :asc }
   has_many :creation_images, -> { order order: :asc }
   has_many :creation_tags, -> { order id: :asc }
-  has_many :goods, -> { order id: :asc }
-  has_many :creation_comments, -> { order created_at: :asc }
+  has_many :goods #, -> { order id: :asc }
+  has_many :creation_comments #, -> { order created_at: :desc }
 
   validates :site, presence: true
   validates :site_user, presence: true
