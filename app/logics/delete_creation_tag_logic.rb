@@ -3,6 +3,8 @@ class DeleteCreationTagLogic < LogicBase
 
   def authorize(params)
     @errors.add(:site, 'does not exist.') unless Site.exists?(id: params[:site_id])
+
+    # 冪等ではなくなるが、削除時に一覧を返す事を優先した
     @errors.add(:id, 'does not exist.') unless CreationTag.exists?(id: params[:id])
 
     { errors: @errors, warnings: @warnings }

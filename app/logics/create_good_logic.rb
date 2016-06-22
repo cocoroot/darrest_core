@@ -32,15 +32,17 @@ class CreateGoodLogic < LogicBase
 
     @errors.add(:site_user, 'does not belong to the Site.') if site_id != site_user.site_id
 
-    @errors.add(:good, 'is already created.') if Good.exists?(creation_id: creation_id, site_user_id: site_user_id)
-
     @errors.add(:good, 'cannot be created by the owner of the creation.') if @creation.site_user_id == site_user_id
 
     { errors: @errors, warnings: @warnings }
   end
 
   def execute(params)
-    @good.save!
+    if Good.exists?(creation_id: @good.creation_id, site_user_id: @good.site_user_id)
+      @warnings.add(:good, 'is already created.')
+    else
+      @good.save!
+    end
 
     { creation: @creation, good: @good, errors: @errors, warnings: @warnings }
   end

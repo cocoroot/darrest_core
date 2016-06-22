@@ -30,7 +30,7 @@ class UpdateCreationPieceLogic < LogicBase
 
   def execute(params)
     @creation_piece.save!
-    creation_pieces = CreationPiece.where(creation_id: @creation_piece.creation_id)
+    creation_pieces = CreationPiece.where(creation_id: @creation_piece.creation_id).order(id: :asc)
 
     { creation_pieces: creation_pieces, updated_creation_piece: @creation_piece, errors: @errors, warnings: @warnings }
   end

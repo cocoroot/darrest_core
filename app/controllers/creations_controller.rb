@@ -45,7 +45,6 @@ class CreationsController < ApplicationController
   def params_for_index_latest
     {
       site_id: site_id,
-      #page: params[:page]
       offset: params[:offset]
     }
   end

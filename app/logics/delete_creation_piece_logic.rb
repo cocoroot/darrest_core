@@ -3,6 +3,8 @@ class DeleteCreationPieceLogic < LogicBase
 
   def authorize(params)
     @errors.add(:site, 'does not exist.') unless Site.exists?(id: params[:site_id])
+
+    # 冪等ではなくなるが、削除時に一覧を返す事を優先した
     @errors.add(:id, 'does not exist.') unless CreationPiece.exists?(id: params[:id])
 
     { errors: @errors, warnings: @warnings }
@@ -23,7 +25,7 @@ class DeleteCreationPieceLogic < LogicBase
   def execute(params)
     @creation_piece.logical_delete
     @creation_piece.save!
-    creation_pieces = CreationPiece.where(creation_id: @creation_piece.creation_id)
+    creation_pieces = CreationPiece.where(creation_id: @creation_piece.creation_id).order(id: :asc)
 
     { creation_pieces: creation_pieces, deleted_creation_piece: @creation_piece, errors: @errors, warnings: @warnings }
   end
