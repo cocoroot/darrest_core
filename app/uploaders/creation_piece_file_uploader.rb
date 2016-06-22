@@ -16,7 +16,7 @@ class CreationPieceFileUploader < UploaderBase
     if !original_filename.nil? && !original_filename.empty?
       file_name_hash = secure_token
       extname = File.extname(original_filename)
-      model.image_name_for_user = File.basename(original_filename, File.extname(original_filename)) + '.jpg'
+      model.file_name_for_user = File.basename(original_filename, File.extname(original_filename)) + '.jpg'
       "#{file_name_hash}#{extname}"
     end
   end

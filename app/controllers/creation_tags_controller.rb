@@ -4,7 +4,7 @@ class CreationTagsController < ApplicationController
     @result = CreateCreationTagLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created }
+      format.json { render :index, status: :created }
     end
   end
 
@@ -13,7 +13,7 @@ class CreationTagsController < ApplicationController
     @result = DeleteCreationTagLogic.new.execute(params_for_destroy)
 
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render :index, status: :ok }
     end
   end
 

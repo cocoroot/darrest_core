@@ -17,7 +17,8 @@ class CreateCreationTagLogic < LogicBase
     #
     # 型チェック
     #
-    @creation_tag = CreationTag.new(creation_id: params[:creation_tag][:creation_id], tag: @tag)
+    @creation_tag = CreationTag.where(creation_id: params[:creation_tag][:creation_id], tag: @tag).take ||
+                    CreationTag.new(creation_id: params[:creation_tag][:creation_id], tag: @tag)
     @creation_tag.valid?
     @errors << @creation_tag.errors.messages
 
@@ -28,11 +29,11 @@ class CreateCreationTagLogic < LogicBase
     # 論理チェック
     #
     creation_id = @creation_tag.creation_id
-    creation = Creation.find(creation_id)
+    @creation = Creation.find(creation_id)
 
-    @errors.add(:creation, 'does not belong to the Site.') if site_id != creation.site_id
+    @errors.add(:creation, 'does not belong to the Site.') if site_id != @creation.site_id
 
-    @errors.add(:creation_tag, 'is already registered.') if @tag.persisted? && CreationTag.exists?(creation: creation, tag: @tag)
+    @warnings.add(:creation_tag, 'is already registered.') if @creation_tag.persisted?
 
     { errors: @errors, warnings: @warnings }
   end
@@ -41,7 +42,7 @@ class CreateCreationTagLogic < LogicBase
     @creation_tag.save!
     @tag.save! if @tag.new_record?
 
-    { creation_tag: @creation_tag, errors: @errors, warnings: @warnings }
+    { creation_tags: @creation.creation_tags, creation_tag: @creation_tag, errors: @errors, warnings: @warnings }
   end
 
 end

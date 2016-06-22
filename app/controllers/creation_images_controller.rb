@@ -9,7 +9,7 @@ class CreationImagesController < ApplicationController
     @result = CreateCreationImageLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created }
+      format.json { render :index, status: :created }
     end
   end
 
@@ -18,7 +18,7 @@ class CreationImagesController < ApplicationController
     @result = UpdateCreationImageLogic.new.execute(params_for_update)
 
     respond_to do |format|
-      format.json { render :show, status: :ok }
+      format.json { render :index, status: :ok }
     end
   end
 
@@ -27,7 +27,7 @@ class CreationImagesController < ApplicationController
     @result = DeleteCreationImageLogic.new.execute(params_for_delete)
 
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render :index, status: :ok }
     end
   end
 
@@ -36,7 +36,12 @@ class CreationImagesController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      creation_image: params.require(:creation_image).permit(:image, :image_name_for_user, :order).merge(creation_id: params[:creation_id])
+      creation_image: {
+        creation_id: params[:creation_id],
+        image: params[:image],
+        order: params[:order]
+      }
+      #params.require(:creation_image).permit(:image, :image_name_for_user, :order).merge(creation_id: params[:creation_id])
     }
   end
 
@@ -50,7 +55,10 @@ class CreationImagesController < ApplicationController
   def params_for_update
     {
       site_id: site_id,
-      creation_image: params.require(:creation_image).permit(:image_name_for_user, :order).merge(id: params[:id])
+      creation_image: {
+        id: params[:id],
+        order: params[:creation_image][:order]
+      }
     }
   end
 

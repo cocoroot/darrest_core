@@ -19,7 +19,7 @@ class IndexCreationByUserLogic < LogicBase
   end
 
   def execute(params)
-    creations = @site_user.creations.order(id: :asc).page(params[:page] || 1).per(10)
+    creations = @site_user.creations.order(id: :asc).page(params[:page] || 1).per(Settings.creations.creations_per_page)
 
     { creations: creations, errors: @errors, warnings: @warnings }
   end

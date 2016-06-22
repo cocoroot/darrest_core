@@ -69,6 +69,8 @@ creations:
   <<: *controller_default
   index_created_by_user:
     *action_default
+  index_latest:
+    *action_default
   
 site_users:
   <<: *controller_default

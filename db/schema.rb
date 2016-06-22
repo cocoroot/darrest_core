@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "creation_pieces", id: :bigserial, force: :cascade do |t|
     t.integer  "creation_id",         limit: 8,    default: 0, null: false
     t.string   "name",                limit: 200
-    t.string   "file",                limit: 2083
+    t.string   "file",                limit: 2083,             null: false
     t.string   "file_name_for_user",  limit: 256
     t.string   "format",              limit: 10
     t.string   "image",               limit: 2083
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "removed_id",  limit: 8, default: 0
   end
 
-  add_index "creation_tags", ["creation_id", "tag_id"], name: "idx_creatino_tags_creation_id_tag_id", unique: true, using: :btree
+  add_index "creation_tags", ["creation_id", "tag_id"], name: "idx_creation_tags_creation_id_tag_id", unique: true, using: :btree
   add_index "creation_tags", ["creation_id"], name: "idx_creation_tags_creation_id", using: :btree
   add_index "creation_tags", ["removed_id"], name: "idx_creation_tags_removed_id", using: :btree
   add_index "creation_tags", ["tag_id"], name: "idx_creation_tags_tag_id", using: :btree
@@ -111,9 +111,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "creation_status_id",               default: 1
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.datetime "published_at"
   end
 
   add_index "creations", ["creation_status_id"], name: "idx_creations_creation_status_id", using: :btree
+  add_index "creations", ["published_at"], name: "idx_creations_published_at", using: :btree
   add_index "creations", ["sid"], name: "idx_creations_sid", unique: true, using: :btree
   add_index "creations", ["site_id"], name: "idx_creations_site_id", using: :btree
   add_index "creations", ["site_user_id"], name: "idx_creations_site_user_id", using: :btree

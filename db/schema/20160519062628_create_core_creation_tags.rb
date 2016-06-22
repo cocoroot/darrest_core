@@ -12,5 +12,5 @@ add_foreign_key :creation_tags, :tags, column: 'tag_id', name: 'fk_creation_tags
 
 add_index :creation_tags, 'creation_id', name: 'idx_creation_tags_creation_id'
 add_index :creation_tags, 'tag_id', name: 'idx_creation_tags_tag_id'
-add_index :creation_tags, ['creation_id', 'tag_id'], unique: true, name: 'idx_creatino_tags_creation_id_tag_id'
+add_index :creation_tags, ['creation_id', 'tag_id'], unique: true, name: 'idx_creation_tags_creation_id_tag_id'
 add_index :creation_tags, 'removed_id', name: 'idx_creation_tags_removed_id'

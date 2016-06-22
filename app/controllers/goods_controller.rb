@@ -8,7 +8,7 @@ class GoodsController < ApplicationController
     end
   end
 
-  # POST /goods
+  # POST /good
   def create
     @result = CreateGoodLogic.new.execute(params_for_create)
 
@@ -17,12 +17,12 @@ class GoodsController < ApplicationController
     end
   end
 
-  # DELETE /goods/1
+  # DELETE /good
   def destroy
     @result = DeleteGoodLogic.new.execute(params_for_delete)
 
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render :show, status: :ok }
     end
   end
 
@@ -55,7 +55,10 @@ class GoodsController < ApplicationController
   def params_for_delete
     {
       site_id: site_id,
-      id: params[:id]
+      good: {
+        creation_id: params[:creation_id],
+        site_user_id: site_user_id
+      }
     }
   end
 end

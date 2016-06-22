@@ -21,17 +21,17 @@ class CreateCreationImageLogic < LogicBase
     #
     site_id = params[:site_id]
     creation_id = @creation_image.creation_id
-    creation = Creation.find(creation_id)
+    @creation = Creation.find(creation_id)
 
-    @errors.add(:creation, 'does not belong to the Site.') if site_id != creation.site_id
+    @errors.add(:creation, 'does not belong to the Site.') if site_id != @creation.site_id
 
     { errors: @errors, warnings: @warnings }
   end
 
   def execute(params)
     @creation_image.save!
-    
-    { creation_image: @creation_image, errors: @errors, warnings: @warnings }
+
+    { creation_images: @creation.creation_images, updated_creation_image: @creation_image, errors: @errors, warnings: @warnings }
   end
 
 end

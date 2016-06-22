@@ -4,7 +4,7 @@ class CreationPiecesController < ApplicationController
     @result = CreateCreationPieceLogic.new.execute(params_for_create)
 
     respond_to do |format|
-      format.json { render :show, status: :created }
+      format.json { render :index, status: :created }
     end
   end
 
@@ -13,7 +13,7 @@ class CreationPiecesController < ApplicationController
     @result = UpdateCreationPieceLogic.new.execute(params_for_update)
 
     respond_to do |format|
-      format.json { render :show, status: :ok }
+      format.json { render :index, status: :ok }
     end
   end
 
@@ -22,7 +22,7 @@ class CreationPiecesController < ApplicationController
     @result = DeleteCreationPieceLogic.new.execute(params_for_delete)
 
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render :index, status: :ok }
     end
   end
 
@@ -31,14 +31,22 @@ class CreationPiecesController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      creation_piece: params.require(:creation_piece).permit(:name, :file, :image).merge(creation_id: params[:creation_id])
+      creation_piece: {
+        creation_id: params[:creation_id],
+        name: params[:name],
+        file: params[:file],
+        image: params[:image]
+      }
     }
   end
 
   def params_for_update
     {
       site_id: site_id,
-      creation_piece: params.require(:creation_piece).permit(:name).merge(id: params[:id])
+      creation_piece: {
+        id: params[:id],
+        name: params[:creation_piece][:name]
+      }
     }
   end
 

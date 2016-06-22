@@ -13,19 +13,19 @@ Rails.application.routes.draw do
     # resources :site_user_header_images, only: [:show]
 
     #get resources :creations, only: [:index]
+
+    get 'creations/latest' => 'creations#index_latest'
     resources :creations, only: [:create, :show, :update] do
       resources :creation_images, only: [:create]
       resources :creation_pieces, only: [:create]
-      resources :creation_comments, only: [:create]
+      resources :creation_comments, only: [:index, :create]
       resources :creation_tags, only: [:create]
-      resources :goods, only: [:create]
+      resource :good, only: [:create, :destroy], controller: 'goods'
     end
     resources :creation_images, only: [:show, :update, :destroy]
     resources :creation_pieces, only: [:update, :destroy]
     resources :creation_tags, only: [:destroy]
 
-    #resources :creation_comments, only: [:show]
-    resources :goods, only: [:destroy]
     resources :tags
 
     get '*anything' => 'errors#routing_error' unless Rails.env == 'development'

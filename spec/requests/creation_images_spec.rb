@@ -12,8 +12,8 @@ describe 'CreationImages', type: :request do
   describe 'POST /creations/{creation_id}/creation_images' do
     let(:params) do
       {
-        creation_image: attributes_for(:creation_image, id: 900_000_001)
-          .slice(:image, :image_name_for_user, :order)
+        image: attributes_for(:creation_image, id: 900_000_001)[:image],
+        order: attributes_for(:creation_image, id: 900_000_001)[:order]
       }
     end
 
@@ -67,7 +67,6 @@ describe 'CreationImages', type: :request do
     let(:params) do
       {
         creation_image: {
-          image_name_for_user: '更新ファイル名.jpg',
           order: 777
         }
       }
@@ -85,8 +84,8 @@ describe 'CreationImages', type: :request do
       expect(response).to be_success
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result['image_name_for_user']).to eq params[:creation_image][:image_name_for_user]
-      expect(result['order']).to eq params[:creation_image][:order]
+      updated_creation_image = result['creation_images'].select { |item| item['id'] == 900_000_001 }.first
+      expect(updated_creation_image['order'].to_i).to eq params[:creation_image][:order]
     end
   end # PUT
 

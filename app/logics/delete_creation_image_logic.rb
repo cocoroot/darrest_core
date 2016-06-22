@@ -14,8 +14,8 @@ class DeleteCreationImageLogic < LogicBase
     #
     site_id = params[:site_id]
     @creation_image = CreationImage.lock.find(params[:id])
-    creation = @creation_image.creation
-    @errors.add(:creation, 'does not belong to the Site.') if site_id != creation.site_id
+    @creation = @creation_image.creation
+    @errors.add(:creation, 'does not belong to the Site.') if site_id != @creation.site_id
 
     { errors: @errors, warnings: @warnings }
   end
@@ -24,7 +24,7 @@ class DeleteCreationImageLogic < LogicBase
     @creation_image.logical_delete
     @creation_image.save!
 
-    { creation_image: @creation_image, errors: @errors, warnings: @warnings }
+    { creation_images: @creation.creation_images, deleted_creation_image: @creation_image, errors: @errors, warnings: @warnings }
   end
 
 end

@@ -1,7 +1,7 @@
 create_table :creation_pieces, id: :bigserial do |t|
   t.references :creation, null: false, limit: 8, default: 0
   t.string :name, limit: 200
-  t.string :file, limit: 2083
+  t.string :file, null: false, limit: 2083
   t.string :file_name_for_user, limit: 256
   t.string :format, limit: 10
   t.string :image, limit: 2083

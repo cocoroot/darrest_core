@@ -26,7 +26,6 @@ class ApplicationController < ActionController::Base
   end
 
   def site_user_id
-    load_site_user_info
     RequestLocals.fetch(:request_site_user).try(:id)
   end
 end
