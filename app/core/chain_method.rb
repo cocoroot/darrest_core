@@ -3,6 +3,7 @@ module ChainMethod
   def chain_method(*methods)
     succeeding = methods.first[:before]
     preceding  = methods.first[:insert]
+    status_code = methods.first[:status_if_error] || :ok
     #Rails.logger.debug "insert method #{preceding} before #{succeeding}"
 
     orig = "#{succeeding}_without_chain".to_sym
@@ -20,7 +21,7 @@ module ChainMethod
       errors = instance_variable_get(:@errors)
       warnings = instance_variable_get(:@warnings)
       Rails.logger.debug "  logic method call: #{orig} ERROR #{errors.full_messages}" unless errors.empty?
-      return { errors: errors, warnings: warnings } unless errors.empty?
+      return { errors: errors, warnings: warnings, status: status_code } unless errors.empty?
       #Rails.logger.debug "  logic method call: #{orig}"
 
       send(orig, *args, &block)

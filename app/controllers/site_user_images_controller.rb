@@ -3,9 +3,7 @@ class SiteUserImagesController < ApplicationController
   def create
     @result = CreateSiteUserImageLogic.new.execute(params_for_create)
 
-    respond_to do |format|
-      format.json { render :show, status: :created }
-    end
+    render status: convert_status(@result[:status])
   end
 
   private

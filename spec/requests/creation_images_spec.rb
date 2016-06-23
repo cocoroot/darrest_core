@@ -12,6 +12,7 @@ describe 'CreationImages', type: :request do
   describe 'POST /creations/{creation_id}/creation_images' do
     let(:params) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         image: attributes_for(:creation_image, id: 900_000_001)[:image],
         order: attributes_for(:creation_image, id: 900_000_001)[:order]
       }
@@ -43,11 +44,17 @@ describe 'CreationImages', type: :request do
       create(:creation_image, id: 900_000_001, creation_id: 900_000_001)
     end
 
+    let(:params) do
+      {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id
+      }
+    end
+
     it 'returns a creation' do
       #
       # execute
       #
-      get_by_site(creation_image_path(900_000_001), 900_000_001)
+      get_by_site(creation_image_path(900_000_001), 900_000_001, params)
 
       #
       # validate
@@ -55,7 +62,7 @@ describe 'CreationImages', type: :request do
       expect(response).to be_success
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result['id']).to eq 900_000_001
+      expect(result['creation_image']['id']).to eq 900_000_001
     end
   end # GET
 
@@ -66,6 +73,7 @@ describe 'CreationImages', type: :request do
 
     let(:params) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         creation_image: {
           order: 777
         }
@@ -94,11 +102,30 @@ describe 'CreationImages', type: :request do
       create(:creation_image, id: 900_000_001, creation_id: 900_000_001)
     end
 
+    let(:params) do
+      {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id
+      }
+    end
+
     it 'succeeds deleting' do
       #
       # execute
       #
-      expect { delete_by_site(creation_image_path(900_000_001), 900_000_001) }.to change { CreationImage.count }.by(-1)
+      delete_by_site(creation_image_path(900_000_001), 900_000_001, params)
+
+      #
+      # validate
+      #
+      expect(response).to be_success
+      expect(response.status).to eq 204
+    end
+
+    it 'succeeds deleting' do
+      #
+      # execute
+      #
+      expect { delete_by_site(creation_image_path(900_000_001), 900_000_001, params) }.to change { CreationImage.count }.by(-1)
     end
   end # DELETE
 end

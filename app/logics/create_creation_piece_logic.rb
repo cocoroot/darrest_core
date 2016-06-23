@@ -31,7 +31,7 @@ class CreateCreationPieceLogic < LogicBase
   def execute(params)
     @creation_piece.save!
 
-    { creation_pieces: @creation.creation_pieces, created_creation_piece: @creation_piece, errors: @errors, warnings: @warnings }
+    { creation_pieces: @creation.creation_pieces, created_creation_piece: @creation_piece, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end

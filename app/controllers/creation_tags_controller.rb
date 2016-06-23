@@ -3,18 +3,14 @@ class CreationTagsController < ApplicationController
   def create
     @result = CreateCreationTagLogic.new.execute(params_for_create)
 
-    respond_to do |format|
-      format.json { render :index, status: :created }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # DELETE /creation_tags/1
   def destroy
     @result = DeleteCreationTagLogic.new.execute(params_for_destroy)
 
-    respond_to do |format|
-      format.json { render :index, status: :ok }
-    end
+    render status: convert_status(@result[:status])
   end
 
   private

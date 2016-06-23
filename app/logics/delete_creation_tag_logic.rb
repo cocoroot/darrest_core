@@ -27,7 +27,7 @@ class DeleteCreationTagLogic < LogicBase
     @creation_tag.save!
     creation_tags = CreationTag.where(creation_id: @creation_tag.creation_id)
 
-    { creation_tags: creation_tags, deleted_creation_tag: @creation_tag, errors: @errors, warnings: @warnings }
+    { creation_tags: creation_tags, deleted_creation_tag: @creation_tag, errors: @errors, warnings: @warnings, status: :deleted }
   end
 
 end

@@ -28,4 +28,17 @@ class ApplicationController < ActionController::Base
   def site_user_id
     RequestLocals.fetch(:request_site_user).try(:id)
   end
+
+  def convert_status(status)
+    case status
+    when :ok then return :ok
+    when :created then return :created
+    when :deleted then return :no_content
+
+    when :unauthorized then return :unauthorized
+    when :invalid then return :bad_request
+    else
+      raise
+    end
+  end
 end

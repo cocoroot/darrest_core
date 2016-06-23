@@ -21,7 +21,7 @@ class LoadCreationLogic < LogicBase
   end
 
   def execute(params)
-    { creation: @creation, errors: @errors, warnings: @warnings }
+    { creation: @creation, errors: @errors, warnings: @warnings, status: :ok }
   end
 
 end

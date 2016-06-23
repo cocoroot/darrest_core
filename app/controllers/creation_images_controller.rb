@@ -2,33 +2,29 @@ class CreationImagesController < ApplicationController
   # GET /creation_images/1
   def show
     @result = LoadCreationImageLogic.new.execute(params_for_load)
+
+    render status: convert_status(@result[:status])
   end
 
   # POST /creation_images
   def create
     @result = CreateCreationImageLogic.new.execute(params_for_create)
 
-    respond_to do |format|
-      format.json { render :index, status: :created }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # PATCH/PUT /creation_images/1
   def update
     @result = UpdateCreationImageLogic.new.execute(params_for_update)
 
-    respond_to do |format|
-      format.json { render :index, status: :ok }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # DELETE /creation_images/1
   def destroy
     @result = DeleteCreationImageLogic.new.execute(params_for_delete)
 
-    respond_to do |format|
-      format.json { render :index, status: :ok }
-    end
+    render status: convert_status(@result[:status])
   end
 
   private
@@ -41,7 +37,6 @@ class CreationImagesController < ApplicationController
         image: params[:image],
         order: params[:order]
       }
-      #params.require(:creation_image).permit(:image, :image_name_for_user, :order).merge(creation_id: params[:creation_id])
     }
   end
 

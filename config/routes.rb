@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   with_options(defaults: { format: :json }, format: false) do
-    resources :users, only: [:create]
+    #resources :users, only: [:create]
     get 'me' => 'site_users#show_my_info', as: 'me'
     resources :site_users, only: [:create, :show] do
       get 'creations' =>  'creations#index_created_by_user'

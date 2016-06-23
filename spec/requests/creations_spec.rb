@@ -77,8 +77,8 @@ describe 'Creations', type: :request do
       expect(response).to be_success
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result['title']).to eq params_for_update[:creation][:title]
-      expect(result['description']).to eq params_for_update[:creation][:description]
+      expect(result['creation']['title']).to eq params_for_update[:creation][:title]
+      expect(result['creation']['description']).to eq params_for_update[:creation][:description]
     end
   end
 
@@ -90,11 +90,17 @@ describe 'Creations', type: :request do
             )
     end
 
+    let(:params_for_get) do
+      {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id
+      }
+    end
+
     it 'returns a creation' do
       #
       # execute
       #
-      get_by_site(creation_path(900_000_001), 900_000_001)
+      get_by_site(creation_path(900_000_001), 900_000_001, params_for_get)
 
       #
       # validate
@@ -102,7 +108,7 @@ describe 'Creations', type: :request do
       expect(response).to be_success
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result['id']).to eq 900_000_001
+      expect(result['creation']['id']).to eq 900_000_001
     end
   end
 end

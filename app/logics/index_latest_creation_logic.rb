@@ -27,6 +27,6 @@ class IndexLatestCreationLogic < LogicBase
   def execute(params)
     creations = Creation.published.order(published_at: :desc).offset(params[:offset]).limit(Settings.creations.creations_per_page)
 
-    { creations: creations, errors: @errors, warnings: @warnings }
+    { creations: creations, errors: @errors, warnings: @warnings, status: :ok }
   end
 end

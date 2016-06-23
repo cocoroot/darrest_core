@@ -3,27 +3,21 @@ class GoodsController < ApplicationController
   def index
     @result = IndexGoodByUserLogic.new.execute(params_for_index_by_user)
 
-    respond_to do |format|
-      format.json { render :index }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # POST /good
   def create
     @result = CreateGoodLogic.new.execute(params_for_create)
 
-    respond_to do |format|
-      format.json { render :show, status: :created }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # DELETE /good
   def destroy
     @result = DeleteGoodLogic.new.execute(params_for_delete)
 
-    respond_to do |format|
-      format.json { render :show, status: :ok }
-    end
+    render status: convert_status(@result[:status])
   end
 
   private
