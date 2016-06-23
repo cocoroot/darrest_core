@@ -12,6 +12,7 @@ describe 'CreationTags', type: :request do
   describe 'POST /creations/{creation_id}/creation_tags' do
     let(:params) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         creation_tag: { tag_name: 'テストタグ' }
       }
     end
@@ -42,11 +43,17 @@ describe 'CreationTags', type: :request do
       create(:creation_tag, id: 900_000_001, creation_id: 900_000_001)
     end
 
+    let(:params) do
+      {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id
+      }
+    end
+
     it 'succeeds deleting' do
       #
       # execute
       #
-      expect { delete_by_site(creation_tag_path(900_000_001), 900_000_001) }.to change { CreationTag.count }.by(-1)
+      expect { delete_by_site(creation_tag_path(900_000_001), 900_000_001, params) }.to change { CreationTag.count }.by(-1)
     end
   end # DELETE
 end

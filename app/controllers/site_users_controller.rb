@@ -1,4 +1,6 @@
 class SiteUsersController < ApplicationController
+  skip_before_action :load_site_user_info, only: [:create]
+
   # GET /site_users/1
   def show
     @result = LoadSiteUserLogic.new.execute(params_for_show)

@@ -10,12 +10,12 @@ describe 'SiteUsers', type: :request do
 
   let(:params) do
     {
+      user_baas_id: User.find(900_000_001).baas_id,
       site_user: attributes_for(:site_user,
                                 user_id: 900_000_001,
                                 tos_accepted: false,
                                 site_user_status: SiteUserStatus::INTERIM.id
-                               ),
-      user_baas_id: User.find(900_000_001).baas_id
+                               )
     }
   end
 
@@ -75,9 +75,9 @@ describe 'SiteUsers', type: :request do
       expect(response).to be_success
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result['biography']).to eq params_for_update[:site_user][:biography]
-      expect(result['tos_accepted']).to eq params_for_update[:site_user][:tos_accepted]
-      expect(result['site_user_status']['id']).to eq params_for_update[:site_user][:site_user_status_id]
+      expect(result['site_user']['biography']).to eq params_for_update[:site_user][:biography]
+      expect(result['site_user']['tos_accepted']).to eq params_for_update[:site_user][:tos_accepted]
+      expect(result['site_user']['site_user_status']['id']).to eq params_for_update[:site_user][:site_user_status_id]
     end
   end
 
@@ -105,7 +105,7 @@ describe 'SiteUsers', type: :request do
       expect(response).to be_success
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result['id']).to eq 900_000_001
+      expect(result['site_user']['id']).to eq 900_000_001
     end
   end
 
@@ -119,6 +119,7 @@ describe 'SiteUsers', type: :request do
 
     let(:params_for_index_creation) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         site_user_id: 900_000_001,
         page: 2
       }

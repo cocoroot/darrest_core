@@ -11,9 +11,12 @@ describe 'CreationPieces', type: :request do
 
   describe 'POST /creations/{creation_id}/creation_pieces' do
     let(:params) do
+      attr = attributes_for(:creation_piece, id: 900_000_001).slice(:name, :file, :image)
       {
-        creation_piece: attributes_for(:creation_piece, id: 900_000_001)
-          .slice(:name, :file, :image)
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
+        name: attr[:name],
+        file: attr[:file],
+        image: attr[:image]
       }
     end
 
@@ -45,6 +48,7 @@ describe 'CreationPieces', type: :request do
 
     let(:params) do
       {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
         creation_piece: {
           name: '更新ファイル名'
         }
@@ -63,7 +67,7 @@ describe 'CreationPieces', type: :request do
       expect(response).to be_success
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result['name']).to eq params[:creation_piece][:name]
+      expect(result['creation_pieces'].last['name']).to eq params[:creation_piece][:name]
     end
   end # PUT
 
@@ -72,11 +76,17 @@ describe 'CreationPieces', type: :request do
       create(:creation_piece, id: 900_000_001, creation_id: 900_000_001)
     end
 
+    let(:params) do
+      {
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id
+      }
+    end
+
     it 'succeeds deleting' do
       #
       # execute
       #
-      expect { delete_by_site(creation_piece_path(900_000_001), 900_000_001) }.to change { CreationPiece.count }.by(-1)
+      expect { delete_by_site(creation_piece_path(900_000_001), 900_000_001, params) }.to change { CreationPiece.count }.by(-1)
     end
   end # DELETE
 end

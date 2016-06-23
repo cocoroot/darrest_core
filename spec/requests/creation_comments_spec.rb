@@ -50,7 +50,7 @@ describe 'CreationComments', type: :request do
 
     let(:params) do 
       {
-        user_baas_id: SiteUser.find(900_000_001).user.baas_id,
+        user_baas_id: SiteUser.find(900_000_001).user.baas_id
       }
     end
 

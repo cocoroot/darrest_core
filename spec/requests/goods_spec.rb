@@ -21,7 +21,7 @@ describe 'Good', type: :request do
       #
       # execute
       #
-      post_by_site(creation_goods_path(900_000_001), 900_000_001, params)
+      post_by_site(creation_good_path(900_000_001), 900_000_001, params)
 
       #
       # validate
@@ -34,7 +34,7 @@ describe 'Good', type: :request do
       #
       # execute
       #
-      expect { post_by_site(creation_goods_path(900_000_001), 900_000_001, params) }.to change { Good.count }.by(1)
+      expect { post_by_site(creation_good_path(900_000_001), 900_000_001, params) }.to change { Good.count }.by(1)
     end
   end # POST
 
@@ -48,11 +48,17 @@ describe 'Good', type: :request do
       create(:good, creation_id: 900_000_003, site_user: site_user)
     end
 
+    let(:params) do
+      {
+        user_baas_id: SiteUser.find(900_000_002).user.baas_id,
+      }
+    end
+
     it 'returns a creation' do
       #
       # execute
       #
-      get_by_site(site_user_goods_path(900_000_003), 900_000_001)
+      get_by_site(site_user_goods_path(900_000_003), 900_000_001, params)
 
       #
       # validate
@@ -69,11 +75,17 @@ describe 'Good', type: :request do
       create(:good, id: 900_000_001, creation_id: 900_000_001, site_user_id: 900_000_002)
     end
 
+    let(:params) do
+      {
+        user_baas_id: SiteUser.find(900_000_002).user.baas_id,
+      }
+    end
+
     it 'succeeds deleting' do
       #
       # execute
       #
-      expect { delete_by_site(good_path(900_000_001), 900_000_001) }.to change { Good.count }.by(-1)
+      expect { delete_by_site(creation_good_path(900_000_001), 900_000_001, params) }.to change { Good.count }.by(-1)
     end
   end # DELETE
 end

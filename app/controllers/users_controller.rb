@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
   # POST /users
-  def create
-    @result = CreateUserLogic.new.execute(params_for_create)
+  # def create
+  #   @result = CreateUserLogic.new.execute(params_for_create)
 
-    render status: convert_status(@result[:status])
-  end
+  #   render status: convert_status(@result[:status])
+  # end
 
-  private
+  # private
 
-  def params_for_create
-    {
-      user: params.require(:user).permit(:baas_id)
-    }
-  end
+  # def params_for_create
+  #   {
+  #     user: params.require(:user).permit(:baas_id)
+  #   }
+  # end
 end

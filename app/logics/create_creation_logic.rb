@@ -30,7 +30,7 @@ class CreateCreationLogic < LogicBase
   def execute(params)
     @creation.save!
 
-    { creation: @creation, errors: @errors, warnings: @warnings, status: created }
+    { creation: @creation, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end
