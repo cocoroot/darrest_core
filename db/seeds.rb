@@ -66,7 +66,7 @@ create(:tag)
 # Creation
 creation_01 = create(:creation, site: site01, site_user: site_user01)
 creation_02 = create(:creation, site: site01, site_user: site_user01)
-5.times { create(:creation, site: site01) }
+5.times { create(:creation, site: site01, site_user: site_user01) }
 create(:creation)
 
 # CreationImage
