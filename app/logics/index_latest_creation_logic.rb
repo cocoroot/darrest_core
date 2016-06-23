@@ -16,7 +16,7 @@ class IndexLatestCreationLogic < LogicBase
     #
     # 型チェック
     #
-    @errors.add(:offset, 'must be a number.') unless is_number?(params[:offset])
+    @errors.add(:offset, 'must be a number.') unless params[:offset].blank? || is_number?(params[:offset])
 
     #
     # 論理チェック

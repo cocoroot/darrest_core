@@ -76,3 +76,8 @@ site_users:
   <<: *controller_default
   show_my_info:
     *action_default
+
+errors:
+  <<: *controller_default
+  routing_error:
+    *action_default

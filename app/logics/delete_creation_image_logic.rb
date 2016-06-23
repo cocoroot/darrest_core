@@ -24,7 +24,8 @@ class DeleteCreationImageLogic < LogicBase
     @creation_image.logical_delete
     @creation_image.save!
 
-    { creation_images: @creation.creation_images, deleted_creation_image: @creation_image, errors: @errors, warnings: @warnings, status: :deleted }
+    # 値を返すので status は ok にする
+    { creation_images: @creation.creation_images, deleted_creation_image: @creation_image, errors: @errors, warnings: @warnings, status: :ok }
   end
 
 end

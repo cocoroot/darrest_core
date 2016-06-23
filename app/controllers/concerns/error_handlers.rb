@@ -1,15 +1,15 @@
 # coding: utf-8
 module ErrorHandlers extend ActiveSupport::Concern
-  
+
   included do
     # unless Rails.env.development?
-      rescue_from Exception,                                  with: :emergency_alert
-      rescue_from ActionController::RoutingError,             with: :rescue404
-      rescue_from ApplicationController::PermissionError,     with: :rescue403
-      rescue_from Core::PermissionError,                      with: :rescue403
-      rescue_from ApplicationController::AuthenticationError, with: :rescue401
-      rescue_from ApplicationController::InvalidSiteError,    with: :rescue401
-      rescue_from ActionController::ParameterMissing,         with: :rescue400
+    rescue_from Exception,                                  with: :emergency_alert
+    rescue_from ActionController::RoutingError,             with: :rescue404
+    rescue_from ApplicationController::PermissionError,     with: :rescue403
+    rescue_from Core::PermissionError,                      with: :rescue403
+    rescue_from ApplicationController::AuthenticationError, with: :rescue401
+    rescue_from ApplicationController::InvalidSiteError,    with: :rescue401
+    rescue_from ActionController::ParameterMissing,         with: :rescue400
     # end
   end
 
@@ -19,35 +19,46 @@ module ErrorHandlers extend ActiveSupport::Concern
     @exception = e
     logger.error e
     logger.error e.backtrace.join("\n")
+
+    create_errors(:internal_server_error, e)
     render 'errors/error500', status: 500
   end
 
   def rescue400(e)
     @exception = e
     logger.debug e
-    logger.debug e.backtrace.join("\n")
+
+    create_errors(:bad_request, e)
     render 'errors/error400', status: 400
   end
 
   def rescue401(e)
     @exception = e
     logger.debug e
-    logger.debug e.backtrace.join("\n")
+
+    create_errors(:unauthorized, e)
     render 'errors/error401', status: 401
   end
 
   def rescue403(e)
     @exception = e
     logger.debug e
-    logger.debug e.backtrace.join("\n")
+
+    create_errors(:forbidden, e)
     render 'errors/error403', status: 403
   end
 
   def rescue404(e)
     @exception = e
     logger.debug e
-    logger.debug e.backtrace.join("\n")
+
+    create_errors(:not_found, e)
     render 'errors/error404', status: 404
   end
 
+  def create_errors(cause, e)
+    @result = { errors: Messages.new, warnings: Messages.new }
+    @result[:errors].add(cause, e.message)
+  end
+  
 end

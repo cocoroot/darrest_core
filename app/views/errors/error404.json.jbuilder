@@ -1,6 +1,11 @@
 # coding: utf-8
-json.status 404
-json.errors do |json|
-  json.message_code "not_found"
-  json.message "入力したURLと当サイトのリソースが一致しません。"
+errors = [
+  {
+    message_code: 'Not Found',
+    message: '入力したURLと当サイトのリソースが一致しません。'
+  }
+]
+
+json.errors do
+  json.partial! partial: '/errors/error', collection: errors, as: :error  
 end

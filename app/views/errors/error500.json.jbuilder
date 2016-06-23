@@ -1,6 +1,11 @@
 # coding: utf-8
-json.status 500
-json.errors do |json|
-  json.message_code "internal_server_error"
-  json.message "ただいまメンテナンス中です。復旧までいましばらくお待ちください。"
+errors = [
+  {
+    message_code: 'Internal Server Error',
+    message: 'ただいまメンテナンス中です。復旧までいましばらくお待ちください。'
+  }
+]
+
+json.errors do
+  json.partial! partial: '/errors/error', collection: errors, as: :error  
 end

@@ -4,7 +4,7 @@ module UserHandler extend ActiveSupport::Concern
   end
 
   def load_site_user_info
-    raise 'AssertionError: params does not contain \'user_baas_id\'.' unless params.key?(:user_baas_id)
+    raise ApplicationController::PermissionError.new('params does not contain \'user_baas_id\'.') unless params.key?(:user_baas_id)
 
     user_baas_id = params[:user_baas_id]
 

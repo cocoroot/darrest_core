@@ -37,9 +37,9 @@ class CreateCreationCommentLogic < LogicBase
 
   def execute(params)
     @creation_comment.save!
-    creation_comments = @creation.creation_comments.order(id: :desc).take(Settings.creations.comments_per_page)
+    #creation_comments = @creation.creation_comments.order(id: :desc).take(Settings.creations.comments_per_page)
 
-    { creation_comments: creation_comments, created_creation_comment: @creation_comment, errors: @errors, warnings: @warnings, status: :created }
+    { creation_comment: @creation_comment, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end

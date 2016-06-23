@@ -29,7 +29,8 @@ class DeleteGoodLogic < LogicBase
       @good.save!
     end
 
-    { creation: Creation.find(params[:good][:creation_id]), errors: @errors, warnings: @warnings, status: :deleted }
+    # 値を返すので status は ok にする
+    { creation: Creation.find(params[:good][:creation_id]), errors: @errors, warnings: @warnings, status: :ok }
   end
 
 end

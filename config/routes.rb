@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
     resources :tags
 
-    get '*anything' => 'errors#routing_error' unless Rails.env == 'development'
+    match '*anything' => 'errors#routing_error', via: :all #unless Rails.env == 'development'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
