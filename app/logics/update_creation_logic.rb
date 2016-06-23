@@ -35,7 +35,7 @@ class UpdateCreationLogic < LogicBase
     end
     @creation.save!
 
-    { creation: @creation, errors: @errors, warnings: @warnings }
+    { creation: @creation, errors: @errors, warnings: @warnings, status: :ok }
   end
 
 end

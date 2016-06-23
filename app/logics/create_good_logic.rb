@@ -44,7 +44,7 @@ class CreateGoodLogic < LogicBase
       @good.save!
     end
 
-    { creation: @creation, good: @good, errors: @errors, warnings: @warnings }
+    { creation: @creation, good: @good, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end

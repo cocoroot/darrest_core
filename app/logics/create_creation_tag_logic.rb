@@ -42,7 +42,7 @@ class CreateCreationTagLogic < LogicBase
     @creation_tag.save!
     @tag.save! if @tag.new_record?
 
-    { creation_tags: @creation.creation_tags, creation_tag: @creation_tag, errors: @errors, warnings: @warnings }
+    { creation_tags: @creation.creation_tags, creation_tag: @creation_tag, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end

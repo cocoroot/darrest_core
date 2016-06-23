@@ -2,30 +2,29 @@ class SiteUsersController < ApplicationController
   # GET /site_users/1
   def show
     @result = LoadSiteUserLogic.new.execute(params_for_show)
+
+    render status: convert_status(@result[:status])
   end
 
   # GET /me
   def show_my_info
     @result = LoadSiteUserLogic.new.execute(params_for_show_my_info)
-    render :show, layout: true
+
+    render status: convert_status(@result[:status])
   end
 
   # POST /site_users
   def create
     @result = CreateSiteUserLogic.new.execute(params_for_create)
 
-    respond_to do |format|
-      format.json { render :show, status: :created }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # PATCH/PUT /site_users/1
   def update
     @result = UpdateSiteUserLogic.new.execute(params_for_update)
 
-    respond_to do |format|
-      format.json { render :show, status: :ok }
-    end
+    render status: convert_status(@result[:status])
   end
 
   private
@@ -33,7 +32,7 @@ class SiteUsersController < ApplicationController
   def params_for_create
     {
       site_id: site_id,
-      site_user: params.require(:site_user).permit(:user_id, :nickname, :biography),
+      site_user: params.require(:site_user).permit(:user_id, :nickname, :biography)
     }
   end
 

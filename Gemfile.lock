@@ -288,6 +288,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
     pry-doc (0.8.0)
       pry (~> 0.9)
       yard (~> 0.8)
@@ -427,6 +430,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   pg (~> 0.15)
+  pry-byebug
   pry-doc
   pry-rails
   rails (= 4.2.5.1)

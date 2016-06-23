@@ -24,7 +24,7 @@ class DeleteCreationImageLogic < LogicBase
     @creation_image.logical_delete
     @creation_image.save!
 
-    { creation_images: @creation.creation_images, deleted_creation_image: @creation_image, errors: @errors, warnings: @warnings }
+    { creation_images: @creation.creation_images, deleted_creation_image: @creation_image, errors: @errors, warnings: @warnings, status: :deleted }
   end
 
 end

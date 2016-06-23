@@ -29,7 +29,7 @@ class DeleteGoodLogic < LogicBase
       @good.save!
     end
 
-    { creation: Creation.find(params[:good][:creation_id]), errors: @errors, warnings: @warnings }
+    { creation: Creation.find(params[:good][:creation_id]), errors: @errors, warnings: @warnings, status: :deleted }
   end
 
 end

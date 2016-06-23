@@ -30,7 +30,7 @@ class CreateSiteUserHeaderImageLogic < LogicBase
   def execute(params)
     @site_user_header_image.save!
 
-    { site_user_header_image: @site_user_header_image, errors: @errors, warnings: @warnings }
+    { site_user_header_image: @site_user_header_image, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end

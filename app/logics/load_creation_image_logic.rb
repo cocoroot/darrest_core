@@ -21,7 +21,7 @@ class LoadCreationImageLogic < LogicBase
   end
 
   def execute(params)
-    { creation_image: @creation_image, errors: @errors, warnings: @warnings }
+    { creation_image: @creation_image, errors: @errors, warnings: @warnings, status: :ok }
   end
 
 end

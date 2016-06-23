@@ -32,7 +32,7 @@ class CreateSiteUserImageLogic < LogicBase
   def execute(params)
     @site_user_image.save!
 
-    { site_user_image: @site_user_image, errors: @errors, warnings: @warnings }
+    { site_user_image: @site_user_image, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end
