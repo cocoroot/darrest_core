@@ -21,6 +21,6 @@ class IndexCreationByUserLogic < LogicBase
   def execute(params)
     creations = @site_user.creations.order(id: :asc).page(params[:page] || 1).per(Settings.creations.creations_per_page)
 
-    { creations: creations, errors: @errors, warnings: @warnings }
+    { creations: creations, errors: @errors, warnings: @warnings, status: :ok }
   end
 end

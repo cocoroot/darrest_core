@@ -19,7 +19,7 @@ class CreateUserLogic < LogicBase
   def execute(params)
     @user.save!
 
-    { user: @user, errors: @errors, warnings: @warnings }
+    { user: @user, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end

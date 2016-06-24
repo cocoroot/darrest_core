@@ -1,7 +1,11 @@
 # coding: utf-8
-json.status 403
-json.errors do |json|
-  json.message_code "forbidden"
-  json.message "アクセス権限がありません。"
-end
+errors = [
+  {
+    message_code: 'Forbidden',
+    message: 'アクセスは禁止されています。'
+  }
+]
 
+json.errors do
+  json.partial! partial: '/errors/error', collection: errors, as: :error  
+end

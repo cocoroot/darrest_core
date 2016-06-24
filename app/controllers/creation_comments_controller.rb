@@ -3,15 +3,15 @@ class CreationCommentsController < ApplicationController
   # GET /creations/:creation_id/creation_comments
   def index
     @result = IndexCreationCommentLogic.new.execute(params_for_index)
+
+    render status: convert_status(@result[:status])
   end
 
   # POST /creation_comments
   def create
     @result = CreateCreationCommentLogic.new.execute(params_for_create)
 
-    respond_to do |format|
-      format.json { render :show, status: :created }
-    end
+    render status: convert_status(@result[:status])
   end
 
   private

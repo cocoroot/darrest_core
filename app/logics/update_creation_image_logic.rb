@@ -31,7 +31,7 @@ class UpdateCreationImageLogic < LogicBase
   def execute(params)
     @creation_image.save!
 
-    { creation_images: @creation_image.creation.creation_images, updated_creation_image: @creation_image, errors: @errors, warnings: @warnings }
+    { creation_images: @creation_image.creation.creation_images, updated_creation_image: @creation_image, errors: @errors, warnings: @warnings, status: :ok }
   end
 
 end

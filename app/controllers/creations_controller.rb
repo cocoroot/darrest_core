@@ -2,34 +2,36 @@ class CreationsController < ApplicationController
   # GET /site_users/:id/creations
   def index_created_by_user
     @result = IndexCreationByUserLogic.new.execute(params_for_index_created_by_user)
+
+    render status: convert_status(@result[:status])
   end
 
   # GET /creations/latest
   def index_latest
     @result = IndexLatestCreationLogic.new.execute(params_for_index_latest)
+
+    render status: convert_status(@result[:status])
   end
 
   # GET /creations/1
   def show
     @result = LoadCreationLogic.new.execute(params_for_show)
+
+    render status: convert_status(@result[:status])
   end
 
   # POST /creations
   def create
     @result = CreateCreationLogic.new.execute(params_for_create)
 
-    respond_to do |format|
-      format.json { render :show, status: :created }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # PATCH/PUT /creations/1
   def update
     @result = UpdateCreationLogic.new.execute(params_for_update)
 
-    respond_to do |format|
-      format.json { render :show, status: :ok }
-    end
+    render status: convert_status(@result[:status])
   end
 
   private
@@ -45,7 +47,6 @@ class CreationsController < ApplicationController
   def params_for_index_latest
     {
       site_id: site_id,
-      #page: params[:page]
       offset: params[:offset]
     }
   end

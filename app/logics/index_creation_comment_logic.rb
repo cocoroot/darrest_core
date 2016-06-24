@@ -18,7 +18,7 @@ class IndexCreationCommentLogic < LogicBase
     #
     # 型チェック
     #
-    @errors.add(:offset, 'must be a number.') unless is_number?(params[:offset])
+    @errors.add(:offset, 'must be a number.') unless params[:offset].blank? || is_number?(params[:offset])
 
     #
     # 論理チェック
@@ -33,7 +33,7 @@ class IndexCreationCommentLogic < LogicBase
   def execute(params)
     comments = @creation.creation_comments.order(id: :desc).offset(params[:offset]).limit(Settings.creations.comments_per_page)
 
-    { creation_comments: comments, errors: @errors, warnings: @warnings }
+    { creation_comments: comments, errors: @errors, warnings: @warnings, status: :ok }
   end
 
 end

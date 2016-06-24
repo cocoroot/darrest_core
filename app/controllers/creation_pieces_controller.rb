@@ -3,27 +3,21 @@ class CreationPiecesController < ApplicationController
   def create
     @result = CreateCreationPieceLogic.new.execute(params_for_create)
 
-    respond_to do |format|
-      format.json { render :index, status: :created }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # PATCH/PUT /creation_pieces/1
   def update
     @result = UpdateCreationPieceLogic.new.execute(params_for_update)
 
-    respond_to do |format|
-      format.json { render :index, status: :ok }
-    end
+    render status: convert_status(@result[:status])
   end
 
   # DELETE /creation_pieces/1
   def destroy
     @result = DeleteCreationPieceLogic.new.execute(params_for_delete)
 
-    respond_to do |format|
-      format.json { render :index, status: :ok }
-    end
+    render status: convert_status(@result[:status])
   end
 
   private

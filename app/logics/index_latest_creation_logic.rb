@@ -16,7 +16,7 @@ class IndexLatestCreationLogic < LogicBase
     #
     # 型チェック
     #
-    @errors.add(:offset, 'must be a number.') unless is_number?(params[:offset])
+    @errors.add(:offset, 'must be a number.') unless params[:offset].blank? || is_number?(params[:offset])
 
     #
     # 論理チェック
@@ -25,8 +25,8 @@ class IndexLatestCreationLogic < LogicBase
   end
 
   def execute(params)
-    creations = Creation.published.order(published_at: :desc).offset(params[:offset]).limit(Settings.creations.creations_per_page)
+    creations = Creation.published.where(site_id: params[:site_id]).order(published_at: :desc).offset(params[:offset]).limit(Settings.creations.creations_per_page)
 
-    { creations: creations, errors: @errors, warnings: @warnings }
+    { creations: creations, errors: @errors, warnings: @warnings, status: :ok }
   end
 end

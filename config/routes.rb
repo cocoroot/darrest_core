@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   with_options(defaults: { format: :json }, format: false) do
-    resources :users, only: [:create]
+    #resources :users, only: [:create]
     get 'me' => 'site_users#show_my_info', as: 'me'
     resources :site_users, only: [:create, :show] do
       get 'creations' =>  'creations#index_created_by_user'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
     resources :tags
 
-    get '*anything' => 'errors#routing_error' unless Rails.env == 'development'
+    match '*anything' => 'errors#routing_error', via: :all #unless Rails.env == 'development'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -21,7 +21,7 @@ class LoadSiteUserLogic < LogicBase
 
   def execute(params)
     owner = @site_user.id == params[:request_site_user_id]
-    { site_user: @site_user, owner: owner, errors: @errors, warnings: @warnings }
+    { site_user: @site_user, owner: owner, errors: @errors, warnings: @warnings, status: :ok }
   end
 
 end

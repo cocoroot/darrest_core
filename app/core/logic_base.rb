@@ -10,8 +10,8 @@ class LogicBase
     if PERMITTED_LOGIC_METHODS.include?(method) && !@treated_methods.include?(method)
       @treated_methods << method
       if @treated_methods.count == PERMITTED_LOGIC_METHODS.count
-        self.chain_method(insert: :authorize, before: :validate)
-        self.chain_method(insert: :validate, before: :execute)
+        self.chain_method(insert: :authorize, before: :validate, status_if_error: :unauthorized)
+        self.chain_method(insert: :validate, before: :execute, status_if_error: :invalid)
         self.transaction_method(:execute)
         self.log_method(:execute)
       end

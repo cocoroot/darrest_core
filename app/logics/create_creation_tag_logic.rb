@@ -33,6 +33,8 @@ class CreateCreationTagLogic < LogicBase
 
     @errors.add(:creation, 'does not belong to the Site.') if site_id != @creation.site_id
 
+    @errors.add(:site_user, 'is not owner of the Creation.') if @creation.site_user_id != params[:site_user_id]
+
     @warnings.add(:creation_tag, 'is already registered.') if @creation_tag.persisted?
 
     { errors: @errors, warnings: @warnings }
@@ -42,7 +44,7 @@ class CreateCreationTagLogic < LogicBase
     @creation_tag.save!
     @tag.save! if @tag.new_record?
 
-    { creation_tags: @creation.creation_tags, creation_tag: @creation_tag, errors: @errors, warnings: @warnings }
+    { creation_tags: @creation.creation_tags, creation_tag: @creation_tag, errors: @errors, warnings: @warnings, status: :created }
   end
 
 end
