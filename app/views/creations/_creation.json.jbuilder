@@ -23,7 +23,7 @@ if creation
   end
 
   json.creation_tags do
-    json.array! creation.creation_tags.for_users.map { |item| item.tag.name }
+    json.partial! partial: '/creation_tags/creation_tag', collection: creation.creation_tags, as: :creation_tag
   end
 
   json.goods_count creation.goods.count
